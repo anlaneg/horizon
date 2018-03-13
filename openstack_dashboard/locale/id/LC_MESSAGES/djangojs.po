@@ -1,15 +1,16 @@
 # OpenStack Infra <zanata@openstack.org>, 2015. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2016. #zanata
 # suhartono <cloudsuhartono@gmail.com>, 2017. #zanata
+# suhartono <cloudsuhartono@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 13.0.0.0b2.dev42\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-10-30 07:48+0000\n"
+"POT-Creation-Date: 2018-02-08 14:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-10-30 03:48+0000\n"
+"PO-Revision-Date: 2018-02-08 04:21+0000\n"
 "Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
@@ -92,49 +93,43 @@ msgstr ""
 "instance. <em>Catatan: ketika memilih Volume, Anda hanya dapat memulai satu "
 "instance.</em>"
 
+msgid "<small>This line of text is meant to be treated as fine print.</small>"
+msgstr ""
+"<small>Baris ini dari teks dimaksudkan untuk diperlakukan sebagai baik cetak."
+"</small>"
+
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Heads up!</strong>\n"
+"<strong>Heads up!</strong>\n"
 "           This\n"
 "          <a href=\"#\" class=\"alert-link\">alert needs your attention</"
 "a>,\n"
 "           but it's not super important."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Perhatian!</strong>\n"
-"           Ini\n"
-"          <a href=\"#\" class=\"alert-link\">peringatan membutuhkan "
-"perhatian Anda</a>,\n"
-"          tetapi tidak super penting."
+"<strong>Heads up!</strong>\n"
+"           This\n"
+"          <a href=\"#\" class=\"alert-link\">alert needs your attention</"
+"a>,\n"
+"           but it's not super important."
 
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Oh snap!</strong>\n"
+"<strong>Oh snap!</strong>\n"
 "          <a href=\"#\" class=\"alert-link\">Change a few things up</a>\n"
 "          and try submitting again."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Oh sekejap!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Ubahlah beberapa hal</a>\n"
-"         dan coba kirimkan lagi."
+"<strong>Oh snap!</strong>\n"
+"          <a href=\"#\" class=\"alert-link\">Change a few things up</a>\n"
+"          and try submitting again."
 
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Well done!</strong>\n"
+"<strong>Well done!</strong>\n"
 "          You successfully read\n"
 "          <a href=\"#\" class=\"alert-link\">this important alert message</"
 "a>."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Bagus sekali!</strong>\n"
-"         Anda berhasil membaca\n"
-"          <a href=\"#\" class=\"alert-link\">ini pesan peringatan penting</"
+"<strong>Well done!</strong>\n"
+"          You successfully read\n"
+"          <a href=\"#\" class=\"alert-link\">this important alert message</"
 "a>."
-
-msgid "<small>This line of text is meant to be treated as fine print.</small>"
-msgstr ""
-"<small>Baris ini dari teks dimaksudkan untuk diperlakukan sebagai baik cetak."
-"</small>"
 
 msgid "A Confirmation Dialog"
 msgstr "A Confirmation Dialog"
@@ -274,6 +269,9 @@ msgstr "Add Interface (tambahkan antarmuka)"
 msgid "Add Ons, Required and Feedback"
 msgstr "Add Ons, Required and Feedback"
 
+msgid "Admin Password"
+msgstr "Password Admin"
+
 msgid "Admin State"
 msgstr "Admin State"
 
@@ -297,6 +295,15 @@ msgstr ""
 
 msgid "Alerts"
 msgstr "Alerts"
+
+msgid ""
+"Also note that segmentation details may be mandatory\n"
+"  or optional depending on the backend. Notably Ironic may provide\n"
+"  segmentation details instead of the user."
+msgstr ""
+"Perhatikan juga bahwa detail segmentasi mungkin wajib\n"
+"   atau pilihan tergantung pada backend. Terutama Ironic dapat memberikan "
+"rincian segmentasi dan bukan pengguna."
 
 msgid "Amount of RAM in MB that is required to boot the image."
 msgstr "Jumlah RAM dalam MB yang diperlukan untuk boot image."
@@ -335,6 +342,23 @@ msgstr ""
 "disk. Ada dua pilihan partisi disk. Pilihan  <b>Automatic</b> mengubah "
 "ukuran disk dan set ke partisi tunggal. Pilihan <b> Manual </ b> "
 "memungkinkan Anda untuk membuat beberapa partisi pada disk."
+
+msgid ""
+"An arbitrary amount (0, 1, 2, ...) of regular Neutron\n"
+"  ports with segmentation details (ie. type and ID). May be provided\n"
+"  when the trunk is created. Also may be attached or detached later\n"
+"  during the trunk's (and the instance's) life."
+msgstr ""
+"Jumlah sembarang (0, 1, 2, ...) dari port Neutron biasa\n"
+"   dengan rincian segmentasi (yaitu tipe dan ID). Mungkin disediakan\n"
+"   saat trunk dibuat. Juga bisa dikaitkan atau dilepas nanti\n"
+"   selama kehidupan trunk (dan instance nya)."
+
+msgid "An arbitrary description for the trunk."
+msgstr "Deskripsi sembarangan untuk trunk."
+
+msgid "An arbitrary name for the trunk. May not be unique."
+msgstr "Nama sembarangan untuk trunk. Mungkin tidak unik."
 
 msgid "An external (HTTP) URL is required"
 msgstr "URL eksternal (HTTP) diperlukan"
@@ -454,6 +478,13 @@ msgstr "Tidak bisa mendapatkan katalog layanan dari keystone."
 msgid "Cannot get the extension list."
 msgstr "Tidak bisa mendapatkan daftar ekstensi."
 
+msgid "Change Password"
+msgstr "Ganti Kata Sandi"
+
+msgid "Change user's password. We highly recommend you create a strong one."
+msgstr ""
+"Ubah kata sandi pengguna. Kami sangat menyarankan Anda membuat yang kuat."
+
 msgid "Charts"
 msgstr "Charts (grafik)"
 
@@ -522,6 +553,10 @@ msgid "Confirm Delete Image"
 msgid_plural "Confirm Delete Images"
 msgstr[0] "Konfirmasi hapus image"
 
+msgid "Confirm Delete Key Pair"
+msgid_plural "Confirm Delete Key Pairs"
+msgstr[0] "Confirm Delete Key Pair"
+
 msgid "Confirm Delete Role"
 msgid_plural "Confirm Delete Roles"
 msgstr[0] "Confirm Delete Role"
@@ -529,6 +564,10 @@ msgstr[0] "Confirm Delete Role"
 msgid "Confirm Delete Trunk"
 msgid_plural "Confirm Delete Trunks"
 msgstr[0] "Confirm Delete Trunk"
+
+msgid "Confirm Delete User"
+msgid_plural "Confirm Delete Users"
+msgstr[0] "Confirm Delete User"
 
 msgid "Connecting"
 msgstr "Connecting (sedang koneksi)"
@@ -611,8 +650,20 @@ msgstr "Create Role"
 msgid "Create Subnet"
 msgstr "Create Subnet (buat subnet)"
 
+msgid "Create Trunk"
+msgstr "Buat Trunk"
+
+msgid "Create User"
+msgstr "Membuat User"
+
 msgid "Create Volume"
 msgstr "Create volume"
+
+msgid ""
+"Create a new user and set related properties including the Primary Project "
+"and Role."
+msgstr ""
+"Buat user baru dan atur properti terkait termasuk Primary Project dan Role."
 
 msgid "Created"
 msgstr "Created (dibuat)"
@@ -644,6 +695,9 @@ msgstr ""
 "<samp>cloud-init</samp> dalam sistem operasi tamu (guest), Anda dapat "
 "menggunakan script khusus untuk mendapatkan kunci publik (public key) dan "
 "menambahkannya ke akun pengguna."
+
+msgid "Customization Script"
+msgstr "Customization Script"
 
 msgid "DNS Domain"
 msgstr "Domain DNS"
@@ -702,6 +756,12 @@ msgstr "Default button (tombol bawaan)"
 msgid "Default input"
 msgstr "input default"
 
+msgid "Default: Empty string"
+msgstr "Default: String kosong"
+
+msgid "Default: Enabled"
+msgstr "Default: Enabled"
+
 msgid "Definition list"
 msgstr "Daftar definisi"
 
@@ -737,6 +797,13 @@ msgstr "Delete Instance (hapus instance)"
 msgid "Delete Interface"
 msgstr "Delete Interface (hapus antarmuka)"
 
+msgid "Delete Key Pair"
+msgid_plural "Delete Key Pairs"
+msgstr[0] "Delete Key Pair"
+
+msgid "Delete Key Pairs"
+msgstr "Delete Key Pairs"
+
 msgid "Delete Network"
 msgstr "Delete Network (hapus jaringan)"
 
@@ -760,6 +827,13 @@ msgstr[0] "Delete Trunk"
 msgid "Delete Trunks"
 msgstr "Delete Trunks"
 
+msgid "Delete User"
+msgid_plural "Delete Users"
+msgstr[0] "Delete User"
+
+msgid "Delete Users"
+msgstr "Hapus Pengguna"
+
 msgid "Delete Volume on Instance Delete"
 msgstr "Delete Volume on Instance Delete"
 
@@ -777,6 +851,11 @@ msgid_plural "Deleted Images: %s."
 msgstr[0] "Image terhapus: %s."
 
 #, python-format
+msgid "Deleted Key Pair: %s."
+msgid_plural "Deleted Key Pairs: %s."
+msgstr[0] "Deleted Key Pair: %s."
+
+#, python-format
 msgid "Deleted Role: %s."
 msgid_plural "Deleted Roles: %s."
 msgstr[0] "Deleted Role: %s."
@@ -785,6 +864,11 @@ msgstr[0] "Deleted Role: %s."
 msgid "Deleted Trunk: %s."
 msgid_plural "Deleted Trunks: %s."
 msgstr[0] "Deleted Trunk: %s."
+
+#, python-format
+msgid "Deleted User: %s."
+msgid_plural "Deleted Users: %s."
+msgstr[0] "Deleted User: %s."
 
 msgid "Deleting"
 msgstr "Deleting (menghapus)"
@@ -804,8 +888,14 @@ msgstr "Rincian"
 msgid "Details Views:"
 msgstr "Details Views: (penampilan detail)"
 
+msgid "Device ID"
+msgstr "Device ID"
+
 msgid "Device Name"
 msgstr "Device Name"
+
+msgid "Device Owner"
+msgstr "Device Owner"
 
 msgid "Dialogs"
 msgstr "Dialogs (dialog)"
@@ -818,6 +908,9 @@ msgstr "Direct Physical"
 
 msgid "Direction"
 msgstr "Direction (arah)"
+
+msgid "Disable User"
+msgstr "Nonaktifkan Pengguna"
 
 msgid "Disabled"
 msgstr "Disabled (tidak aktif)"
@@ -845,6 +938,9 @@ msgstr "Domain"
 
 msgid "Domain ID"
 msgstr "ID domain"
+
+msgid "Domain Id"
+msgstr "Domain Id"
 
 msgid "Domain Name"
 msgstr "Domain Name"
@@ -888,11 +984,26 @@ msgstr "Edit image"
 msgid "Edit Role"
 msgstr "Edit Role"
 
+msgid "Edit Trunk"
+msgstr "Edit Trunk"
+
+msgid "Edit User"
+msgstr "Edit Pengguna"
+
+msgid "Edit the user's details, including the Primary Project."
+msgstr "Edit rincian pengguna, termasuk Proyek Utama."
+
 msgid "Email"
 msgstr "Surat elektronik"
 
 msgid "Emphasis classes"
 msgstr "Kelas penekanan"
+
+msgid "Enable User"
+msgstr "Aktifkan Pengguna"
+
+msgid "Enable/Disable subport addition, removal and trunk delete."
+msgstr "Enable/Disable tambahan subport, penghilangan dan penghapusan trunk."
 
 msgid "Enabled"
 msgstr "Diaktifkan"
@@ -920,6 +1031,13 @@ msgstr "Error Deleting (kesalahan menghapus)"
 
 msgid "Ether Type"
 msgstr "Ether Type"
+
+msgid ""
+"Exactly one regular Neutron port. Has to be provided when\n"
+"  the trunk is created. Cannot be changed during the trunk's life."
+msgstr ""
+"Tepatnya satu port Neutron biasa. Harus disediakan kapan\n"
+"   batang dibuat. Tidak bisa diubah selama ada trunk."
 
 msgid "Example body text"
 msgstr "Example body text (teks contoh tubuh)"
@@ -988,6 +1106,22 @@ msgstr "Folder %(name)s dibuat."
 
 msgid "Folder Name"
 msgstr "Nama Folder"
+
+msgid ""
+"For ports on provider networks you may choose the special\n"
+"  segmentation type <em>inherit</em>. Then the subport's segmentation\n"
+"  type and ID will be automagically inherited from the provider network's\n"
+"  segmentation type and ID. This is useful when the switch is incapable of\n"
+"  remapping (tag pop-push) for example as usual for Ironic instances."
+msgstr ""
+"Untuk port pada jaringan penyedia anda bisa memilih \n"
+"   tipe segmentasi yang spesial <em>inherit</em>. Kemudian tipe segmentasi "
+"subport\n"
+"   dan ID akan diturunkan secara otomatis dari \n"
+"   tipe segmentasi dan ID jaringan penyedia. Ini berguna saat switch tidak "
+"mampu\n"
+"   pemetaan ulang (tag pop-push) misalnya seperti biasa untuk  Ironic "
+"instance."
 
 msgid "Form"
 msgstr "Form"
@@ -1177,6 +1311,9 @@ msgstr "Dampak terhadap kuota"
 msgid "Import Key Pair"
 msgstr "Impor Key Pair (pasangan kunci)"
 
+msgid "Import Public Key"
+msgstr "Impor Public Key"
+
 msgid "Indicators"
 msgstr "Indicators (indikator)"
 
@@ -1212,6 +1349,29 @@ msgstr "keberhasilan masukan"
 
 msgid "Input warning"
 msgstr "masukan peringatan"
+
+msgid ""
+"Inside the instance a particular subport's network will\n"
+"  be presented as tagged frames transmitted and received on the vNIC\n"
+"  belonging to the parent port. The cloud user may control the tagging\n"
+"  by setting the <em>segmentation type</em> and <em>segmentation ID</em>\n"
+"  of the subport."
+msgstr ""
+"Di dalam instance, jaringan subport tertentu akan\n"
+"   disajikan sebagai frame ditandai ditransmisikan dan diterima di vNIC\n"
+"   milik port induk. Pengguna awan dapat mengontrol pemberian tag\n"
+"   dengan menetapkan <em>segmentation type</em> dan <em>segmentation ID</"
+"em>\n"
+"   dari subportnya."
+
+msgid ""
+"Inside the instance the parent port's network will always\n"
+"  be presented as the untagged network. It will be available early from\n"
+"  the moment of bootup."
+msgstr ""
+"Di dalam instance jaringan port induk akan selalu ada\n"
+"   disajikan sebagai jaringan untagged. Ini akan tersedia sejak awal\n"
+"   saat bootup"
 
 msgid "Instance"
 msgstr "Instance"
@@ -1267,13 +1427,6 @@ msgstr "Pasangan kunci"
 msgid "Key Pair Name"
 msgstr "Key Pair Name"
 
-msgid ""
-"Key Pair Name\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-msgstr ""
-"Key Pair Name\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-
 msgid "Key Pairs"
 msgstr "Key Pairs"
 
@@ -1298,6 +1451,36 @@ msgstr ""
 "       Pilih nama pasangan kunci dimana Anda akan mengenali.\n"
 "       Nama hanya dapat mencakup karakter alfanumerik, spasi, atau dashes "
 "(tanda hubun)g (-)"
+
+msgid ""
+"Key Pairs are how you login to your instance after it is launched.\n"
+"  Choose a key pair name you will recognize and paste your SSH public key "
+"into the\n"
+"  space provided."
+msgstr ""
+"Key Pairs (pasangan kunci) adalah bagaimana Anda login ke instance Anda "
+"setelah diluncurkan.\n"
+"   Pilih nama pasangan kunci yang akan Anda kenali dan tempel kunci publik "
+"SSH Anda ke dalam\n"
+"   ruang yang disediakan."
+
+msgid ""
+"Key Pairs are how you login to your instance after it is launched.\n"
+"  Choose a key pair name you will recognize.\n"
+"  Names may only include alphanumeric characters, spaces, or dashes."
+msgstr ""
+"Key Pairs (pasangan kunci) adalah bagaimana Anda login ke instance Anda "
+"setelah diluncurkan.\n"
+"   Pilih nama pasangan kunci yang akan Anda kenali.\n"
+"   Nama mungkin hanya menyertakan karakter alfanumerik, spasi, atau tanda "
+"hubung."
+
+#, python-format
+msgid "Key pair %(name)s was successfully created."
+msgstr "Key pair %(name)s berhasil dibuat."
+
+msgid "Key pair already exists."
+msgstr "Key Pairs (pasangan kunci) sudah ada."
 
 msgid "Keypair already exists or name contains bad characters."
 msgstr "Keypair sudah ada atau nama berisi karakter buruk."
@@ -1368,6 +1551,12 @@ msgstr "Load Function: (fungsi must)"
 msgid "Loading"
 msgstr "Loading (pemuatan)"
 
+msgid "Loading ports... Please Wait"
+msgstr "Loading ports... Please Wait"
+
+msgid "Loading trunk... Please Wait"
+msgstr "Loading trunk... Please Wait"
+
 msgid "Location"
 msgstr "Lokasi"
 
@@ -1379,6 +1568,9 @@ msgstr "Dengar, aku di sebuah well kecil!"
 
 msgid "Look, I'm in a well!"
 msgstr "Dengar, aku di sebuah well!"
+
+msgid "MAC Address"
+msgstr "MAC Address"
 
 msgid "MacVTap"
 msgstr "MacVTap"
@@ -1486,8 +1678,18 @@ msgstr "Model"
 msgid "Month"
 msgstr "Month"
 
+msgid ""
+"Must not be the parent or a subport of any other\n"
+"  trunks."
+msgstr ""
+"Tidak boleh menjadi induk atau subport dari trun yang lain.\n"
+"   "
+
 msgid "Name"
 msgstr "Name (nama)"
+
+msgid "Name/ID"
+msgstr "Name/ID"
 
 msgid "Names:"
 msgstr "Names: (nama)"
@@ -1534,6 +1736,15 @@ msgstr "Karakteristik jaringan"
 msgid "Networks"
 msgstr "Jaringan"
 
+msgid ""
+"Networks of subports may become available later than the\n"
+"  moment of bootup. But they will be available after the trunk reached\n"
+"  the <em>ACTIVE</em> status."
+msgstr ""
+"Jaringan subport mungkin tersedia lebih lambat dari pada\n"
+"   saat bootup. Tapi mereka akan tersedia setelah trunk tercapai\n"
+"   status <em>ACTIVE</ em>."
+
 msgid "Networks provide the communication channels for instances in the cloud."
 msgstr "Jaringan menyediakan saluran komunikasi untuk instance di cloud."
 
@@ -1564,6 +1775,14 @@ msgstr "Tidak ada petunjuk scheduler yang ada"
 msgid "No items to display."
 msgstr "Tidak ada item untuk ditampilkan."
 
+msgid ""
+"No subport can be the parent or a subport of any other\n"
+"  trunks."
+msgstr ""
+"Tidak ada subport yang bisa menjadi induk atau subport dari trunk yang "
+"lain.\n"
+"   "
+
 msgid "None"
 msgstr "None (tak ada)"
 
@@ -1575,6 +1794,29 @@ msgstr "Not Set (tanpa pengaturan)"
 
 msgid "Not public"
 msgstr "Not public"
+
+msgid ""
+"Note that most guest operating systems will not\n"
+"  automatically configure and bring up the VLAN subinterfaces belonging\n"
+"  to subports. You may have to do that yourself. For example:"
+msgstr ""
+"Perhatikan bahwa sebagian besar sistem operasi guest tidak\n"
+"   secara otomatis mengkonfigurasi dan memunculkan subinterface VLAN yang "
+"memiliki\n"
+"   subport. Anda mungkin harus melakukannya sendiri. Sebagai contoh:"
+
+msgid ""
+"Note that some Neutron backends (notably the Open vSwitch\n"
+"  based backend) only allow trunk creation before an instance is launched\n"
+"  on the parent port.  Other backends may allow trunk creation at any\n"
+"  time during the life of a port."
+msgstr ""
+"Perhatikan bahwa beberapa backend Neutron (terutama Open vSwitch\n"
+"   based backend) hanya mengizinkan pembuatan trunk sebelum instance "
+"diluncurkan\n"
+"   pada port induk. Backends lainnya memungkinkan pembuatan trunk pada "
+"setiap\n"
+"   waktu selama ada port."
 
 msgid ""
 "Note: Delimiters ('{$ ctrl.model.DELIMETER $}') are allowed in the\n"
@@ -1714,6 +1956,9 @@ msgstr "Panels (panel)"
 msgid "Parent Port"
 msgstr "Parent Port"
 
+msgid "Parent port"
+msgstr "Port induk"
+
 msgid "Password"
 msgstr "Password"
 
@@ -1785,6 +2030,9 @@ msgstr "Primary Anchor (jangkar utama)"
 msgid "Primary Button"
 msgstr "Primary Button (tombol utama)"
 
+msgid "Primary Project"
+msgstr "Primary Project"
+
 msgid "Primary Project ID"
 msgstr "Primary Project ID"
 
@@ -1827,6 +2075,9 @@ msgstr "Dilindungi"
 
 msgid "Protocol"
 msgstr " Protocol (protokol)"
+
+msgid "Provide basic properties of the trunk to be created. All optional."
+msgstr "Berikan sifat dasar dari batang yang akan dibuat. Semua opsional"
 
 msgid "Provider Network"
 msgstr "Provider Network (provider jaringan)"
@@ -1988,8 +2239,18 @@ msgstr ""
 msgid "Segmentation ID"
 msgstr "Segmentation ID (ID segmentasi)"
 
+msgid "Segmentation Id"
+msgstr "Id Segmentasi"
+
 msgid "Segmentation Type"
 msgstr "Segmentation Type"
+
+msgid ""
+"Select <em>exactly one port</em> as the parent port of the trunk to\n"
+"    be created. Mandatory."
+msgstr ""
+"Pilih <em>exactly one port</em> sebagai port induk dari trunk yang\n"
+"     diciptakan. Wajib."
 
 msgid "Select Boot Source"
 msgstr "Select Boot Source"
@@ -2012,11 +2273,30 @@ msgstr "Pilih grup server dari kelompok yang tersedia di bawah ini."
 msgid "Select a source from those listed below."
 msgstr "Pilih sumber dari yang tercantum di bawah ini."
 
+msgid ""
+"Select an <em>arbitrary amount of ports (0, 1, 2, ...)</em> and their\n"
+"    segmentation details as the subports of the trunk to be created.\n"
+"    Optional."
+msgstr ""
+"Pilih <em>arbitrary amount of ports (0, 1, 2, ...)</em> dan detail "
+"segmentasinya\n"
+"      sebagai subport dari trunk yang akan dibuat.\n"
+"     Pilihan."
+
 msgid "Select an item from Available items below"
 msgstr "Pilih item dari item tersedia bawah"
 
 msgid "Select at least one network"
 msgstr "Pilih setidaknya satu jaringan"
+
+msgid "Select from the list of available ports below."
+msgstr "Pilih dari daftar port yang tersedia di bawah ini."
+
+msgid "Select items from Available items below"
+msgstr "Pilih item dari item yang tersedia di bawah ini"
+
+msgid "Select many"
+msgstr "Pilih beberapa"
 
 msgid "Select networks from those listed below."
 msgstr "Pilih jaringan dari yang tercantum di bawah ini."
@@ -2135,6 +2415,9 @@ msgstr "Seseorang yang terkenal dalam"
 msgid "Something else here"
 msgstr "Something else here (sesuatu lain disini)"
 
+msgid "Something wrong to change password."
+msgstr "Ada yang salah untuk mengganti password."
+
 msgid "Source"
 msgstr "Sumber"
 
@@ -2180,6 +2463,9 @@ msgstr "Subnets Associated (subnet terkait)"
 
 msgid "Subport Count"
 msgstr "Subport Count"
+
+msgid "Subports"
+msgstr "Subports"
 
 msgid "Success"
 msgstr "Success (sukses)"
@@ -2241,6 +2527,9 @@ msgstr "Textarea"
 
 msgid "The access permission for the image."
 msgstr "Izin akses untuk image."
+
+msgid "The admin password is incorrect."
+msgstr "Kata sandi admin salah"
 
 msgid "The architecture of the image."
 msgstr "Arsitektur image."
@@ -2331,6 +2620,37 @@ msgstr "Nama Volume"
 msgid "The name of the image."
 msgstr "Nama image."
 
+msgid ""
+"The parent port is the port you have to add to the instance\n"
+"  at launch. Do not try to add the trunk or any of the subports to the\n"
+"  instance directly."
+msgstr ""
+"Port induk adalah port yang harus Anda tambahkan ke instance\n"
+"   saat peluncuran. Jangan mencoba menambahkan trunk atau salah satu subport "
+"ke\n"
+"   instance langsung"
+
+msgid ""
+"The segmentation type and ID are decoupled (and\n"
+"  therefore independent) from Neutron's network virtualization\n"
+"  implementation. Different segmentation types will be remapped as frames\n"
+"  leave/enter the instance."
+msgstr ""
+"Tipe segmentasi dan ID dipisahkan (dan\n"
+"   oleh karena itu independen) dari penerapan virtualisasi jaringan "
+"Neutron.\n"
+"   Jenis segmentasi yang berbeda akan dipetakan ulang sebagai bingkai\n"
+"   meninggalkan/memasukkan instance"
+
+msgid ""
+"The segmentation type, ID tuples of subports must be unique\n"
+"  (in the scope of a trunk), otherwise networks of subports could not\n"
+"  be distinguished inside the instance."
+msgstr ""
+"Tipe segmentasi, ID tuples dari subports harus unik\n"
+"   (dalam lingkup trunk), jika tidak maka jaringan subport tidak bisa\n"
+"   dibedakan dalam instance."
+
 #, python-format
 msgid ""
 "The selected %(sourceType)s source requires a flavor with at least "
@@ -2412,6 +2732,13 @@ msgid ""
 msgstr ""
 "Objek JavaScript ini berisi formulir baru Anda dan dapat digunakan dengan "
 "<code>horizon.framework.widgets.form.ModalFormService</code>"
+
+msgid ""
+"This can be simplified by reusing the parent's MAC address\n"
+"  for all subports of the trunk earlier at port creation. Eg.:"
+msgstr ""
+"Hal ini dapat disederhanakan dengan menggunakan kembali alamat MAC induknya\n"
+"   untuk semua subport trunk pada awal pembuatan port. Misalnya.:"
 
 msgid ""
 "This command generates a pair of keys: a private key (cloud.key)\n"
@@ -2518,6 +2845,14 @@ msgstr "Total Volumes"
 msgid "Trunk"
 msgstr "Trunk"
 
+#, python-format
+msgid "Trunk %s was successfully created."
+msgstr "Trunk %s berhasil dibuat."
+
+#, python-format
+msgid "Trunk %s was successfully edited."
+msgstr "Trunk %s berhasil diedit"
+
 msgid "Trunks"
 msgstr "Trunks"
 
@@ -2593,6 +2928,9 @@ msgstr "Tidak dapat membuat server."
 msgid "Unable to create the subnet."
 msgstr "Tidak dapat membuat subnet."
 
+msgid "Unable to create the trunk."
+msgstr "Tidak dapat membuat trunk."
+
 msgid "Unable to create the user."
 msgstr "Tidak dapat membuat pengguna."
 
@@ -2610,6 +2948,11 @@ msgid_plural "Unable to delete Images: %s."
 msgstr[0] "Tidak data menghapus image: %s."
 
 #, python-format
+msgid "Unable to delete Key Pair: %s."
+msgid_plural "Unable to delete Key Pairs: %s."
+msgstr[0] "Unable to delete Key Pair: %s."
+
+#, python-format
 msgid "Unable to delete Role: %s."
 msgid_plural "Unable to delete Roles: %s."
 msgstr[0] "Unable to delete Role: %s."
@@ -2618,6 +2961,11 @@ msgstr[0] "Unable to delete Role: %s."
 msgid "Unable to delete Trunk: %s."
 msgid_plural "Unable to delete Trunks: %s."
 msgstr[0] "Unable to delete Trunk: %s."
+
+#, python-format
+msgid "Unable to delete User: %s."
+msgid_plural "Unable to delete Users: %s."
+msgstr[0] "Unable to delete User: %s."
 
 msgid "Unable to delete the container."
 msgstr "Tidak dapat menghapus kontainer."
@@ -2644,6 +2992,10 @@ msgstr "Tidak dapat menghapus grup."
 #, python-format
 msgid "Unable to delete the image with id: %(id)s"
 msgstr "Tidak dapat menghapus image dengan id: %(id)s"
+
+#, python-format
+msgid "Unable to delete the keypair with name: %(name)s"
+msgstr "Tidak dapat menghapus keypair dengan nama: %(name)s"
 
 msgid "Unable to delete the object."
 msgstr "Tidak dapat menghapus objek."
@@ -2815,6 +3167,9 @@ msgstr "Tidak dapat mengambil layanan cinder."
 msgid "Unable to retrieve the current user session."
 msgstr "Tidak dapat mengambil sesi pengguna saat ini."
 
+msgid "Unable to retrieve the default domain."
+msgstr "Tidak dapat mengambil domain default."
+
 msgid "Unable to retrieve the default quotas."
 msgstr "Tidak dapat mengambil kuota default."
 
@@ -2844,9 +3199,6 @@ msgstr "Tidak dapat mengambil flavor."
 
 msgid "Unable to retrieve the group."
 msgstr "Tidak dapat mengambil grup."
-
-msgid "Unable to retrieve the heat services."
-msgstr "Tidak dapat mengambil layanan heat."
 
 msgid "Unable to retrieve the image custom properties."
 msgstr "Tidak dapat mengambil properti image kustom."
@@ -2983,11 +3335,11 @@ msgstr "Tidak dapat memperbarui flavor."
 msgid "Unable to update the image."
 msgstr "Tidak dapat memperbarui image."
 
+msgid "Unable to update the trunk."
+msgstr "Tidak dapat memperbarui trunk."
+
 msgid "Unable to upload the object."
 msgstr "Tidak dapat meng-upload objek."
-
-msgid "Unable to validate the template."
-msgstr "Tidak dapat memvalidasi template."
 
 msgid "Unknown"
 msgstr "Unknown"
@@ -3081,8 +3433,30 @@ msgstr ""
 msgid "User"
 msgstr "User (pengguna)"
 
+#, python-format
+msgid "User %s was successfully created."
+msgstr "User %s berhasil dibuat."
+
+#, python-format
+msgid "User %s was successfully disabled."
+msgstr "Pengguna %s berhasil dinonaktifkan"
+
+#, python-format
+msgid "User %s was successfully enabled."
+msgstr "User %s berhasil diaktifkan."
+
+#, python-format
+msgid "User %s was successfully updated."
+msgstr "Pengguna %s berhasil diperbarui."
+
 msgid "User ID"
 msgstr "ID pengguna"
+
+msgid "User Name"
+msgstr "Nama pengguna"
+
+msgid "User password has been updated successfully."
+msgstr "Kata sandi pengguna telah berhasil diupdate."
 
 msgid "Users"
 msgstr "Users (pengguna)"
@@ -3263,10 +3637,6 @@ msgstr "Ya"
 msgid "You are not allowed to delete images: %s"
 msgstr "Anda tidak diizinkan untuk menghapus image: %s"
 
-#, python-format
-msgid "You are not allowed to delete trunks: %s"
-msgstr "Anda tidak diizinkan untuk menghapus trunks: %s"
-
 msgid "You can add arbitrary metadata to your image."
 msgstr "Anda dapat menambahkan metadata apapun untuk image Anda."
 
@@ -3319,23 +3689,28 @@ msgid_plural "You have selected \"%s\". Deleted images are not recoverable."
 msgstr[0] "Anda telah memilih \"%s\". Image terhapus tidak dapat dipulihkan."
 
 #, python-format
+msgid "You have selected \"%s\". Deleted key pair is not recoverable."
+msgid_plural "You have selected \"%s\". Deleted key pairs are not recoverable."
+msgstr[0] "You have selected \"%s\". Deleted key pair is not recoverable."
+
+#, python-format
 msgid "You have selected \"%s\". Deleted role is not recoverable."
 msgid_plural "You have selected \"%s\". Deleted roles are not recoverable."
 msgstr[0] "You have selected \"%s\". Deleted role is not recoverable."
 
+#, python-format
+msgid "You have selected \"%s\". Deleted user is not recoverable."
+msgid_plural "You have selected \"%s\". Deleted users are not recoverable."
+msgstr[0] "You have selected \"%s\". Deleted user is not recoverable."
+
 msgid "Your Form as JavaScript"
 msgstr "Your Form as JavaScript"
-
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "error"
 
 msgid "image"
 msgstr "image"
 
-msgid "message"
-msgid_plural "messages"
-msgstr[0] "pesan"
+msgid "inherit"
+msgstr "mewarisi"
 
 #, python-format
 msgid "resource load failed: %s"
@@ -3344,20 +3719,11 @@ msgstr "Muatan sumber daya gagal: %s"
 msgid "snapshot"
 msgstr "snapshot"
 
-msgid "submit"
-msgid_plural "submits"
-msgstr[0] "sampaikan"
-
-msgid "success"
-msgid_plural "successs"
-msgstr[0] "sukses"
-
-msgid "title"
-msgid_plural "titles"
-msgstr[0] "judul"
-
 msgid "volume"
 msgstr "volume"
+
+msgid "{$ address $} on subnet {$ subnet $}"
+msgstr "{$ address $} on subnet {$ subnet $}"
 
 msgid ""
 "{$ ctrl.model.counted.files $} files in\n"

@@ -5,17 +5,17 @@
 # yasemin demiral <yasemin.demiral@tubitak.gov.tr>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev124\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-09-21 04:56+0000\n"
+"POT-Creation-Date: 2018-03-01 14:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2017-08-16 11:43+0000\n"
 "Last-Translator: yasemin demiral <yasemin.demiral@tubitak.gov.tr>\n"
 "Language-Team: Turkish (Turkey)\n"
-"Language: tr-TR\n"
-"X-Generator: Zanata 3.9.6\n"
+"Language: tr_TR\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n>1)\n"
 
 msgid "#"
@@ -93,45 +93,6 @@ msgstr ""
 "<b>Birim</b>: Bu seçenek mevcut bir birimi kullanır. Yeni bir birim "
 "oluşturmaz. Birim sunucu silinirken silinecek şekilde seçebilirsiniz. "
 "<em>Not: Birim seçerken, yalnızca bir sunucu başlatabilirsiniz.</em>"
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Heads up!</strong>\n"
-"           This\n"
-"          <a href=\"#\" class=\"alert-link\">alert needs your attention</"
-"a>,\n"
-"           but it's not super important."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Dikkat !</strong>\n"
-"           Bu\n"
-"          <a href=\"#\" class=\"alert-link\">uyarı mesajına dikkat etmeniz "
-"gerekiyor</a>,\n"
-"           ama yinede çok önemli değil."
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Oh snap!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Change a few things up</a>\n"
-"          and try submitting again."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Hay aksi!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Birkaç şeyi değiştirin</a>\n"
-"          ve tekrar göndermeyi deneyin."
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Well done!</strong>\n"
-"          You successfully read\n"
-"          <a href=\"#\" class=\"alert-link\">this important alert message</"
-"a>."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Tebrikler!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Bu önemli bir uyarı mesajını</"
-"a>\n"
-"           Başarıyla okudunuz."
 
 msgid "<small>This line of text is meant to be treated as fine print.</small>"
 msgstr "<small>Bu metin satırı dip not olarak işlenmek amaçlıdır.</small>"
@@ -1266,13 +1227,6 @@ msgstr "Anahtar Çifti"
 
 msgid "Key Pair Name"
 msgstr "Anahtar Çifti Adı"
-
-msgid ""
-"Key Pair Name\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-msgstr ""
-"Anahtar Çifti Adı\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
 
 msgid "Key Pairs"
 msgstr "Anahtar Çiftleri"
@@ -2801,9 +2755,6 @@ msgstr "Şablon alınamadı."
 msgid "Unable to retrieve the flavors."
 msgstr "Şablonlar alınamadı."
 
-msgid "Unable to retrieve the heat services."
-msgstr "Heat servisleri alınamıyor."
-
 msgid "Unable to retrieve the image custom properties."
 msgstr "İmaj özel özellikleri alınamıyor."
 
@@ -2936,9 +2887,6 @@ msgstr "İmaj güncellenemiyor."
 msgid "Unable to upload the object."
 msgstr "Nesne yüklenemiyor."
 
-msgid "Unable to validate the template."
-msgstr "Şablon doğrulanamıyor."
-
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
@@ -3033,6 +2981,9 @@ msgstr "Kullanıcı"
 
 msgid "User ID"
 msgstr "Kullanıcı ID"
+
+msgid "User Name"
+msgstr "Kullanıcı Adı"
 
 msgid "Users"
 msgstr "Kullanıcılar"
@@ -3213,10 +3164,6 @@ msgstr "Evet"
 msgid "You are not allowed to delete images: %s"
 msgstr "İmajları silme yetkiniz yok: %s"
 
-#, python-format
-msgid "You are not allowed to delete trunks: %s"
-msgstr "%s Trunk'ını silmenize izin verilmiyor."
-
 msgid "You can add arbitrary metadata to your image."
 msgstr "İmajınıza istediğiniz metaveriyi ekleyebilirsiniz."
 
@@ -3278,18 +3225,8 @@ msgstr[1] "\"%s\" seçtiniz. Silinen roller geri getirilemez."
 msgid "Your Form as JavaScript"
 msgstr "JavaScript olarak Formunuz"
 
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "hata"
-msgstr[1] "hatalar"
-
 msgid "image"
 msgstr "imaj"
-
-msgid "message"
-msgid_plural "messages"
-msgstr[0] "mesaj"
-msgstr[1] "mesajlar"
 
 #, python-format
 msgid "resource load failed: %s"
@@ -3297,21 +3234,6 @@ msgstr "kaynak yükleme başarısız: %s"
 
 msgid "snapshot"
 msgstr "anlık görüntü"
-
-msgid "submit"
-msgid_plural "submits"
-msgstr[0] "gönder"
-msgstr[1] "gönderiler"
-
-msgid "success"
-msgid_plural "successs"
-msgstr[0] "başarı"
-msgstr[1] "başarılar"
-
-msgid "title"
-msgid_plural "titles"
-msgstr[0] "başlık"
-msgstr[1] "başlıklar"
 
 msgid "volume"
 msgstr "Mantıksal Sürücü"

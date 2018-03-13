@@ -13,7 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -24,8 +24,8 @@ from openstack_dashboard import api
 
 
 class AdminFloatingIpAllocate(forms.SelfHandlingForm):
-    pool = forms.ChoiceField(label=_("Pool"))
-    tenant = forms.ChoiceField(label=_("Project"))
+    pool = forms.ThemableChoiceField(label=_("Pool"))
+    tenant = forms.ThemableChoiceField(label=_("Project"))
     floating_ip_address = forms.IPField(
         label=_("Floating IP Address (optional)"),
         required=False,
@@ -34,6 +34,9 @@ class AdminFloatingIpAllocate(forms.SelfHandlingForm):
                     "You need to specify an explicit address which is under "
                     "the public network CIDR (e.g. 202.2.3.0/24)."),
         mask=False)
+    description = forms.CharField(max_length=255,
+                                  label=_("Description"),
+                                  required=False)
 
     def __init__(self, *args, **kwargs):
         super(AdminFloatingIpAllocate, self).__init__(*args, **kwargs)
@@ -48,6 +51,8 @@ class AdminFloatingIpAllocate(forms.SelfHandlingForm):
             param = {}
             if data['floating_ip_address']:
                 param['floating_ip_address'] = data['floating_ip_address']
+            if data['description']:
+                param['description'] = data['description']
             subnet = api.neutron.subnet_get(request, data['pool'])
             param['subnet_id'] = subnet.id
             fip = api.neutron.tenant_floating_ip_allocate(

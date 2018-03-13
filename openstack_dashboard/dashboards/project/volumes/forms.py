@@ -18,10 +18,9 @@ Views for managing volumes.
 """
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.forms import ValidationError
-from django import http
 from django.template.defaultfilters import filesizeformat
+from django.urls import reverse
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
@@ -549,6 +548,10 @@ class CreateSnapshotForm(forms.SelfHandlingForm):
 class CreateTransferForm(forms.SelfHandlingForm):
     name = forms.CharField(max_length=255, label=_("Transfer Name"))
 
+    def __init__(self, *args, **kwargs):
+        self.next_view = kwargs.pop('next_view', None)
+        super(CreateTransferForm, self).__init__(*args, **kwargs)
+
     def clean_name(self):
         cleaned_name = self.cleaned_data['name']
         if cleaned_name.isspace():
@@ -564,10 +567,12 @@ class CreateTransferForm(forms.SelfHandlingForm):
 
             msg = _('Created volume transfer: "%s".') % data['name']
             messages.success(request, msg)
-            response = http.HttpResponseRedirect(
-                reverse("horizon:project:volumes:show_transfer",
-                        args=(transfer.id, transfer.auth_key)))
-            return response
+            kwargs = {
+                'transfer_id': transfer.id,
+                'auth_key': transfer.auth_key
+            }
+            request.method = 'GET'
+            return self.next_view.as_view()(request, **kwargs)
         except Exception:
             redirect = reverse("horizon:project:volumes:index")
             exceptions.handle(request, _('Unable to create volume transfer.'),
@@ -738,9 +743,9 @@ class ExtendForm(forms.SelfHandlingForm):
             usages['totalGigabytesUsed']
         if availableGB < (new_size - orig_size):
             message = _('Volume cannot be extended to %(req)iGiB as '
-                        'you only have %(avail)iGiB of your quota '
-                        'available.')
-            params = {'req': new_size, 'avail': availableGB}
+                        'the maximum size it can be extended to is '
+                        '%(max_size)iGiB.')
+            params = {'req': new_size, 'max_size': (availableGB + orig_size)}
             self._errors["new_size"] = self.error_class([message % params])
         return cleaned_data
 

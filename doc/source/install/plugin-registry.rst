@@ -15,13 +15,10 @@ Plugin Registry
 
    * - Plugin
      - URL
-     - Launchpad
+     - Bug Tracker
    * - Astara Dashboard
      - https://github.com/openstack/astara-horizon
      - https://launchpad.net/astara
-   * - App Catalog UI
-     - https://github.com/openstack/app-catalog-ui
-     - https://launchpad.net/app-catalog
    * - BGPVPN Dashboard
      - https://github.com/openstack/networking-bgpvpn
      - https://launchpad.net/bgpvpn
@@ -52,6 +49,9 @@ Plugin Registry
    * - Freezer Web UI
      - https://github.com/openstack/freezer-web-ui
      - https://launchpad.net/freezer
+   * - Heat Dashboard
+     - https://github.com/openstack/heat-dashboard
+     - https://launchpad.net/heat-dashboard
    * - Ironic UI
      - https://github.com/openstack/ironic-ui
      - https://launchpad.net/ironic-ui
@@ -78,13 +78,13 @@ Plugin Registry
      - https://launchpad.net/neutron-fwaas-dashboard
    * - Neutron LBaaS Dashboard
      - https://github.com/openstack/neutron-lbaas-dashboard
-     - http://launchpad.net/octavia
+     - https://storyboard.openstack.org/#!/project/907
    * - Neutron VPNaaS Dashboard
      - https://github.com/openstack/neutron-vpnaas-dashboard
      - https://launchpad.net/neutron-vpnaas-dashboard
    * - Octavia Dashboard
      - https://github.com/openstack/octavia-dashboard
-     - https://launchpad.net/octavia
+     - https://storyboard.openstack.org/#!/project/909
    * - Sahara Dashboard
      - https://github.com/openstack/sahara-dashboard
      - https://launchpad.net/sahara

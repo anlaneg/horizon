@@ -16,10 +16,8 @@ import json
 
 from novaclient.v2 import aggregates
 from novaclient.v2 import availability_zones
-from novaclient.v2 import certs
 from novaclient.v2 import flavor_access
 from novaclient.v2 import flavors
-from novaclient.v2 import hosts
 from novaclient.v2 import hypervisors
 from novaclient.v2 import keypairs
 from novaclient.v2 import quotas
@@ -163,14 +161,11 @@ def data(TEST):
     TEST.volumes = utils.TestDataContainer()
     TEST.quotas = utils.TestDataContainer()
     TEST.quota_usages = utils.TestDataContainer()
-    TEST.disabled_quotas = utils.TestDataContainer()
     TEST.usages = utils.TestDataContainer()
-    TEST.certs = utils.TestDataContainer()
     TEST.availability_zones = utils.TestDataContainer()
     TEST.hypervisors = utils.TestDataContainer()
     TEST.services = utils.TestDataContainer()
     TEST.aggregates = utils.TestDataContainer()
-    TEST.hosts = utils.TestDataContainer()
     TEST.server_groups = utils.TestDataContainer()
 
     # Volumes
@@ -297,26 +292,19 @@ def data(TEST):
     TEST.keypairs.add(keypair)
 
     # Quota Sets
-    quota_data = dict(metadata_items='1',
-                      injected_file_content_bytes='1',
-                      ram=10000,
-                      floating_ips='1',
-                      fixed_ips='10',
-                      instances='10',
-                      injected_files='1',
-                      cores='10',
-                      security_groups='10',
-                      security_group_rules='20',
-                      key_pairs=100,
-                      injected_file_path_bytes=255)
+    quota_data = {
+        'metadata_items': '1',
+        'injected_file_content_bytes': '1',
+        'ram': 10000,
+        'instances': '10',
+        'injected_files': '1',
+        'cores': '10',
+        'key_pairs': 100,
+        'injected_file_path_bytes': 255,
+    }
     quota = quotas.QuotaSet(quotas.QuotaSetManager(None), quota_data)
     TEST.quotas.nova = base.QuotaSet(quota)
     TEST.quotas.add(base.QuotaSet(quota))
-
-    # nova quotas disabled when neutron is enabled
-    disabled_quotas_nova = {'floating_ips', 'fixed_ips',
-                            'security_groups', 'security_group_rules'}
-    TEST.disabled_quotas.add(disabled_quotas_nova)
 
     # Quota Usages
     quota_usage_data = {'gigabytes': {'used': 0,
@@ -327,10 +315,6 @@ def data(TEST):
                                 'quota': 10000},
                         'cores': {'used': 0,
                                   'quota': 20},
-                        'floating_ips': {'used': 0,
-                                         'quota': 10},
-                        'security_groups': {'used': 0,
-                                            'quota': 10},
                         'volumes': {'used': 0,
                                     'quota': 10}}
     quota_usage = usage_quotas.QuotaUsage()
@@ -352,10 +336,10 @@ def data(TEST):
                            "maxTotalInstances": 10,
                            "maxTotalKeypairs": 100,
                            "maxTotalRAMSize": 10000,
-                           "totalCoresUsed": 0,
-                           "totalInstancesUsed": 0,
+                           "totalCoresUsed": 2,
+                           "totalInstancesUsed": 2,
                            "totalKeyPairsUsed": 0,
-                           "totalRAMUsed": 0,
+                           "totalRAMUsed": 1024,
                            "totalSecurityGroupsUsed": 0}}
     TEST.limits = limits
 
@@ -392,17 +376,37 @@ def data(TEST):
     TEST.servers.add(server_1, server_2, server_3, server_4)
 
     # VNC Console Data
-    console = {u'console': {u'url': u'http://example.com:6080/vnc_auto.html',
-                            u'type': u'novnc'}}
+    console = {
+        u'console': {
+            u'url': u'http://example.com:6080/vnc_auto.html',
+            u'type': u'novnc'
+        }
+    }
     TEST.servers.vnc_console_data = console
     # SPICE Console Data
-    console = {u'console': {u'url': u'http://example.com:6080/spice_auto.html',
-                            u'type': u'spice'}}
+    console = {
+        u'console': {
+            u'url': u'http://example.com:6080/spice_auto.html',
+            u'type': u'spice'
+        }
+    }
     TEST.servers.spice_console_data = console
     # RDP Console Data
-    console = {u'console': {u'url': u'http://example.com:6080/rdp_auto.html',
-                            u'type': u'rdp'}}
+    console = {
+        u'console': {
+            u'url': u'http://example.com:6080/rdp_auto.html',
+            u'type': u'rdp'
+        }
+    }
     TEST.servers.rdp_console_data = console
+    # MKS Console Data
+    console = {
+        u'remote_console': {
+            u'url': u'http://example.com:6080/mks_auto.html',
+            u'type': u'mks'
+        }
+    }
+    TEST.servers.mks_console_data = console
 
     # Usage
     usage_vals = {"tenant_id": TEST.tenant.id,
@@ -424,11 +428,6 @@ def data(TEST):
     usage_obj_2 = usage.Usage(usage.UsageManager(None),
                               json.loads(USAGE_DATA % usage_2_vals))
     TEST.usages.add(usage_obj_2)
-
-    cert_data = {'private_key': 'private',
-                 'data': 'certificate_data'}
-    certificate = certs.Certificate(certs.CertificateManager(None), cert_data)
-    TEST.certs.add(certificate)
 
     # Availability Zones
     TEST.availability_zones.add(availability_zones.AvailabilityZone(
@@ -482,7 +481,7 @@ def data(TEST):
             "vcpus_used": 1,
             "hypervisor_type": "QEMU",
             "local_gb_used": 20,
-            "hypervisor_hostname": "devstack001",
+            "hypervisor_hostname": "devstack002",
             "memory_mb_used": 1500,
             "memory_mb": 2000,
             "current_workload": 0,
@@ -508,7 +507,7 @@ def data(TEST):
             "vcpus_used": 1,
             "hypervisor_type": "QEMU",
             "local_gb_used": 20,
-            "hypervisor_hostname": "devstack003",
+            "hypervisor_hostname": "instance-host",
             "memory_mb_used": 1500,
             "memory_mb": 2000,
             "current_workload": 0,
@@ -620,35 +619,6 @@ def data(TEST):
 
     TEST.aggregates.add(aggregate_1)
     TEST.aggregates.add(aggregate_2)
-
-    host1 = hosts.Host(hosts.HostManager(None), {
-        "host_name": "devstack001",
-        "service": "compute",
-        "zone": "testing",
-    })
-
-    host2 = hosts.Host(hosts.HostManager(None), {
-        "host_name": "devstack002",
-        "service": "nova-conductor",
-        "zone": "testing",
-    })
-
-    host3 = hosts.Host(hosts.HostManager(None), {
-        "host_name": "devstack003",
-        "service": "compute",
-        "zone": "testing",
-    })
-
-    host4 = hosts.Host(hosts.HostManager(None), {
-        "host_name": "devstack004",
-        "service": "compute",
-        "zone": "testing",
-    })
-
-    TEST.hosts.add(host1)
-    TEST.hosts.add(host2)
-    TEST.hosts.add(host3)
-    TEST.hosts.add(host4)
 
     server_group_1 = server_groups.ServerGroup(
         server_groups.ServerGroupsManager(None),

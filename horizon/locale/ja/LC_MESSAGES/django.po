@@ -3,15 +3,16 @@
 # Yuko Katabami <yukokatabami@gmail.com>, 2016. #zanata
 # Akihiro Motoki <amotoki@gmail.com>, 2017. #zanata
 # Yuko Katabami <yukokatabami@gmail.com>, 2017. #zanata
+# Akihiro Motoki <amotoki@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev167\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-10-13 04:00+0000\n"
+"POT-Creation-Date: 2018-01-31 06:40+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-10-10 03:48+0000\n"
+"PO-Revision-Date: 2018-01-31 06:42+0000\n"
 "Last-Translator: Akihiro Motoki <amotoki@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -34,6 +35,14 @@ msgstr "%(name)s: %(error)s"
 msgid "%(size)d Byte"
 msgid_plural "%(size)d Bytes"
 msgstr[0] "%(size)d B"
+
+#, python-format
+msgid "%(usedphrase)s <span> %(used)s </span>(No Limit)"
+msgstr "<span> %(used)s </span> 個%(usedphrase)s (制限なし)"
+
+#, python-format
+msgid "%(usedphrase)s <span> %(used)s </span>of<span> %(available)s </span>"
+msgstr "<span> %(available)s </span> 中 <span> %(used)s </span> %(usedphrase)s"
 
 #, python-format
 msgid "%s EB"
@@ -192,6 +201,10 @@ msgid "Invalid metadata entry. Use comma-separated key=value pairs"
 msgstr ""
 "メタデータのエントリーが無効です。コンマ区切りの key=value ペアを使用してくだ"
 "さい。"
+
+#, python-format
+msgid "Invalid service catalog: %s"
+msgstr "無効なサービスカタログ: %s"
 
 msgid "Invalid subnet mask"
 msgstr "無効なサブネットマスク"
@@ -363,7 +376,7 @@ msgstr "認証されていません。もう一度ログインしてください
 
 #, python-format
 msgid "Unauthorized: %s"
-msgstr "権限がありません: %s"
+msgstr "認証されていません: %s"
 
 #. Translators: test code, don't really have to translate
 msgid "Up Item"
@@ -385,14 +398,6 @@ msgstr[0] "Upped Item"
 
 msgid "Usage Summary"
 msgstr "使用状況の概要"
-
-#, python-format
-msgid "Used <span> %(used)s </span>(No Limit)"
-msgstr "<span> %(used)s </span> 個使用中 (制限なし)"
-
-#, python-format
-msgid "Used <span> %(used)s </span>of<span> %(available)s </span>"
-msgstr "<span> %(available)s </span> 中 <span> %(used)s </span> 使用中"
 
 msgid "Warning: "
 msgstr "警告: "

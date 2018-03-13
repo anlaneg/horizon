@@ -17,8 +17,8 @@
 #    under the License.
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.template import defaultfilters as filters
+from django.urls import reverse
 from django.utils.http import urlencode
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
@@ -113,6 +113,9 @@ class ModifyAccess(tables.LinkAction):
         base_url = reverse(self.url, args=[flavor.id])
         param = urlencode({"step": step})
         return "?".join([base_url, param])
+
+    def allowed(self, request, flavor=None):
+        return not flavor.is_public
 
 
 class FlavorFilterAction(tables.FilterAction):

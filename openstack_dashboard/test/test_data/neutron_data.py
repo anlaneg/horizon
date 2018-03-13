@@ -140,6 +140,7 @@ def data(TEST):
             {'ip_address': '174.0.0.201',
              'mac_address': 'fa:16:3e:7a:7b:18'}
         ],
+        'port_security_enabled': True,
         'security_groups': [],
     }
 
@@ -162,6 +163,7 @@ def data(TEST):
         'tenant_id': network_dict['tenant_id'],
         'binding:vnic_type': 'normal',
         'binding:host_id': 'host',
+        'port_security_enabled': True,
         'security_groups': [
             # sec_group_1 ID below
             'faad7c80-3b62-4440-967c-13808c37131d',
@@ -386,6 +388,7 @@ def data(TEST):
     trunk_dict = {'status': 'UP',
                   'sub_ports': [],
                   'name': 'trunk1',
+                  'description': 'blah',
                   'admin_state_up': True,
                   'tenant_id': '1',
                   'project_id': '1',
@@ -615,11 +618,13 @@ def data(TEST):
     TEST.neutron_quotas.add(base.QuotaSet(quota_data))
 
     # Quota Usages
-    quota_usage_data = {'networks': {'used': 0, 'quota': 5},
-                        'subnets': {'used': 0, 'quota': 5},
-                        'ports': {'used': 0, 'quota': 5},
-                        'routers': {'used': 0, 'quota': 5},
-                        }
+    quota_usage_data = {
+        'network': {'used': 0, 'quota': 5},
+        'subnet': {'used': 0, 'quota': 5},
+        'port': {'used': 0, 'quota': 5},
+        'router': {'used': 0, 'quota': 5},
+        'floatingip': {'used': 0, 'quota': 10},
+    }
     quota_usage = usage_quotas.QuotaUsage()
     for k, v in quota_usage_data.items():
         quota_usage.add_quota(base.Quota(k, v['quota']))

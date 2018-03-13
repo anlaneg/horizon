@@ -15,7 +15,7 @@
 from collections import OrderedDict
 
 from django.conf import settings
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -87,6 +87,12 @@ class IndexView(tables.DataTableView):
     def get_data(self):
         try:
             search_opts = self.get_filters(filters_map=self.FILTERS_MAPPING)
+
+            # If the tenant filter selected and the tenant does not exist.
+            # We do not need to retrieve the list from neutron,just return
+            # an empty list.
+            if 'tenant_id' in search_opts and not search_opts['tenant_id']:
+                return []
 
             # If filter_first is set and if there are not other filters
             # selected, then search criteria must be provided and return an

@@ -6,17 +6,17 @@
 # yasemin demiral <yasemin.demiral@tubitak.gov.tr>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev209\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-10-21 13:30+0000\n"
+"POT-Creation-Date: 2018-03-01 14:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2017-08-16 11:41+0000\n"
 "Last-Translator: yasemin demiral <yasemin.demiral@tubitak.gov.tr>\n"
 "Language-Team: Turkish (Turkey)\n"
-"Language: tr-TR\n"
-"X-Generator: Zanata 3.9.6\n"
+"Language: tr_TR\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n>1)\n"
 
 #, python-format
@@ -53,17 +53,6 @@ msgstr ""
 " İletişim kuralı girdisi gelen bir istek için hangi eşleştirme kurallarının "
 "kullanılacağını emreden bilgiyi içerir. Kimlik Sağlayıcı birden fazla "
 "iletişim kuralını destekliyor olabilir."
-
-msgid ""
-" You can create a port for the network.\n"
-"     If you specify device ID to be attached, the device specified will\n"
-"     be attached to the port created.\n"
-"     "
-msgstr ""
-" Ağ için bir bağlantı noktası oluşturabilirsiniz.\n"
-"     Aygıt ID'sinin eklenmesini isterseniz, belirtilen aygıt\n"
-"     oluşturulan bağlantı noktasına eklenir.\n"
-"     "
 
 msgid ""
 "\"Customization Script\" is analogous to \"User Data\" in other systems."
@@ -115,14 +104,6 @@ msgstr "%(offset)s: %(label)s"
 #, python-format
 msgid "%(pool_name)s %(cidr)s"
 msgstr "%(pool_name)s %(cidr)s"
-
-#, python-format
-msgid "%(resource_status)s: %(resource_status_reason)s"
-msgstr "%(resource_status)s: %(resource_status_reason)s"
-
-#, python-format
-msgid "%(stack_status_title)s: %(stack_status_reason)s"
-msgstr "%(stack_status_title)s: %(stack_status_reason)s"
 
 #, python-format
 msgid "%(type)s (%(backend)s backend)"
@@ -199,17 +180,11 @@ msgid "<a href=\"%(volume_url)s\">%(volume_label)s</a> on %(volume_device)s"
 msgstr ""
 "%(volume_device)s üzerinde <a href=\"%(volume_url)s\">%(volume_label)s</a>"
 
-msgid "A local environment to upload."
-msgstr "Yüklenecek yerel çevre."
-
 msgid "A local image to upload."
 msgstr "Yüklenecek yerel imaj."
 
 msgid "A local metadata definition file to upload."
 msgstr "Yüklenecek bir yerel üst veri tanımlama dosyası."
-
-msgid "A local template to upload."
-msgstr "Yüklenecek yerel bir şablon."
 
 msgid ""
 "A mapping is a set of rules to map federation protocol attributes to "
@@ -477,18 +452,6 @@ msgstr ""
 "Yönetici Notu: Varsayılan tanımlamaları Glance'ye aktarmak için şu CLI "
 "komutunu kullanın: "
 
-msgctxt "current status of stack"
-msgid "Adopt Complete"
-msgstr "Uyum Sağlama Tamamlandı"
-
-msgctxt "current status of stack"
-msgid "Adopt Failed"
-msgstr "Uyum Sağlama Başarısız"
-
-msgctxt "current status of stack"
-msgid "Adopt In Progress"
-msgstr "Uyum Sağlama Sürüyor"
-
 msgid "Advanced Options"
 msgstr "Gelişmiş Seçenekler"
 
@@ -564,9 +527,6 @@ msgstr "Ağ Adresini havuzdan al"
 msgid "Allocate a floating IP from a given floating IP pool."
 msgstr "Verilen değişken IP havuzundan bir değişken IP ayır."
 
-msgid "Allocated"
-msgstr "Tahsis Edilmiş"
-
 #, python-format
 msgid "Allocated Floating IP %(ip)s."
 msgstr "Değişken IP %(ip)s ayrılıyor."
@@ -580,9 +540,6 @@ msgstr "Ayırma Havuzları"
 
 msgid "Allowed Address Pairs"
 msgstr "İzin Verilen Adres Çiftleri"
-
-msgid "An external (HTTP) URL to load the template from."
-msgstr "Şablonun yükleneceği harici (HTTP) URL."
 
 msgid "An external (HTTP/HTTPS) URL to load the image from."
 msgstr "Resmin yükleneceği harici (HTTP/HTTPS) URL."
@@ -684,9 +641,6 @@ msgstr "Ekler"
 
 msgid "Attribute Mappings"
 msgstr "Öznitelik Eşleştirmeleri"
-
-msgid "Attributes"
-msgstr "Öznitelikler"
 
 msgid "Authentication URL"
 msgstr "Kimlik Doğrulama Adresi"
@@ -872,12 +826,6 @@ msgstr "%s sanal makinesi için konsol alınamıyor."
 msgid "Cannot specify both file and direct input."
 msgstr "Hem dosya hem doğrudan girdi belirtilemez."
 
-msgid "Case sensitive"
-msgstr "Büyük küçük harf duyarlı"
-
-msgid "Case-sensitive"
-msgstr "Büyük küçük harf duyarlı"
-
 msgid "Centralized"
 msgstr "Merkezi"
 
@@ -886,12 +834,6 @@ msgstr "Değiştir"
 
 msgid "Change Password"
 msgstr "Parolayı Değiştir"
-
-msgid "Change Stack Template"
-msgstr "Yığın Şablonunu Değiştir"
-
-msgid "Change Template"
-msgstr "Şablon Değiştir"
 
 msgid "Change Volume Type"
 msgstr "Mantıksal Sürücü Türünü Değiştir"
@@ -917,34 +859,12 @@ msgstr "Son Değişiklikler"
 msgid "Changing password is not supported."
 msgstr "Parola değiştirme desteklenmiyor."
 
-msgctxt "current status of stack"
-msgid "Check Complete"
-msgstr "Kontrol Tamamlandı"
-
-msgctxt "current status of stack"
-msgid "Check Failed"
-msgstr "Kontrol Başarısız"
-
-msgctxt "current status of stack"
-msgid "Check In Progress"
-msgstr "Kontrol Sürüyor"
-
-msgid "Check Stack"
-msgid_plural "Check Stacks"
-msgstr[0] "Yığını Kontrol Et"
-msgstr[1] "Yığınları Kontrol Et"
-
 msgid ""
 "Check the &quot;Delete Volumes&quot; box to also delete any volumes "
 "associated with this consistency group."
 msgstr ""
 "Bu tutarlılık grubuyla ilişkili tüm mantıksal sürücüleri de silmek için "
 "&quot;Birimleri Sil&quot; kutusunu işaretleyin."
-
-msgid "Checked Stack"
-msgid_plural "Checked Stacks"
-msgstr[0] "Yığın Kontrol Edildi"
-msgstr[1] "Yığınlar Kontrol Edildi"
 
 msgid "Checksum"
 msgstr "Sağlama Toplamı"
@@ -1183,10 +1103,6 @@ msgstr "İmaj Oluştur"
 msgid "Create Backup"
 msgstr "Yedek Oluştur"
 
-msgctxt "current status of stack"
-msgid "Create Complete"
-msgstr "Oluşturma Tamamlandı"
-
 msgid "Create Consistency Group"
 msgstr "Tutarlılık Grubu Oluştur"
 
@@ -1205,10 +1121,6 @@ msgstr "Şifreleme Oluştur"
 msgid "Create Extra Spec For {{ qos_spec_name }}"
 msgstr "{{ qos_spec_name }} için Ek Özellik Oluştur"
 
-msgctxt "current status of stack"
-msgid "Create Failed"
-msgstr "Oluşturma Başarısız"
-
 msgid "Create Flavor"
 msgstr "Şablon Oluştur"
 
@@ -1220,10 +1132,6 @@ msgstr "Host Kümesi Oluştur"
 
 msgid "Create Image"
 msgstr "İmaj Oluştur"
-
-msgctxt "current status of stack"
-msgid "Create In Progress"
-msgstr "Oluşturma Sürüyor"
 
 msgid "Create Key Pair"
 msgstr "Anahtar Çifti Oluştur"
@@ -1269,9 +1177,6 @@ msgstr "Anlık Görüntü Oluştur"
 
 msgid "Create Spec"
 msgstr "Özellik Oluştur"
-
-msgid "Create Stack"
-msgstr "Yığın Oluştur"
 
 msgid "Create Subnet"
 msgstr "Alt Ağ Oluştur"
@@ -1340,39 +1245,6 @@ msgstr ""
 "Bir mantıksal sürücü türü için yeni bir \"ek özellik\" anahtar-değer çifti "
 "oluştur."
 
-#, python-format
-msgid ""
-"Create a new \"spec\" key-value pair for QoS Spec \"%(qos_spec_name)s\".\n"
-"      Valid key names are expected in the QoS specs. The acceptable values "
-"for key are\n"
-"  <tt>\"minIOPS\", \"maxIOPS\" and \"burstIOPS\"</tt>. \n"
-"  <br>\n"
-"  <br>\n"
-"  Example:\n"
-"  <br>\n"
-"  Key: minIOPS and Value:20 (number value less than maxIOPS)\n"
-"  <br>\n"
-"  Key: maxIOPS and Value:5000 (number value bigger than minIOPS)\n"
-"  <br>\n"
-"  Key: burstIOPS and Value:5000 (number value bigger than minIOPS)\n"
-"  "
-msgstr ""
-"QoS Özelliği \"%(qos_spec_name)s\" için yeni bir \"özellik\" anahtar-değer "
-"çifti oluştur.\n"
-"      QoS özelliklerinde geçerli anahtar adları beklenir. Anahtar için kabul "
-"edilen değerler\n"
-"  <tt>\"minIOPS\", \"maxIOPS\" ve \"burstIOPS\"</tt>dur.\n"
-"  <br>\n"
-"  <br>\n"
-"  Örnek:\n"
-"  <br>\n"
-"  Anahtar: miniIOPS ve Değer:20 (sayı değeri maxIOPS'dan küçük)\n"
-"  <br>\n"
-"  Anahtar: maxIOPS ve Değer:5000 (sayı değeri minIOPS'dan büyük)\n"
-"  <br>\n"
-"  Anahtar: burstIOPS ve Değer:5000 (sayı değeri minIOPS'dan büyük)\n"
-"  "
-
 msgid ""
 "Create a new network. In addition, a subnet associated with the network can "
 "be created in the following steps of this wizard."
@@ -1382,9 +1254,6 @@ msgstr ""
 
 msgid "Create a new role."
 msgstr "Yeni bir rol oluştur."
-
-msgid "Create a new stack with the provided values."
-msgstr "Verilen değerlerle yeni bir yığın oluştur."
 
 msgid ""
 "Create a new user and set related properties including the Primary Project "
@@ -1510,9 +1379,6 @@ msgstr "Mantıksal sürücünün yedeği oluşturuluyor \"%s\""
 msgid "Creating volume snapshot \"%s\"."
 msgstr "Mantıksal sürücü anlık görüntüsü \"%s\" oluşturuluyor."
 
-msgid "Creation Timeout (minutes)"
-msgstr "Oluşturma Zaman Aşımı (dakika)"
-
 msgid "Current Host"
 msgstr "Mevcut İstemci"
 
@@ -1593,9 +1459,6 @@ msgctxt "Admin state of a Router"
 msgid "DOWN"
 msgstr "DOWN"
 
-msgid "Date Updated"
-msgstr "Tarih Güncellendi"
-
 msgctxt "Current status of an Image"
 msgid "Deactivated"
 msgstr "Etkin değil"
@@ -1627,10 +1490,6 @@ msgid_plural "Delete"
 msgstr[0] "Sil"
 msgstr[1] "Sil"
 
-msgctxt "current status of stack"
-msgid "Delete Complete"
-msgstr "Silme Tamamlandı"
-
 msgid "Delete Consistency Group"
 msgstr "Tutarlılık Grubunu Sil"
 
@@ -1654,10 +1513,6 @@ msgid_plural "Delete Extra Specs"
 msgstr[0] "Ek Özelliği Sil"
 msgstr[1] "Ek Özellikleri Sil"
 
-msgctxt "current status of stack"
-msgid "Delete Failed"
-msgstr "Silme Başarısız"
-
 msgid "Delete Flavor"
 msgid_plural "Delete Flavors"
 msgstr[0] "Şablonu Sil"
@@ -1677,10 +1532,6 @@ msgid "Delete Image"
 msgid_plural "Delete Images"
 msgstr[0] "İmaj Sil"
 msgstr[1] "İmajları Sil"
-
-msgctxt "current status of stack"
-msgid "Delete In Progress"
-msgstr "Silme Sürüyor"
 
 msgid "Delete Instance"
 msgid_plural "Delete Instances"
@@ -1761,11 +1612,6 @@ msgid "Delete Spec"
 msgid_plural "Delete Specs"
 msgstr[0] "Özellik Sil"
 msgstr[1] "Özellikleri Sil"
-
-msgid "Delete Stack"
-msgid_plural "Delete Stacks"
-msgstr[0] "Yığını Sil"
-msgstr[1] "Yığınları Sil"
 
 msgid "Delete Static Route"
 msgid_plural "Delete Static Routes"
@@ -1936,11 +1782,6 @@ msgid_plural "Deleted Specs"
 msgstr[0] "Özellik Silindi"
 msgstr[1] "Özellikler Silindi"
 
-msgid "Deleted Stack"
-msgid_plural "Deleted Stacks"
-msgstr[0] "Yığın Silindi"
-msgstr[1] "Yığınlar Silindi"
-
 msgid "Deleted Static Route"
 msgid_plural "Deleted Static Routes"
 msgstr[0] "Statik Rota Silindi"
@@ -2078,9 +1919,6 @@ msgstr "Aygıt İsmi"
 
 msgid "Device Owner"
 msgstr "Cihaz Sahibi"
-
-msgid "Device owner attached to the port"
-msgstr "Bağlantı noktasına ekli aygıt sahibi"
 
 msgid "Device size (GB)"
 msgstr "Aygıt boyutu (GB)"
@@ -2365,9 +2203,6 @@ msgstr "Özelliği Düzenle"
 msgid "Edit Subnet"
 msgstr "Alt Ağ Değiştir"
 
-msgid "Edit Template"
-msgstr "Şablon Düzenle"
-
 msgid "Edit Volume"
 msgstr "Mantıksal Sürücü Düzenle"
 
@@ -2447,9 +2282,6 @@ msgstr[1] "Kullanıcıları Etkinleştir"
 msgid "Enable anti-spoofing rules for the port"
 msgstr "Bağlantı noktası için aldatma-engelleme kurallarını etkinleştir"
 
-msgid "Enable rollback on create/update failure."
-msgstr "Oluştur/güncelle başarısızlığında geri dönmeyi etkinleştir."
-
 msgid "Enabled"
 msgstr "Etkin"
 
@@ -2497,9 +2329,6 @@ msgstr ""
 msgid "Endpoints"
 msgstr "Uçnoktalar"
 
-msgid "Engine Id"
-msgstr "Engine Id'si"
-
 msgid "Enter Network Address manually"
 msgstr "Ağ Adresini elle gir"
 
@@ -2517,15 +2346,6 @@ msgstr "0 ve 255 arasında bir tam sayı girin."
 
 msgid "Enter an integer value between 1 and 65535."
 msgstr "1 ile 65535 arası bir tam sayı girin."
-
-msgid "Environment Data"
-msgstr "Çevre Verisi"
-
-msgid "Environment File"
-msgstr "Çevre Dosyası"
-
-msgid "Environment Source"
-msgstr "Çevre Kaynağı"
 
 msgid "Ephemeral Disk"
 msgstr "Geçici Disk"
@@ -2638,9 +2458,6 @@ msgid ""
 "Evacuate the servers from the selected down host to an active target host."
 msgstr "Sunucuları seçili kapalı istemciden etkin hedef istemciye tahliye et."
 
-msgid "Events"
-msgstr "Olaylar"
-
 msgid ""
 "Example: For <tt>mod_shib</tt> this would be <tt>Shib-Identity-Provider</"
 "tt>, for <tt>mod_auth_openidc</tt>, this could be <tt>HTTP_OIDC_ISS</tt>. "
@@ -2739,10 +2556,6 @@ msgstr ""
 "edilemedi."
 
 #, python-format
-msgid "Failed to create a port for network %s"
-msgstr "%s ağı için bir port oluşturulamadı"
-
-#, python-format
 msgid "Failed to create network \"%(network)s\": %(reason)s"
 msgstr "Ağ \"%(network)s\" oluşturulamadı: %(reason)s"
 
@@ -2763,31 +2576,12 @@ msgid "Failed to create subnet \"%(sub)s\": %(reason)s"
 msgstr "Alt ağ \"%(sub)s\" oluşturulamadı: %(reason)s"
 
 #, python-format
-msgid "Failed to delete agent: %s"
-msgstr "Ajan silinemedi: %s"
-
-#, python-format
-msgid "Failed to delete interface %s"
-msgstr "Arabirim %s silinemedi"
-
-#, python-format
 msgid "Failed to delete network \"%s\""
 msgstr "\"%s\" ağı silinemedi"
 
 #, python-format
-msgid "Failed to delete network %s"
-msgstr "%s ağı silinemedi"
-
-#, python-format
 msgid "Failed to delete port %s"
 msgstr "Bağlantı noktası %s silinemedi"
-
-msgid "Failed to delete stack."
-msgstr "Yığın silinemedi."
-
-#, python-format
-msgid "Failed to delete subnet %s"
-msgstr "%s alt ağı silinemedi"
 
 #, python-format
 msgid "Failed to disable compute service for host: %s."
@@ -2870,9 +2664,6 @@ msgstr ""
 msgid "Failed to remove project %(project)s from volume type access."
 msgstr "%(project)s projesi mantıksal sürücü türü erişiminden çıkarılamıyor."
 
-msgid "Failed to resume stack."
-msgstr "Yığın sürdürülemedi."
-
 #, python-format
 msgid "Failed to retrieve network %s for a subnet"
 msgstr "%s ağı için bir alt ağ alınamadı"
@@ -2881,9 +2672,6 @@ msgstr "%s ağı için bir alt ağ alınamadı"
 msgid "Failed to set gateway: %s"
 msgstr "Ağ geçidi ayarlanamadı: %s"
 
-msgid "Failed to suspend stack."
-msgstr "Yığın askıya alınamadı."
-
 #, python-format
 msgid "Failed to update network %s"
 msgstr "%s ağı değiştirilemedi"
@@ -2891,10 +2679,6 @@ msgstr "%s ağı değiştirilemedi"
 #, python-format
 msgid "Failed to update port \"%s\"."
 msgstr "Bağlantı noktası \"%s\" güncellenemedi."
-
-#, python-format
-msgid "Failed to update port %s"
-msgstr "%s portu güncellenemedi"
 
 #, python-format
 msgid "Failed to update router %s"
@@ -3074,9 +2858,6 @@ msgstr "Buradan bir mantıksal sürücünün anlık görüntüsünü oluşturabi
 
 msgid "From here you can update the default quotas (max limits)."
 msgstr "Burdan varsayılan kotaları güncelleyebilirsiniz (azami limitler)."
-
-msgid "Function"
-msgstr "Fonksiyon"
 
 msgid "GB"
 msgstr "GB"
@@ -3500,18 +3281,6 @@ msgstr "Bilgi"
 msgid "Ingress"
 msgstr "İçeri Doğru"
 
-msgctxt "current status of stack"
-msgid "Init Complete"
-msgstr "Init Tamamlandı"
-
-msgctxt "current status of stack"
-msgid "Init Failed"
-msgstr "Init Başarısız"
-
-msgctxt "current status of stack"
-msgid "Init In Progress"
-msgstr "Init Sürüyor"
-
 msgid "Injected File Content (Bytes)"
 msgstr "İçeri Atılmış Dosya İçeriği (Bayt)"
 
@@ -3680,9 +3449,6 @@ msgstr "L3 Aracısı"
 msgid "Language"
 msgstr "Dil"
 
-msgid "Last Updated"
-msgstr "Son Güncelleme"
-
 msgctxt "Time since the last update"
 msgid "Last Updated"
 msgstr "Son Güncelleme"
@@ -3695,12 +3461,6 @@ msgstr "Sanal Makineyi Başlat"
 
 msgid "Launch Instance (Quota exceeded)"
 msgstr "Sanal makineyi Başlat (Kota aşıldı)"
-
-msgid "Launch Parameters"
-msgstr "Başlatma Parametreleri"
-
-msgid "Launch Stack"
-msgstr "Yığını Başlat"
 
 msgid "Launch as Instance"
 msgstr "Sanal Makine olarak Başlat"
@@ -3726,9 +3486,6 @@ msgstr "İçeri Atılan Dosya Yolunun Uzunluğu"
 
 msgid "Limit"
 msgstr "Limit"
-
-msgid "Links"
-msgstr "Bağlantılar"
 
 msgid "Live Migrate"
 msgstr "Canlı Göç"
@@ -3786,9 +3543,6 @@ msgstr "MAC Adresi"
 
 msgid "MAC Learning State"
 msgstr "MAC Öğrenme Durumu"
-
-msgid "MAC address for the port"
-msgstr "Bağlantı noktası için MAC adresi"
 
 msgid "MB"
 msgstr "MB"
@@ -3983,9 +3737,6 @@ msgstr "Minimum Disk (GB)"
 msgid "Minimum RAM (MB)"
 msgstr "Asgari RAM (MB)"
 
-msgid "Minutes"
-msgstr "Dakika"
-
 #, python-format
 msgid "Modified domain \"%s\"."
 msgstr "Alan \"%s\" değiştirildi."
@@ -4063,20 +3814,6 @@ msgstr "Ad"
 
 msgid "Name ="
 msgstr "Ad ="
-
-msgid ""
-"Name may only contain letters, numbers, underscores, periods and hyphens."
-msgstr "İsim sadece harf, sayı, altçizgi, nokta ve tire'den oluşabilir. "
-
-msgid ""
-"Name must start with a letter and may only contain letters, numbers, "
-"underscores, periods and hyphens."
-msgstr ""
-"İsim bir harfle başlamalı ve yalnızca harf, numaralar, alt çizgiler, nokta "
-"ve tireler içermelidir."
-
-msgid "Name of the stack to create."
-msgstr "Oluşturulacak yığının ismi."
 
 msgid "Name or other identifier for existing volume"
 msgstr "Mevcut mantıksal sürücü için isim veya başka bir tanımlayıcı"
@@ -4216,9 +3953,6 @@ msgstr "Yeni parola"
 
 msgid "New size must be greater than current size."
 msgstr "Yeni boyut mevcut boyuttan büyük olmalıdır."
-
-msgid "Next"
-msgstr "İleri"
 
 msgid "Next Hop"
 msgstr "Sonraki Nokta"
@@ -4527,15 +4261,6 @@ msgid "Optionally, you may choose to create a new volume."
 msgstr ""
 "İsteğe bağlı olarak, yeni bir mantıksal sürücü oluşturmayı da seçebilirsiniz."
 
-msgid "Orchestration"
-msgstr "Orkestrasyon"
-
-msgid "Orchestration Services"
-msgstr "Planlama Servisleri"
-
-msgid "Orchestration service is disabled."
-msgstr "Planlama servisi kapalı."
-
 #, python-format
 msgid ""
 "Other IPv6 modes: ipv6_ra_mode=%(ra_mode)s, ipv6_address_mode=%(addr_mode)s"
@@ -4548,9 +4273,6 @@ msgstr "Diğer İletişim Kuralı"
 #, python-format
 msgid "Out of range float values are not JSON compliant: %r"
 msgstr "Aralık dışı ondalık değerler JSON uyumlu değil: %r"
-
-msgid "Outputs"
-msgstr "Çıktılar"
 
 msgid "Overview"
 msgstr "Önizleme"
@@ -4589,9 +4311,6 @@ msgstr "PLOOP - Virtuozzo/Parallels Geridönüş Diski"
 msgid "Page Not Found"
 msgstr "Sayfa Bulunamadı"
 
-msgid "Parameters"
-msgstr "Parametreler"
-
 msgid "Password"
 msgstr "Parola"
 
@@ -4604,10 +4323,6 @@ msgstr "Parola değiştirildi. Devam etmek için lütfen giriş yapın."
 
 msgid "Password changed. Please log in to continue."
 msgstr "Parola değiştirildi. Lütfen devam etmek için oturum açın."
-
-#, python-format
-msgid "Password for user \"%s\""
-msgstr "\"%s\" kullanıcısı için parola"
 
 msgid "Passwords do not match."
 msgstr "Parolalar eşleşmiyor."
@@ -4653,10 +4368,6 @@ msgstr "Fiziksel Ağ:"
 
 msgid "Please note: "
 msgstr "Lütfen dikkat:"
-
-#, python-format
-msgid "Please specify a %s using only one source method."
-msgstr "Lütfen yalnızca bir kaynak metodu kullanarak %s belirtin."
 
 #, python-format
 msgid "Please try again later [Error: %s]."
@@ -4724,24 +4435,6 @@ msgstr "Yeniden Boyutlama veya Göç için Hazırlanılıyor"
 
 msgid "Prevent the deletion of the image."
 msgstr "İmajın silinmesini önle."
-
-msgid "Preview"
-msgstr "Önizleme"
-
-msgid "Preview Stack"
-msgstr "Yığını Ön İzle"
-
-msgid "Preview Stack Details"
-msgstr "Yığın Detaylarını Önizle"
-
-msgid "Preview Stack Parameters"
-msgstr "Yığın Parametrelerini Önizleyin"
-
-msgid "Preview Template"
-msgstr "Şablon Önizlemesi"
-
-msgid "Preview a new stack with the provided values."
-msgstr "Yeni bir yığını verilen değerlerle önizle."
 
 msgid "Primary Project"
 msgstr "Birincil Proje"
@@ -4815,9 +4508,6 @@ msgstr "Projeler"
 
 msgid "Projects:"
 msgstr "Projeler:"
-
-msgid "Properties"
-msgstr "Özellikler"
 
 msgid "Properties Target: "
 msgstr "Özellikler Hedefi: "
@@ -5161,15 +4851,6 @@ msgctxt "Task status of an Instance"
 msgid "Resizing or Migrating"
 msgstr "Yeniden Boyutlanıyor veya Göç Ediliyor"
 
-msgid "Resource"
-msgstr "Kaynak"
-
-msgid "Resource ID"
-msgstr "Kaynak ID'si"
-
-msgid "Resource Metadata"
-msgstr "Kaynak Metaverisi"
-
 msgid "Resource Types"
 msgstr "Kaynak Türleri"
 
@@ -5216,37 +4897,15 @@ msgctxt "Action log of an instance"
 msgid "Resume"
 msgstr "Sürdü"
 
-msgctxt "current status of stack"
-msgid "Resume Complete"
-msgstr "Sürdürme Tamamlandı"
-
-msgctxt "current status of stack"
-msgid "Resume Failed"
-msgstr "Sürdürme Başarısız"
-
-msgctxt "current status of stack"
-msgid "Resume In Progress"
-msgstr "Sürdürme Sürüyor"
-
 msgid "Resume Instance"
 msgid_plural "Resume Instances"
 msgstr[0] "Sanal Makineyi Sürdür"
 msgstr[1] "Sanal Makineleri Sürdür"
 
-msgid "Resume Stack"
-msgid_plural "Resume Stacks"
-msgstr[0] "Yığını Sürdür"
-msgstr[1] "Yığınları Sürdür"
-
 msgid "Resumed Instance"
 msgid_plural "Resumed Instances"
 msgstr[0] "Sanal Makine Sürdürüldü"
 msgstr[1] "Sanal Makineler Sürdürüldü"
-
-msgid "Resumed Stack"
-msgid_plural "Resumed Stacks"
-msgstr[0] "Yığın Sürdürüldü"
-msgstr[1] "Yığınlar Sürdürüldü"
 
 msgctxt "Task status of an Instance"
 msgid "Resuming"
@@ -5292,24 +4951,6 @@ msgstr "Rol başarıyla güncellendi."
 
 msgid "Roles"
 msgstr "Roller"
-
-msgid "Rollback"
-msgstr "Geri Al"
-
-msgctxt "current status of stack"
-msgid "Rollback Complete"
-msgstr "Geri Alma Tamamlandı"
-
-msgctxt "current status of stack"
-msgid "Rollback Failed"
-msgstr "Geri Alma Başarısız"
-
-msgctxt "current status of stack"
-msgid "Rollback In Progress"
-msgstr "Geri Alma Sürüyor"
-
-msgid "Rollback On Failure"
-msgstr "Başarısızlık Durumunda Geri Dön"
 
 msgid "Root Disk"
 msgstr "Root Disk"
@@ -5508,9 +5149,6 @@ msgstr "Sunucu Grubu Seçin"
 msgid "Select Subnet"
 msgstr "Alt Ağ Seçin"
 
-msgid "Select Template"
-msgstr "Şablon Seç"
-
 msgid "Select Volume"
 msgstr "Mantıksal Sürücü Seç"
 
@@ -5538,12 +5176,6 @@ msgstr "Yeni bir istemci seçin"
 msgid "Select a new status"
 msgstr "Yeni bir durum seçin"
 
-msgid "Select a new template to preview a stack."
-msgstr "Bir yığını ön izlemek için yeni bir şablon seçin."
-
-msgid "Select a new template to re-launch a stack."
-msgstr "Yığını tekrar başlatmak için yeni bir şablon seçin."
-
 msgid "Select a new volume type"
 msgstr "Yeni bir mantıksal sürücü türü seçin"
 
@@ -5561,9 +5193,6 @@ msgstr "Bir alt ağ seçin"
 
 msgid "Select a target host"
 msgstr "Hedef istemci seçin"
-
-msgid "Select a template to launch a stack."
-msgstr "Bir yığın başlatmak için şablon seçin."
 
 msgid "Select a volume"
 msgstr "Birim seç"
@@ -5821,18 +5450,6 @@ msgstr "Anlık görüntü"
 msgid "Snapshot \"%(name)s\" created for instance \"%(inst)s\""
 msgstr "\"%(inst)s\" için oluşturulan \"%(name)s\" anlık görüntüsü"
 
-msgctxt "current status of stack"
-msgid "Snapshot Complete"
-msgstr "Anlık Görüntü Tamamlandı"
-
-msgctxt "current status of stack"
-msgid "Snapshot Failed"
-msgstr "Anlık Görüntü Başarısız"
-
-msgctxt "current status of stack"
-msgid "Snapshot In Progress"
-msgstr "Anlık Görüntü Sürüyor"
-
 msgid "Snapshot Limits"
 msgstr "Anlık Görüntü Sınırları"
 
@@ -5968,51 +5585,6 @@ msgstr ""
 msgid "Specs"
 msgstr "Özellikler"
 
-msgid "Stack Events"
-msgstr "Yığın Olayları"
-
-msgid "Stack ID"
-msgstr "Yığın ID'si"
-
-msgid "Stack ID ="
-msgstr "Yığın ID'si ="
-
-msgid "Stack Name"
-msgstr "Yığın İsmi"
-
-msgid "Stack Name ="
-msgstr "Yığın İsmi ="
-
-msgid "Stack Parameters"
-msgstr "Yığın Parametreleri"
-
-msgid "Stack Preview"
-msgstr "Yığın Önizlemesi"
-
-msgid "Stack Resource"
-msgstr "Yığın Kaynağı"
-
-msgid "Stack Resource ID"
-msgstr "Yığın Kaynak ID'si"
-
-msgid "Stack Resource Type"
-msgstr "Yığın Kaynak Türü"
-
-msgid "Stack Resources"
-msgstr "Yığın Kaynakları"
-
-msgid "Stack creation started."
-msgstr "Yığın oluşturma başladı."
-
-msgid "Stack creation timeout in minutes."
-msgstr "Dakika olarak yığın oluşturma zaman aşımı."
-
-msgid "Stack update started."
-msgstr "Yığın güncellemesi başlatıldı."
-
-msgid "Stacks"
-msgstr "Yığınlar"
-
 msgid "Start"
 msgstr "Başlat"
 
@@ -6063,9 +5635,6 @@ msgstr "Durum"
 
 msgid "Status ="
 msgstr "Durum ="
-
-msgid "Status Reason"
-msgstr "Durum Sebebi"
 
 msgctxt "Action log of an instance"
 msgid "Stop"
@@ -6208,27 +5777,10 @@ msgctxt "Action log of an instance"
 msgid "Suspend"
 msgstr "Askıya Al"
 
-msgctxt "current status of stack"
-msgid "Suspend Complete"
-msgstr "Askıya Alma Tamamlandı"
-
-msgctxt "current status of stack"
-msgid "Suspend Failed"
-msgstr "Askıya Alma Başarısız"
-
-msgctxt "current status of stack"
-msgid "Suspend In Progress"
-msgstr "Askıya Alma Sürüyor"
-
 msgid "Suspend Instance"
 msgid_plural "Suspend Instances"
 msgstr[0] "Sanal Makineyi Askıya Al"
 msgstr[1] "Sanal Makineleri Askıya Al"
-
-msgid "Suspend Stack"
-msgid_plural "Suspend Stacks"
-msgstr[0] "Yığını Askıya Al"
-msgstr[1] "Yığınları Askıya Al"
 
 msgctxt "Current status of an Instance"
 msgid "Suspended"
@@ -6242,11 +5794,6 @@ msgid "Suspended Instance"
 msgid_plural "Suspended Instances"
 msgstr[0] "Sanal Makine Askıya Alındı"
 msgstr[1] "Sanal Makineler Askıya Alındı"
-
-msgid "Suspended Stack"
-msgid_plural "Suspended Stacks"
-msgstr[0] "Yığın Askıya Alındı"
-msgstr[1] "Yığınlar Askıya Alındı"
 
 msgctxt "Task status of an Instance"
 msgid "Suspending"
@@ -6269,27 +5816,6 @@ msgstr "Hedef İstemci"
 
 msgid "Task"
 msgstr "Görev"
-
-msgid "Template"
-msgstr "Şablon"
-
-msgid "Template Data"
-msgstr "Şablon Verisi"
-
-msgid "Template File"
-msgstr "Şablon Dosyası"
-
-msgid "Template Functions"
-msgstr "Şablon Fonksiyonları"
-
-msgid "Template Source"
-msgstr "Şablon Kaynağı"
-
-msgid "Template URL"
-msgstr "Şablon URL'si"
-
-msgid "Template Versions"
-msgstr "Şablon Sürümleri"
 
 msgid ""
 "The \"Bootable\" flag specifies that this volume can be used to launch an "
@@ -6345,20 +5871,6 @@ msgid ""
 msgstr ""
 "<strong>Anahtar Boyutu</strong> şifreleme anahtarının boyutudur, bit olarak "
 "(örn., 128, 256). Alan boş bırakılırsa, sağlayıcının varsayılanı kullanılır."
-
-msgid ""
-"The <strong>Provider</strong> is the class providing encryption support (e."
-"g. LuksEncryptor)."
-msgstr ""
-"<strong>Sağlayıcı</strong> şifreleme desteği veren sınıftır (örn. "
-"LuksEncryptor)."
-
-msgid ""
-"The <strong>Provider</strong> is the class providing encryption support (e."
-"g., LuksEncryptor)."
-msgstr ""
-"<strong>Sağlayıcı</strong> şifreleme desteği veren sınıftır (örn., "
-"LuksEncryptor)."
 
 msgid "The Aggregate was updated."
 msgstr "Takım güncellendi."
@@ -6421,9 +5933,6 @@ msgstr ""
 "Aktarım ID'si ve Yetkilendirme Anahtarı alıcının aktarımı kabul edebilmesi "
 "için gereklidir. Lütfen Transfer ID ve Yetkilendirme Anahtarını alın ve "
 "aktarım alıcınıza ulaştırın."
-
-msgid "The VNIC type that is bound to the neutron port"
-msgstr "Neutron bağlantı noktasına bağlanmış VNIC türü"
 
 #, python-format
 msgid ""
@@ -6526,9 +6035,6 @@ msgstr ""
 "Sanal ağın üzerinde uygulandığı fiziksel ağın adıdır. Neutron dağıtımınızda "
 "tanımlanan fiziksel ağlardan birini belirtin."
 
-msgid "The page you were looking for doesn't exist"
-msgstr "Aradığınız sayfa mevcut değil"
-
 msgid "The physical mechanism by which the virtual network is implemented."
 msgstr "Sanal ağın uygulandığı fiziksel mekanizma."
 
@@ -6547,12 +6053,6 @@ msgstr ""
 
 msgid "The pseudo folder cannot be deleted since it is not empty."
 msgstr "Sahte dizin boş olmadığından silinemez."
-
-msgid "The raw contents of the environment file."
-msgstr "Çevre dosyasının ham içerikleri."
-
-msgid "The raw contents of the template."
-msgstr "Şablonun ham içerikleri."
 
 #, python-format
 msgid ""
@@ -6700,11 +6200,6 @@ msgstr ""
 "Bu <tt>openstack volume qos associate</tt> ve <tt>openstack volume qos "
 "disassociate</tt> komutlarına karşılık gelir."
 
-msgid ""
-"This is required for operations to be performed throughout the lifecycle of "
-"the stack"
-msgstr "Yığının ömrü sürecinde yürütülecek işlemler için gereklidir"
-
 msgid "This panel needs JavaScript support."
 msgstr "Bu pano JavaScript desteği gerektiriyor."
 
@@ -6723,9 +6218,6 @@ msgstr ""
 msgid "Time Since Created"
 msgstr "Oluşturulmadan Sonra Geçen Zaman"
 
-msgid "Time Since Event"
-msgstr "Olaydan Beri Geçen Zaman"
-
 msgid "Time since created"
 msgstr "Oluşturulduktan sonra geçen zaman"
 
@@ -6734,9 +6226,6 @@ msgstr "Oluşturmadan sonra geçen zaman (Saniye)"
 
 msgid "Time since update"
 msgstr "Güncellemeden beri geçen zaman"
-
-msgid "Timeout"
-msgstr "Zaman aşımı"
 
 msgid "Timezone"
 msgstr "Zaman dilimi"
@@ -6780,9 +6269,6 @@ msgstr "Ağ Daralmasını Değiştir"
 
 msgid "Toggle navigation"
 msgstr "Gezintiyi değiştir"
-
-msgid "Topic"
-msgstr "Konu"
 
 msgid "Topology"
 msgstr "Topoloji"
@@ -6846,17 +6332,11 @@ msgstr "Aktarım ID'si"
 msgid "Transfer Name"
 msgstr "Aktarım Adı"
 
-msgid "Transfer name"
-msgstr "Aktarım ismi"
-
 msgid "Trunks"
 msgstr "Trunks"
 
 msgid "Type"
 msgstr "Tür"
-
-msgid "Type ="
-msgstr "Tür ="
 
 msgid "Type of backend device identifier provided"
 msgstr "Sağlanan arka uç aygıt tanımlayıcı türü"
@@ -6872,9 +6352,6 @@ msgstr "UP"
 msgctxt "Admin state of a Router"
 msgid "UP"
 msgstr "UP"
-
-msgid "URL"
-msgstr "URL"
 
 msgid "UTC"
 msgstr "UTC"
@@ -6919,10 +6396,6 @@ msgid "Unable to check if DHCP agent scheduler extension is supported"
 msgstr ""
 "DHCP aracı zamanlayıcı eklentisinin desteklenip desteklenmediği kontrol "
 "edilemiyor"
-
-#, python-format
-msgid "Unable to clear gateway for router \"%(name)s\": \"%(msg)s\""
-msgstr "Yönlendirici \"%(name)s\" için geçit temizlenemiyor: \"%(msg)s\""
 
 msgid "Unable to clone consistency group."
 msgstr "Tutarlılık grubu kopyalanamadı."
@@ -7055,10 +6528,6 @@ msgstr "Mantıksal sürücü türü oluşturulamadı."
 msgid "Unable to create volume."
 msgstr "Mantıksal sürücü oluşturulamıyor."
 
-#, python-format
-msgid "Unable to delete router \"%s\""
-msgstr "Yönlendirici \"%s\" silinemedi"
-
 msgid "Unable to delete volume transfer."
 msgstr "Birim aktarımı silinemedi."
 
@@ -7100,9 +6569,6 @@ msgstr "Varsayılan rol bulunamadı."
 msgid "Unable to get EC2 credentials"
 msgstr "EC2 Kimlikleri getirilemedi."
 
-msgid "Unable to get Orchestration service list."
-msgstr "Planlama servis listesi alınamadı."
-
 #, python-format
 msgid "Unable to get RDP console for instance \"%s\"."
 msgstr "Sanal makine \"%s\" için RDP konsolu alınamadı."
@@ -7121,16 +6587,8 @@ msgstr "Cinder servis listesi alınamadı."
 msgid "Unable to get consistency group list"
 msgstr "Tutarlılık grubu listesi alınamadı"
 
-#, python-format
-msgid "Unable to get events for stack \"%s\"."
-msgstr "Yığın \"%s\" için olaylar alınamıyor."
-
 msgid "Unable to get flavor list"
 msgstr "Şablon listesi alınamadı"
-
-#, python-format
-msgid "Unable to get functions for template version \"%s\"."
-msgstr "\"%s\" sürümlü şablon için fonksiyonlar alınamıyor."
 
 msgid "Unable to get host aggregate list"
 msgstr "Host küme listesi alınamadı"
@@ -7153,10 +6611,6 @@ msgstr "openrc kimlikleri alınamadı"
 
 msgid "Unable to get quota info."
 msgstr "Kota bilgileri alınamıyor."
-
-#, python-format
-msgid "Unable to get resources for stack \"%s\"."
-msgstr "Yığın \"%s\" için kaynaklar alınamıyor."
 
 #, python-format
 msgid "Unable to get subnet \"%s\""
@@ -7346,9 +6800,6 @@ msgstr "Tutarlılık grubu bilgisi alınamadı."
 msgid "Unable to retrieve consistency group snapshot details."
 msgstr "Tutarlılık grubu anlık görüntü ayrıntıları alınamadı."
 
-msgid "Unable to retrieve default Neutron quota values."
-msgstr "Varsayılan Neutron kota değerleri alınamıyor."
-
 msgid "Unable to retrieve default quota values."
 msgstr "Varsayılan kota değerleri alınamıyor."
 
@@ -7519,9 +6970,6 @@ msgstr "Mantıksal sürücü listesi alınamadı."
 msgid "Unable to retrieve mapping list."
 msgstr "Eşleştirme listesi alınamıyor."
 
-msgid "Unable to retrieve metadata."
-msgstr "Metaveri alınamıyor."
-
 msgid "Unable to retrieve namespace contents."
 msgstr "İsim uzayı içeriği getirilemedi."
 
@@ -7573,12 +7021,6 @@ msgstr "Açık imajlar alınamadı."
 msgid "Unable to retrieve quota information."
 msgstr "Kota bilgisi getirilemedi."
 
-msgid "Unable to retrieve resource type details."
-msgstr "Kaynak türü ayrıntıları alınamadı."
-
-msgid "Unable to retrieve resource."
-msgstr "Kaynak alınamıyor."
-
 msgid "Unable to retrieve role list."
 msgstr "Rol listesi alınamadı."
 
@@ -7620,29 +7062,11 @@ msgstr "Anlık görüntü detayları alınamadı."
 msgid "Unable to retrieve snapshot list."
 msgstr "Anlık görüntü listesi alınamıyor."
 
-msgid "Unable to retrieve stack list."
-msgstr "Yığın listesi alınamıyor."
-
-msgid "Unable to retrieve stack resource types."
-msgstr "Yığın kaynak türleri alınamadı."
-
-msgid "Unable to retrieve stack template."
-msgstr "Yığın şablonu alınamadı."
-
-msgid "Unable to retrieve stack."
-msgstr "Yığın alınamıyor."
-
 msgid "Unable to retrieve subnet details"
 msgstr "Alt ağ detayları alınamıyor"
 
 msgid "Unable to retrieve subnet details."
 msgstr "Alt ağ detayları alınamıyor."
-
-msgid "Unable to retrieve template functions."
-msgstr "Şablon fonksiyonları alınamıyor."
-
-msgid "Unable to retrieve template versions."
-msgstr "Şablon sürümleri alınamıyor."
 
 msgid "Unable to retrieve tenant limits."
 msgstr "Kiracı sınırları alınamadı."
@@ -7695,10 +7119,6 @@ msgstr "Mantıksal sürücü tutarlılık grubu anlık görüntüleri alınamad�
 msgid "Unable to retrieve volume consistency groups."
 msgstr "Mantıksal sürücü tutarlılık grupları alınamıyor."
 
-#, python-format
-msgid "Unable to retrieve volume details for volume %s."
-msgstr "%s mantıksal sürücüsü için mantıksal sürücü ayrıntıları alınamadı"
-
 msgid "Unable to retrieve volume details."
 msgstr "Mantıksal sürücü detayları getirilemiyor."
 
@@ -7731,10 +7151,6 @@ msgstr "Mantıksal sürücü proje bilgisi alınamadı."
 
 msgid "Unable to retrieve volume snapshot."
 msgstr "Mantıksal sürücü Anlık Görüntüsü getirilemedi."
-
-#, python-format
-msgid "Unable to retrieve volume snapshots for volume %s."
-msgstr "%s mantıksal sürücü için anlık görüntü birimi alınamadı"
 
 msgid "Unable to retrieve volume snapshots."
 msgstr "Mantıksal sürücü anlık görüntüleri alınamadı."
@@ -7978,10 +7394,6 @@ msgstr "Güncelle"
 msgid "Update Associations"
 msgstr "İlişkileri Güncelle"
 
-msgctxt "current status of stack"
-msgid "Update Complete"
-msgstr "Güncelleme Tamamlandı"
-
 msgid "Update Default Quotas"
 msgstr "Varsayılan Kotaları Güncelle"
 
@@ -7994,19 +7406,11 @@ msgstr "Şifreli Mantıksal Sürücü Türünü Güncelle"
 msgid "Update Encryption"
 msgstr "Şifrelemeyi Güncelle"
 
-msgctxt "current status of stack"
-msgid "Update Failed"
-msgstr "Güncelleme Başarısız"
-
 msgid "Update Group"
 msgstr "Grup Güncelle"
 
 msgid "Update Identity Provider"
 msgstr "Kimlik Sağlayıcıyı Güncelle"
-
-msgctxt "current status of stack"
-msgid "Update In Progress"
-msgstr "Güncelleme Sürüyor"
 
 msgid "Update Mapping"
 msgstr "Eşleştirmeyi Güncelle"
@@ -8022,12 +7426,6 @@ msgstr "Rol Güncelle"
 
 msgid "Update Router"
 msgstr "Yönlendiricileri Güncelle"
-
-msgid "Update Stack"
-msgstr "Yığını Güncelle"
-
-msgid "Update Stack Parameters"
-msgstr "Yığın Parametrelerini Güncelle"
 
 msgid "Update Status"
 msgstr "Güncelleme Durumu"
@@ -8046,15 +7444,6 @@ msgstr "Mantıksal Sürücü Türü Şifrelemesini Güncelle"
 
 msgid "Update a Metadata Namespace"
 msgstr "Bir Metaveri İsim Uzayını Güncelle"
-
-msgid ""
-"Update a stack with the provided values. Please note that any encrypted "
-"parameters, such as passwords, will be reset to default if you do not change "
-"them here."
-msgstr ""
-"Yığını verilen değerlerle güncelle. Lütfen dikkat, tüm şifreli parametreler, "
-"örneğin parolalar, burada değiştirmediğiniz takdirde varsayılana "
-"sıfırlanacaklardır."
 
 msgid ""
 "Update a subnet associated with the network. Advanced configuration are "
@@ -8150,20 +7539,6 @@ msgstr "Kaynak olarak bir birim kullan"
 
 msgid "Use image as a source"
 msgstr "Kaynak olarak imaj kullan"
-
-msgid ""
-"Use one of the available template source options to specify the template to "
-"be used in creating this stack."
-msgstr ""
-"Bu yığının oluşturulmasında kullanılacak şablonu belirtmek için "
-"kullanılabilir kaynak seçeneklerinden birini kullanın."
-
-msgid ""
-"Use one of the available template source options to specify the template to "
-"be used in previewing this stack."
-msgstr ""
-"Bu yığın önizlenirken kullanılacak şablonu belirtmek için kullanılabilir "
-"şablon kaynak seçeneklerinden birini kullanın."
 
 msgid "Use snapshot as a source"
 msgstr "Kaynak olarak anlık görüntü kullan"
@@ -8275,9 +7650,6 @@ msgstr "VXLAN"
 
 msgid "Value"
 msgstr "Değer"
-
-msgid "Version"
-msgstr "Sürüm"
 
 #, python-format
 msgid "Version: %(version_info)s"
@@ -8411,14 +7783,6 @@ msgstr "Mantıksal Sürücü Türü: %(volume_type_name)s "
 
 msgid "Volume Types"
 msgstr "Mantıksal Sürücü Türleri"
-
-#, python-format
-msgid ""
-"Volume cannot be extended to %(req)iGiB as you only have %(avail)iGiB of "
-"your quota available."
-msgstr ""
-"Birim %(req)iGiB boyutuna genişletilemiyor çünkü kotanızda %(avail)iGiB "
-"kullanılabilir durumda."
 
 msgid "Volume consistency groups can not be deleted if they contain volumes."
 msgstr ""
@@ -8586,11 +7950,6 @@ msgstr ""
 "İstenen kural şablonunu belirtebilir veya özel kurallar kullanabilirsiniz, "
 "seçenekler Özel TCP Kuralı, Özel UDP Kuralı, veeya Özel ICMP Kuralıdır."
 
-msgid "You can update the editable properties of your port here."
-msgstr ""
-"Bağlantı noktanızın düzenlenebilir özelliklerini buradan "
-"güncelleyebilirsiniz."
-
 msgid "You cannot disable your current project"
 msgstr "Etkin projenizi kapatamazsınız."
 
@@ -8656,10 +8015,6 @@ msgstr "Bir imaj seçmelisiniz."
 msgid "You must set volume size"
 msgstr "Birim boyutu ayarlamalısınız"
 
-msgid "You must specify a template via one of the available sources."
-msgstr ""
-"Kullanılabilir kaynaklardan biri aracılığıyla bir şablon belirtmelisiniz"
-
 msgid ""
 "You must specify the source of the traffic to be allowed via this rule. You "
 "may do so either in the form of an IP address block (CIDR) or via a source "
@@ -8701,9 +8056,6 @@ msgstr "örn. Evet / Hayır"
 msgid "e.g. Yes/No"
 msgstr "örn. Evet/Hayır"
 
-msgid "environment"
-msgstr "çevre"
-
 msgid "front-end"
 msgstr "front-end"
 
@@ -8712,9 +8064,6 @@ msgstr "sunucu"
 
 msgid "no"
 msgstr "hayır"
-
-msgid "template"
-msgstr "şablon"
 
 msgid "undefined"
 msgstr "tanımsız"

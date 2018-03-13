@@ -12,8 +12,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.core.urlresolvers import reverse
 from django import http
+from django.urls import reverse
 
 from mox3.mox import IgnoreArg
 from mox3.mox import IsA
@@ -222,6 +222,24 @@ class RouterTests(test.BaseAdminViewTests, r_test.RouterTests):
             .MultipleTimes().AndReturn(True)
         self.mox.ReplayAll()
 
+        res = self.client.get(self.INDEX_URL)
+        self.assertTemplateUsed(res, INDEX_TEMPLATE)
+        routers = res.context['table'].data
+        self.assertItemsEqual(routers, [])
+
+    @test.create_stubs({api.keystone: ('tenant_list',),
+                        api.neutron: ('is_extension_supported',)})
+    def test_routers_list_with_non_exist_tenant_filter(self):
+        api.neutron.is_extension_supported(IsA(http.HttpRequest),
+                                           "router_availability_zone")\
+            .MultipleTimes().AndReturn(True)
+        api.keystone.tenant_list(IsA(http.HttpRequest))\
+            .AndReturn([self.tenants.list(), False])
+        self.mox.ReplayAll()
+        self.client.post(
+            self.INDEX_URL,
+            data={'routers__filter_admin_routers__q_field': 'project',
+                  'routers__filter_admin_routers__q': 'non_exist_tenant'})
         res = self.client.get(self.INDEX_URL)
         self.assertTemplateUsed(res, INDEX_TEMPLATE)
         routers = res.context['table'].data

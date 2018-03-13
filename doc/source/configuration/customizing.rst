@@ -116,7 +116,6 @@ You can also override existing methods with your own versions::
 
     NO = lambda *x: False
 
-    tabs.HeatServiceTab.allowed = NO
     tables.AssociateIP.allowed = NO
     tables.SimpleAssociateIP.allowed = NO
     tables.SimpleDisassociateIP.allowed = NO
@@ -303,7 +302,9 @@ instructions on how to use icons in the code.
 
 To add icon to Table Action, use icon property. Example:
 
-    class CreateSnapshot(tables.LinkAction):
+.. code-block:: python
+
+   class CreateSnapshot(tables.LinkAction):
        name = "snapshot"
        verbose_name = _("Create Snapshot")
        icon = "camera"

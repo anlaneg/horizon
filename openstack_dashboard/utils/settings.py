@@ -15,6 +15,7 @@ from importlib import import_module
 import logging
 import os
 import pkgutil
+import re
 
 from horizon.utils import file_discovery
 from openstack_dashboard import theme_settings
@@ -111,6 +112,7 @@ def update_dashboards(modules, horizon_config, installed_apps):
     scss_files = []
     panel_customization = []
     header_sections = []
+    extra_tabs = {}
     update_horizon_config = {}
     for key, config in import_dashboard_config(modules):
         if config.get('DISABLED', False):
@@ -153,6 +155,9 @@ def update_dashboards(modules, horizon_config, installed_apps):
         elif config.get('PANEL') or config.get('PANEL_GROUP'):
             config.pop("__builtins__", None)
             panel_customization.append(config)
+        _extra_tabs = config.get('EXTRA_TABS', {}).items()
+        for tab_key, tab_defs in _extra_tabs:
+            extra_tabs[tab_key] = extra_tabs.get(tab_key, tuple()) + tab_defs
     # Preserve the dashboard order specified in settings
     dashboards = ([d for d in config_dashboards
                    if d not in disabled_dashboards] +
@@ -168,6 +173,7 @@ def update_dashboards(modules, horizon_config, installed_apps):
     horizon_config.setdefault('js_files', []).extend(js_files)
     horizon_config.setdefault('js_spec_files', []).extend(js_spec_files)
     horizon_config.setdefault('scss_files', []).extend(scss_files)
+    horizon_config['extra_tabs'] = extra_tabs
 
     # apps contains reference to applications declared in the enabled folder
     # basically a list of applications that are internal and external plugins
@@ -265,9 +271,16 @@ def get_xstatic_dirs(XSTATIC_MODULES, HORIZON_CONFIG):
             files = [file for file in files if file.endswith('.js')]
 
         # add to the list of files to link in the HTML
-        for file in files:
-            file = 'horizon/lib/' + module.NAME + '/' + file
-            HORIZON_CONFIG['xstatic_lib_files'].append(file)
+        try:
+            for file in files:
+                file = 'horizon/lib/' + module.NAME + '/' + file
+                HORIZON_CONFIG['xstatic_lib_files'].append(file)
+        except TypeError:
+            raise Exception(
+                '%s: Nothing to include because files to include are not '
+                'defined (i.e., None) in BASE_XSTATIC_MODULES list and '
+                'a corresponding XStatic module does not define MAIN list.'
+                % module_name)
 
     return STATICFILES_DIRS
 
@@ -334,9 +347,10 @@ def find_static_files(
             #       'framework/widgets/help-panel/help-panel.html'
             #   ] = 'themes/material/templates/framework/widgets/\
             #        help-panel/help-panel.html'
-            (templates_part, override_path) = theme_file.split('/templates/')
-            template_overrides[override_path] = 'themes/' + \
-                                                theme_name + theme_file
+            override_path = re.sub(r'^(|.*/)templates/', '', theme_file)
+            template_overrides[override_path] = os.path.join('themes',
+                                                             theme_name,
+                                                             theme_file)
 
         discovered_files['template_overrides'] = template_overrides
 

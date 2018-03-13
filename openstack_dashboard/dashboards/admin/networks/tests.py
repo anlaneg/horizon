@@ -13,8 +13,8 @@
 #    under the License.
 
 
-from django.core.urlresolvers import reverse
 from django import http
+from django.urls import reverse
 from django.utils.http import urlunquote
 
 from mox3.mox import IsA
@@ -49,7 +49,7 @@ class NetworkTests(test.BaseAdminViewTests):
         for network in self.networks.list():
             usage.quotas.tenant_quota_usages(
                 IsA(http.HttpRequest), tenant_id=network.tenant_id,
-                targets=('subnets', )).AndReturn(quota_data)
+                targets=('subnet', )).AndReturn(quota_data)
             api.neutron.list_dhcp_agent_hosting_networks(IsA(http.HttpRequest),
                                                          network.id)\
                 .AndReturn(self.agents.list())
@@ -131,7 +131,7 @@ class NetworkTests(test.BaseAdminViewTests):
             'dhcp_agent_scheduler').AndReturn(True)
         usage.quotas.tenant_quota_usages(
             IsA(http.HttpRequest), tenant_id=network.tenant_id,
-            targets=('subnets',)).MultipleTimes().AndReturn(quota_data)
+            targets=('subnet',)).MultipleTimes().AndReturn(quota_data)
         self.mox.ReplayAll()
         url = urlunquote(reverse('horizon:admin:networks:detail',
                                  args=[network.id]))
@@ -172,7 +172,7 @@ class NetworkTests(test.BaseAdminViewTests):
             'dhcp_agent_scheduler').AndReturn(True)
         usage.quotas.tenant_quota_usages(
             IsA(http.HttpRequest), tenant_id=network.tenant_id,
-            targets=('subnets',)).MultipleTimes().AndReturn(quota_data)
+            targets=('subnet',)).MultipleTimes().AndReturn(quota_data)
         self.mox.ReplayAll()
         url = urlunquote(reverse('horizon:admin:networks:subnets_tab',
                          args=[network.id]))
@@ -197,7 +197,7 @@ class NetworkTests(test.BaseAdminViewTests):
         quota_data = self.neutron_quota_usages.first()
         usage.quotas.tenant_quota_usages(
             IsA(http.HttpRequest), tenant_id=network.tenant_id,
-            targets=('ports',)).MultipleTimes().AndReturn(quota_data)
+            targets=('port',)).MultipleTimes().AndReturn(quota_data)
         api.neutron.is_extension_supported(
             IsA(http.HttpRequest),
             'network-ip-availability').AndReturn(True)
@@ -212,7 +212,7 @@ class NetworkTests(test.BaseAdminViewTests):
             'dhcp_agent_scheduler').AndReturn(True)
         usage.quotas.tenant_quota_usages(
             IsA(http.HttpRequest), tenant_id=network.tenant_id,
-            targets=('subnets',)).MultipleTimes().AndReturn(quota_data)
+            targets=('subnet',)).MultipleTimes().AndReturn(quota_data)
 
         self.mox.ReplayAll()
         url = reverse('horizon:admin:networks:ports_tab',
@@ -255,7 +255,7 @@ class NetworkTests(test.BaseAdminViewTests):
             'dhcp_agent_scheduler').AndReturn(True)
         usage.quotas.tenant_quota_usages(
             IsA(http.HttpRequest), tenant_id=network.tenant_id,
-            targets=('subnets',)).MultipleTimes().AndReturn(quota_data)
+            targets=('subnet',)).MultipleTimes().AndReturn(quota_data)
         self.mox.ReplayAll()
         url = reverse('horizon:admin:networks:agents_tab', args=[network.id])
         res = self.client.get(urlunquote(url))
@@ -359,7 +359,7 @@ class NetworkTests(test.BaseAdminViewTests):
             'dhcp_agent_scheduler').AndReturn(True)
         usage.quotas.tenant_quota_usages(
             IsA(http.HttpRequest), tenant_id=network.tenant_id,
-            targets=('subnets',)).MultipleTimes().AndReturn(quota_data)
+            targets=('subnet',)).MultipleTimes().AndReturn(quota_data)
         self.mox.ReplayAll()
         url = urlunquote(reverse('horizon:admin:networks:subnets_tab',
                          args=[network.id]))
@@ -418,7 +418,7 @@ class NetworkTests(test.BaseAdminViewTests):
             .AndReturn(True)
         usage.quotas.tenant_quota_usages(
             IsA(http.HttpRequest), tenant_id=network.tenant_id,
-            targets=('subnets',)).MultipleTimes().AndReturn(quota_data)
+            targets=('subnet',)).MultipleTimes().AndReturn(quota_data)
         self.mox.ReplayAll()
         url = urlunquote(reverse('horizon:admin:networks:subnets_tab',
                          args=[network.id]))
@@ -931,6 +931,27 @@ class NetworkTests(test.BaseAdminViewTests):
             IsA(http.HttpRequest),
             'dhcp_agent_scheduler').AndReturn(True)
         self.mox.ReplayAll()
+        res = self.client.get(reverse('horizon:admin:networks:index'))
+        self.assertTemplateUsed(res, INDEX_TEMPLATE)
+        networks = res.context['networks_table'].data
+        self.assertItemsEqual(networks, [])
+
+    @test.create_stubs({api.keystone: ('tenant_list',),
+                        api.neutron: ('is_extension_supported',)})
+    def test_networks_list_with_non_exist_tenant_filter(self):
+        api.neutron.is_extension_supported(
+            IsA(http.HttpRequest),
+            'network_availability_zone').AndReturn(True)
+        api.neutron.is_extension_supported(
+            IsA(http.HttpRequest),
+            'dhcp_agent_scheduler').AndReturn(True)
+        api.keystone.tenant_list(IsA(http.HttpRequest))\
+            .AndReturn([self.tenants.list(), False])
+        self.mox.ReplayAll()
+        self.client.post(
+            reverse('horizon:admin:networks:index'),
+            data={'networks__filter_admin_networks__q_field': 'project',
+                  'networks__filter_admin_networks__q': 'non_exist_tenant'})
         res = self.client.get(reverse('horizon:admin:networks:index'))
         self.assertTemplateUsed(res, INDEX_TEMPLATE)
         networks = res.context['networks_table'].data

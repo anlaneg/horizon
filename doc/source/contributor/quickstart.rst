@@ -52,7 +52,7 @@ from within the ``horizon`` directory.
     $ cp openstack_dashboard/local/local_settings.py.example openstack_dashboard/local/local_settings.py
 
 Horizon connects to the rest of OpenStack via a Keystone service catalog. By
-default Horizon looks for an endpoint at ``http://localhost:5000/v2.0``; this
+default Horizon looks for an endpoint at ``http://localhost:5000/v3``; this
 can be customised by modifying the ``OPENSTACK_HOST`` and
 ``OPENSTACK_KEYSTONE_URL`` values in
 ``openstack_dashboard/local/local_settings.py``
@@ -83,7 +83,7 @@ To start the Horizon development server use the command below
 
 .. note::
 
-    The default port for runserver is 8000 which is already consumed by
+    The default port for runserver is 8000 which might be already consumed by
     heat-api-cfn in DevStack. If running in DevStack
     ``tox -e runserver -- localhost:9000`` will start the test server at
     ``http://localhost:9000``
@@ -178,10 +178,6 @@ be used in any Django project.
 
 The ``openstack_dashboard`` directory contains a reference Django project that
 uses ``horizon``.
-
-For development, both pieces share an environment which (by default) is
-built with the ``tools/install_venv.py`` script. That script creates a
-virtualenv and installs all the necessary packages.
 
 If dependencies are added to either ``horizon`` or ``openstack_dashboard``,
 they should be added to ``requirements.txt``.

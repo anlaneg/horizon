@@ -24,7 +24,8 @@
     'horizon.app.core.openstack-service-api.neutron',
     'horizon.app.core.openstack-service-api.userSession',
     'horizon.app.core.detailRoute',
-    '$location'
+    '$location',
+    '$window'
   ];
 
   /*
@@ -37,7 +38,7 @@
    * but do not need to be restricted to such use.  Each exposed function
    * is documented below.
    */
-  function trunksService(neutron, userSession, detailRoute, $location) {
+  function trunksService(neutron, userSession, detailRoute, $location, $window) {
 
     return {
       getDetailsPath: getDetailsPath,
@@ -68,8 +69,38 @@
       return userSession.get().then(getTrunksForProject);
 
       function getTrunksForProject(userSession) {
-        params.project_id = userSession.project_id;
-        return neutron.getTrunks(params);
+        var locationURLNotAdmin = ($location.url().indexOf('admin') === -1);
+        // Note(lajoskatona): To list all trunks in case of
+        // the listing is for the Admin panel, check here the
+        // location.url.
+        // there should be a better way to check for admin or project panel??
+        if (locationURLNotAdmin) {
+          params.project_id = userSession.project_id;
+        } else {
+          delete params.project_id;
+        }
+
+        return neutron.getTrunks(params).then(addTrackBy);
+      }
+
+      // Unless we add a composite 'trackBy' field, hz-resource-table of the
+      // trunks panel will not get refreshed after editing a trunk.
+      // hz-resource-table needs to be told where to expect this information.
+      // See also the track-by attribute of hz-resource-table element in the
+      // trunks panel template.
+      function addTrackBy(response) {
+
+        return {data: {items: response.data.items.map(function(trunk) {
+          trunk.trackBy = [
+            trunk.id,
+            trunk.revision_number,
+            // It is weird but there are trunk updates when the revision number
+            // does not increase. Eg. if you only update the description of a
+            // trunk. So we also add 'updated_at' to the composite.
+            trunk.updated_at.toISOString()
+          ].join('/');
+          return trunk;
+        })}};
       }
     }
 
@@ -80,14 +111,22 @@
      * Given an id, returns a promise for the trunk data.
      */
     function getTrunkPromise(identifier) {
-      return neutron.getTrunk(identifier).then(getTrunkSuccess, getTrunkError);
-
-      function getTrunkSuccess(trunk) {
-        return trunk;
-      }
+      // NOTE(bence romsics): This promise is called from multiple places
+      // where error handling should differ. When you edit a trunk from the
+      // detail view errors of re-reading the trunk should be shown. But
+      // when you delete a trunk from the detail view and the deleted
+      // trunk is re-read (that fails of course) you don't want to see an
+      // error because of that. Ideally we wouldn't even try to re-read (ie.
+      // show) after delete from detail (re-list should be enough).
+      return neutron.getTrunk(identifier).catch(getTrunkError);
 
       function getTrunkError(trunk) {
-        $location.url('project/trunks');
+        // TODO(bence romsics): When you delete a trunk from the details
+        // view then it cannot be re-read (of course) and we handle that
+        // by window.histoy.back(). This is a workaround and must be deleted
+        // as soon as there is a final solution for the promels with ngDetails
+        // pages.
+        $window.history.back();
         return trunk;
       }
     }

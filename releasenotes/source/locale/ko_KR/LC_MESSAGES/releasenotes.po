@@ -11,19 +11,22 @@
 # Taehee Jang <jang0913@gmail.com>, 2017. #zanata
 # Wonil Choi <wonil0522@gmail.com>, 2017. #zanata
 # minwook-shin <minwook0106@gmail.com>, 2017. #zanata
+# Ian Y. Choi <ianyrchoi@gmail.com>, 2018. #zanata
+# Jaewook Oh <kyle.oh95@gmail.com>, 2018. #zanata
+# minwook-shin <minwook0106@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: Horizon Release Notes 13.0.0\n"
+"Project-Id-Version: Horizon Release Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-31 11:43+0000\n"
+"POT-Creation-Date: 2018-03-09 17:52+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-08-15 03:35+0000\n"
-"Last-Translator: minwook-shin <minwook0106@gmail.com>\n"
+"PO-Revision-Date: 2018-03-10 06:28+0000\n"
+"Last-Translator: Jaewook Oh <kyle.oh95@gmail.com>\n"
 "Language-Team: Korean (South Korea)\n"
-"Language: ko-KR\n"
-"X-Generator: Zanata 3.9.6\n"
+"Language: ko_KR\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 msgid "\"More Actions\", More Better"
@@ -54,6 +57,15 @@ msgstr "11.0.0"
 
 msgid "11.0.3"
 msgstr "11.0.3"
+
+msgid "12.0.0"
+msgstr "12.0.0"
+
+msgid "12.0.2-26"
+msgstr "12.0.2-26"
+
+msgid "13.0.0"
+msgstr "13.0.0"
 
 msgid "8.0.1"
 msgstr "8.0.1"
@@ -142,6 +154,13 @@ msgid ""
 msgstr ""
 "ANGULAR_FEATURES은 이제 'flavors_panel' 키를 통해  패널의 Angular 버전이 활성"
 "화 되었는지 여부를 True 또는 False로 지정할 수 있습니다."
+
+msgid ""
+"Add MKS console support. Blueprint can be found at [`<https://blueprints."
+"launchpad.net/horizon/+spec/support-mks-console-type>`_]"
+msgstr ""
+"MKS 콘솔 지원이 추가되었습니다.  [`<https://blueprints.launchpad.net/horizon/"
+"+spec/support-mks-console-type>`_]"
 
 msgid ""
 "Add a new setting OVERVIEW_DAYS_RANGE. It defines the default date range in "
@@ -377,6 +396,14 @@ msgstr ""
 "``TOKEN_DELETE_DISABLED`` 설정을 추가하여, 배포자가 사용자 토큰을 로그아웃시"
 "에 해제하는 기능을 사용자 정의화 가능하도록 합니다."
 
+#, fuzzy
+msgid ""
+"Added the way to specify an interface when attaching it to an instance. It "
+"can be specified by a network and a fixed IP address (optional) or a port."
+msgstr ""
+"인스턴스에 연결할 인터페이스를 지정하는 방법을 추가하였습니다. 인터페이스는 "
+"네트워크와 고정 IP 주소 (선택적) 또는 포트로 지정될 수 있습니다."
+
 msgid ""
 "All AngularJS code must use explicit dependency injection. See https://docs."
 "angularjs.org/guide/di#using-strict-dependency-injection"
@@ -434,6 +461,13 @@ msgstr ""
 "사용자 사설 네트워크를 위한 제한적 CIDR 을 허용하였습니다.  <https://"
 "blueprints.launchpad.net/horizon/+spec/restrict-private-network-input>"
 
+msgid ""
+"Although it's not required, it's best to make your actions return promises "
+"with the expected structure."
+msgstr ""
+"꼭 필요한 것은 아니지만, 기대하는 구조로 결과가 나올 것을 확실히 하는 것이 좋"
+"습니다."
+
 msgid "AngularJS table implementation"
 msgstr "AngularJS 테이블 구현"
 
@@ -465,6 +499,13 @@ msgstr "Ceilometer"
 
 msgid "Cinder"
 msgstr "Cinder"
+
+msgid ""
+"Cinder API v3 is used by default now. It was introduced in Mitaka release "
+"and has all features from API v2."
+msgstr ""
+"Cinder v3 API는 현재 기본값으로 사용되고 있습니다. Cinder v3 API는 Mitaka 릴"
+"리스에서 도입되었으며, API v2의 모든 기능을 지원합니다. "
 
 msgid ""
 "Cinder defines storage size in gibibytes (GiB), which is inconsistent with "
@@ -510,6 +551,9 @@ msgstr "볼륨 백업을 만들고 복구하기"
 
 msgid "Current Series Release Notes"
 msgstr "현재 시리즈에 대한 릴리즈 노트"
+
+msgid "Current limitations on managing identity resources with Keystone v3:"
+msgstr "Keystone v3으로 ID 리소스 관리에 대한 현재 제한 사항 :"
 
 msgid "DVR (Distributed Virtual Routing)"
 msgstr "DVR (분산 가상 라우팅)"
@@ -788,6 +832,14 @@ msgstr "Mitaka 시리즈에 대한 릴리즈 노트"
 msgid "Modal sizes now inherit from Bootstrap's theme variables."
 msgstr "Modal 크기는 Bootstrap 테마 변수로부터 상속됩니다."
 
+msgid ""
+"Most of the documentation has been reorganised and updated, or rewritten "
+"entirely, with the aim of promoting discoverability and ensuring all content "
+"is relevant and up to date."
+msgstr ""
+"대부분의 문서는 검색 가능성을 높이고 모든 콘텐츠가 관련성 있고 최신 상태인지 "
+"확인하기 위해, 재구성되고 업데이트되거나 완전히 다시 작성되었습니다."
+
 msgid "Multi-Domain Cross Service Support"
 msgstr "다중-도메인 교차 서비스 지원"
 
@@ -885,6 +937,9 @@ msgstr "QoS (quality of service) 지원"
 msgid "Quantum"
 msgstr "Quantum"
 
+msgid "Queens Series Release Notes"
+msgstr "Queens 시리즈 릴리즈 노트"
+
 msgid "Release Overview"
 msgstr "릴리즈 개요"
 
@@ -911,7 +966,7 @@ msgid "Security Group Rule Editing Improvements"
 msgstr "보안 그룹 규칙 편집 개선"
 
 msgid "Security Group Rule Templates"
-msgstr "보안 그룹 규칙 템플렛"
+msgstr "보안 그룹 규칙 템플릿"
 
 msgid "Security Issues"
 msgstr "보안 이슈"
@@ -953,11 +1008,30 @@ msgid "The 'webroot' theme has been removed."
 msgstr "'webroot' 테마를 삭제하였습니다."
 
 msgid ""
+"The Flavor panel now may be configured to use either the legacy or Angular "
+"code."
+msgstr ""
+"이제 레거시 또는 Angular 코드를 사용하도록 Flavor 패널을 구성할 수 있습니다."
+
+msgid ""
+"The Images panel now may be configured to use either the legacy or Angular "
+"code."
+msgstr ""
+"이제 레거시 또는 Angular 코드를 사용하도록 Images 패널을 구성할 수 있습니다."
+
+msgid ""
 "The Python Launch Instance workflow has been deprecated and no longer "
 "displays by default."
 msgstr ""
 "Python Launch 인스턴스 워크 플로우는 더 이상 사용되지 않으며 기본적으로 더 이"
 "상 표시되지 않습니다."
+
+msgid ""
+"The Queens release of horizon depends on Django 1.8 to 1.11, but Django 1.8 "
+"to 1.10 support will be dropped in the next release (Rocky)."
+msgstr ""
+"Queens 릴리즈의 horizon은 Django 1.8 to 1.11에 의존합니다. 그러나 Django 1.8 "
+"to 1.10 지원은 다음 릴리즈 (Rocky) 에서 삭제될 예정입니다."
 
 msgid ""
 "Timezone support is now enabled. You can select your preferred timezone in "

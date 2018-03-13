@@ -21,7 +21,7 @@
 Views for managing floating IPs.
 """
 
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from neutronclient.common import exceptions as neutron_exc
@@ -62,7 +62,7 @@ class AllocateView(forms.ModalFormView):
         context = super(AllocateView, self).get_context_data(**kwargs)
         try:
             context['usages'] = quotas.tenant_quota_usages(
-                self.request, targets=('floating_ips', ))
+                self.request, targets=('floatingip', ))
         except Exception:
             exceptions.handle(self.request)
         return context

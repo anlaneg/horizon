@@ -142,8 +142,8 @@ settings_utils.find_static_files(HORIZON_CONFIG, AVAILABLE_THEMES,
 HORIZON_IMAGES_UPLOAD_MODE = 'legacy'
 
 AVAILABLE_REGIONS = [
-    ('http://localhost:5000/v2.0', 'local'),
-    ('http://remote:5000/v2.0', 'remote'),
+    ('http://localhost:5000/v3', 'local'),
+    ('http://remote:5000/v3', 'remote'),
 ]
 
 OPENSTACK_API_VERSIONS = {
@@ -151,7 +151,7 @@ OPENSTACK_API_VERSIONS = {
     "image": 2
 }
 
-OPENSTACK_KEYSTONE_URL = "http://localhost:5000/v2.0"
+OPENSTACK_KEYSTONE_URL = "http://localhost:5000/v3"
 OPENSTACK_KEYSTONE_DEFAULT_ROLE = "_member_"
 
 OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
@@ -221,6 +221,14 @@ LOGGING['loggers'].update(
             'propagate': False,
         },
         'neutronclient': {
+            'handlers': ['test'],
+            'propagate': False,
+        },
+        'oslo_policy': {
+            'handlers': ['test'],
+            'propagate': False,
+        },
+        'stevedore': {
             'handlers': ['test'],
             'propagate': False,
         },
@@ -297,8 +305,18 @@ TEST_GLOBAL_MOCKS_ON_PANELS = {
                    '.aggregates.panel.Aggregates.can_access'),
         'return_value': True,
     },
-    'trunk': {
+    'domains': {
+        'method': ('openstack_dashboard.dashboards.identity'
+                   '.domains.panel.Domains.can_access'),
+        'return_value': True,
+    },
+    'trunk-project': {
         'method': ('openstack_dashboard.dashboards.project'
+                   '.trunks.panel.Trunks.can_access'),
+        'return_value': True,
+    },
+    'trunk-admin': {
+        'method': ('openstack_dashboard.dashboards.admin'
                    '.trunks.panel.Trunks.can_access'),
         'return_value': True,
     },

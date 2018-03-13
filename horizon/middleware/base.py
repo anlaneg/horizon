@@ -43,13 +43,22 @@ class HorizonMiddleware(object):
 
     logout_reason = None
 
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        self.process_request(request)
+        response = self.get_response(request)
+        response = self.process_response(request, response)
+        return response
+
     def process_request(self, request):
         """Adds data necessary for Horizon to function to the request."""
 
         request.horizon = {'dashboard': None,
                            'panel': None,
                            'async_messages': []}
-        if not hasattr(request, "user") or not request.user.is_authenticated():
+        if not hasattr(request, "user") or not request.user.is_authenticated:
             # proceed no further if the current request is already known
             # not to be authenticated
             # it is CRITICAL to perform this check as early as possible

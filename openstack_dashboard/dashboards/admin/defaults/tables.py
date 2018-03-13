@@ -55,11 +55,6 @@ def get_quota_name(quota):
         'key_pairs': _('Key Pairs'),
         'server_group_members': _('Server Group Members'),
         'server_groups': _('Server Groups'),
-        # Nova (deprecated)
-        'fixed_ips': _('Fixed IPs'),
-        'floating_ips': _('Floating IPs'),
-        'security_groups': _('Security Groups'),
-        'security_group_rules': _('Security Group Rules'),
         # Cinder
         'volumes': _('Volumes'),
         'snapshots': _('Volume Snapshots'),
@@ -69,6 +64,14 @@ def get_quota_name(quota):
         'per_volume_gigabytes': _('Per Volume Size (GiB)'),
         'groups': _('Volume Groups'),
         'dm-crypt': _('dm-crypt'),
+        # Neutron
+        'network': _('Networks'),
+        'subnet': _('Subnets'),
+        'port': _('Ports'),
+        'router': _('Routers'),
+        'floatingip': _('Floating IPs'),
+        'security_group': _('Security Groups'),
+        'security_group_rule': _('Security Group Rules'),
     }
 
     QUOTA_DYNAMIC_NAMES = {

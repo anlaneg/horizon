@@ -27,7 +27,8 @@
     '$scope',
     '$q',
     'horizon.framework.widgets.wizard.labels',
-    'horizon.framework.widgets.wizard.events'
+    'horizon.framework.widgets.wizard.events',
+    'horizon.framework.events'
   ];
 
   /**
@@ -36,7 +37,8 @@
     * @description
     * Controller used by 'wizard'
     */
-  function WizardController($scope, $q, wizardLabels, wizardEvents) {
+  function WizardController($scope, $q, wizardLabels, wizardEvents, frameworkEvents) {
+    var ctrl = this;
     var viewModel = $scope.viewModel = {};
     var initTask = $q.defer();
 
@@ -55,6 +57,10 @@
 
     $scope.switchTo = switchTo;
     $scope.showError = showError;
+    ctrl.toggleHelpBtn = toggleHelpBtn;
+    ctrl.onInitSuccess = onInitSuccess;
+    ctrl.onInitError = onInitError;
+
     /*eslint-enable angular/controller-as */
 
     viewModel.btnText = extend({}, wizardLabels, $scope.workflow.btnText);
@@ -66,7 +72,11 @@
 
     $scope.initPromise.then(onInitSuccess, onInitError);
 
-    checkAllReadiness().then(always, always);
+    checkAllReadiness().finally(function() {
+      initTask.resolve();
+      viewModel.ready = true;
+      switchToFirstReadyStep();
+    });
 
     //////////
 
@@ -81,7 +91,7 @@
         from: $scope.currentIndex,
         to: index
       });
-      toggleHelpBtn(index);
+      ctrl.toggleHelpBtn(index);
       /*eslint-disable angular/controller-as */
       $scope.currentIndex = index;
       $scope.openHelp = false;
@@ -118,15 +128,25 @@
     }
 
     function onInitSuccess() {
+      if (viewModel.hasError) {
+        return;
+      }
+
       $scope.$broadcast(wizardEvents.ON_INIT_SUCCESS);
       if (steps.length > 0) {
-        toggleHelpBtn(0);
+        ctrl.toggleHelpBtn(0);
       }
     }
 
     function onInitError() {
       $scope.$broadcast(wizardEvents.ON_INIT_ERROR);
     }
+
+    $scope.$on(frameworkEvents.FORCE_LOGOUT, function(evt, arg) {
+      viewModel.hasError = true;
+      viewModel.errorMessage = arg;
+      return;
+    });
 
     function toggleHelpBtn(index) {
       // Toggle help icon button if a step's helpUrl is not defined
@@ -182,24 +202,24 @@
     function checkAllReadiness() {
       var stepReadyPromises = [];
 
-      forEach(steps, function(step, index) {
+      forEach(steps, function(step) {
         step.ready = !step.checkReadiness;
 
         if (step.checkReadiness) {
           var promise = step.checkReadiness();
           stepReadyPromises.push(promise);
-          promise.then(function() {
-            step.ready = true;
-          },
-          function() {
-            $scope.steps.splice(index, 1);
-          }
-        );
+          promise.then(function(isReady) {
+            step.ready = isReady;
+          });
         }
       });
 
       viewModel.ready = stepReadyPromises.length === 0;
-      return $q.all(stepReadyPromises);
+      return $q.all(stepReadyPromises).finally(function() {
+        $scope.steps = $scope.steps.filter(function(step) {
+          return step.ready;
+        });
+      });
     }
 
     function switchToFirstReadyStep() {
@@ -211,14 +231,6 @@
         }
         /*eslint-enable angular/controller-as */
       });
-    }
-
-    // angular promise doesn't have #always method right now,
-    // this is a simple workaround.
-    function always() {
-      initTask.resolve();
-      viewModel.ready = true;
-      switchToFirstReadyStep();
     }
   }
 })();

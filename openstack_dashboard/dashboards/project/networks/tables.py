@@ -13,15 +13,16 @@
 #    under the License.
 import logging
 
-from django.core.urlresolvers import reverse
 from django import template
 from django.template import defaultfilters as filters
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
+from neutronclient.common import exceptions as neutron_exceptions
 
 from horizon import exceptions
 from horizon import tables
+from horizon.tables import actions
 
 from openstack_dashboard import api
 from openstack_dashboard.dashboards.project.networks.subnets import tables \
@@ -52,26 +53,24 @@ class DeleteNetwork(policy.PolicyTargetMixin, tables.DeleteAction):
 
     policy_rules = (("network", "delete_network"),)
 
+    @actions.handle_exception_with_detail_message(
+        # normal_log_message
+        'Failed to delete network %(id)s: %(exc)s',
+        # target_exception
+        neutron_exceptions.Conflict,
+        # target_log_message
+        'Unable to delete network %(id)s with 409 Conflict: %(exc)s',
+        # target_user_message
+        _('Unable to delete network %(name)s. Most possible reason is because '
+          'one or more ports still exist on the requested network.'),
+        # logger_name
+        __name__)
     def delete(self, request, network_id):
-        network_name = network_id
-        try:
-            # Retrieve the network list.
-            network = api.neutron.network_get(request, network_id,
-                                              expand_subnet=False)
-            network_name = network.name
-            LOG.debug('Network %(network_id)s has subnets: %(subnets)s',
-                      {'network_id': network_id, 'subnets': network.subnets})
-            for subnet_id in network.subnets:
-                api.neutron.subnet_delete(request, subnet_id)
-                LOG.debug('Deleted subnet %s', subnet_id)
-            api.neutron.network_delete(request, network_id)
-            LOG.debug('Deleted network %s successfully', network_id)
-        except Exception as e:
-            LOG.info('Failed to delete network %(id)s: %(exc)s',
-                     {'id': network_id, 'exc': e})
-            msg = _('Failed to delete network %s')
-            redirect = reverse("horizon:project:networks:index")
-            exceptions.handle(request, msg % network_name, redirect=redirect)
+        network = self.table.get_object_by_id(network_id)
+        LOG.debug('Network %(network_id)s has subnets: %(subnets)s',
+                  {'network_id': network_id, 'subnets': network.subnets})
+        api.neutron.network_delete(request, network_id)
+        LOG.debug('Deleted network %s successfully', network_id)
 
 
 class CreateNetwork(tables.LinkAction):
@@ -83,10 +82,10 @@ class CreateNetwork(tables.LinkAction):
     policy_rules = (("network", "create_network"),)
 
     def allowed(self, request, datum=None):
-        usages = quotas.tenant_quota_usages(request, targets=('networks', ))
+        usages = quotas.tenant_quota_usages(request, targets=('network', ))
         # when Settings.OPENSTACK_NEUTRON_NETWORK['enable_quotas'] = False
-        # usages["networks"] is empty
-        if usages.get('networks', {}).get('available', 1) <= 0:
+        # usages["network"] is empty
+        if usages.get('network', {}).get('available', 1) <= 0:
             if "disabled" not in self.classes:
                 self.classes = [c for c in self.classes] + ["disabled"]
                 self.verbose_name = _("Create Network (Quota exceeded)")
@@ -118,10 +117,10 @@ class CreateSubnet(subnet_tables.SubnetPolicyTargetMixin, tables.LinkAction):
                            ("network:project_id", "tenant_id"),)
 
     def allowed(self, request, datum=None):
-        usages = quotas.tenant_quota_usages(request, targets=('subnets', ))
+        usages = quotas.tenant_quota_usages(request, targets=('subnet', ))
         # when Settings.OPENSTACK_NEUTRON_NETWORK['enable_quotas'] = False
-        # usages["subnets'] is empty
-        if usages.get('subnets', {}).get('available', 1) <= 0:
+        # usages["subnet'] is empty
+        if usages.get('subnet', {}).get('available', 1) <= 0:
             if 'disabled' not in self.classes:
                 self.classes = [c for c in self.classes] + ['disabled']
                 self.verbose_name = _('Create Subnet (Quota exceeded)')

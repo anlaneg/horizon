@@ -29,6 +29,9 @@ from openstack_dashboard.usage import quotas
 
 class FloatingIpAllocate(forms.SelfHandlingForm):
     pool = forms.ThemableChoiceField(label=_("Pool"))
+    description = forms.CharField(max_length=255,
+                                  label=_("Description"),
+                                  required=False)
 
     def __init__(self, *args, **kwargs):
         super(FloatingIpAllocate, self).__init__(*args, **kwargs)
@@ -39,15 +42,20 @@ class FloatingIpAllocate(forms.SelfHandlingForm):
         try:
             # Prevent allocating more IP than the quota allows
             usages = quotas.tenant_quota_usages(request,
-                                                targets=('floating_ips', ))
-            if usages['floating_ips']['available'] <= 0:
+                                                targets=('floatingip', ))
+            if usages['floatingip']['available'] <= 0:
                 error_message = _('You are already using all of your available'
                                   ' floating IPs.')
                 self.api_error(error_message)
                 return False
 
-            fip = api.neutron.tenant_floating_ip_allocate(request,
-                                                          pool=data['pool'])
+            param = {}
+            if data['description']:
+                param['description'] = data['description']
+            fip = api.neutron.tenant_floating_ip_allocate(
+                request,
+                pool=data['pool'],
+                **param)
             messages.success(request,
                              _('Allocated Floating IP %(ip)s.')
                              % {"ip": fip.ip})

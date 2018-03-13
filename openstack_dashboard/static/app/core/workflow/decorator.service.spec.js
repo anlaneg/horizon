@@ -17,12 +17,14 @@
   'use strict';
 
   describe('Workflow Decorator', function () {
-    var decoratorService, catalogService, policyService, settingsService, $scope, deferred;
+    var decoratorService, catalogService, policyService, settingsService, $scope, deferred,
+      novaExtensionsService;
     var steps = [
       { id: '1' },
       { id: '2', requiredServiceTypes: ['foo-service'] },
       { id: '3', policy: 'foo-policy' },
-      { id: '4', setting: 'STEPS.step_4_enabled' }
+      { id: '4', setting: 'STEPS.step_4_enabled' },
+      { id: '5', novaExtension: 'foo-novaExtension'}
     ];
     var spec = { steps: steps };
 
@@ -38,9 +40,12 @@
       catalogService = $injector.get('horizon.app.core.openstack-service-api.serviceCatalog');
       policyService = $injector.get('horizon.app.core.openstack-service-api.policy');
       settingsService = $injector.get('horizon.app.core.openstack-service-api.settings');
+      novaExtensionsService = $injector
+                                .get('horizon.app.core.openstack-service-api.novaExtensions');
       spyOn(catalogService, 'ifTypeEnabled').and.returnValue(deferred.promise);
       spyOn(policyService, 'ifAllowed').and.returnValue(deferred.promise);
       spyOn(settingsService, 'ifEnabled').and.returnValue(deferred.promise);
+      spyOn(novaExtensionsService, 'ifNameEnabled').and.returnValue(deferred.promise);
     }));
 
     it('is a function', function() {
@@ -58,9 +63,11 @@
       expect(policyService.ifAllowed).toHaveBeenCalledWith('foo-policy');
       expect(settingsService.ifEnabled.calls.count()).toBe(1);
       expect(settingsService.ifEnabled).toHaveBeenCalledWith('STEPS.step_4_enabled', true, true);
+      expect(novaExtensionsService.ifNameEnabled.calls.count()).toBe(1);
+      expect(novaExtensionsService.ifNameEnabled).toHaveBeenCalledWith('foo-novaExtension');
     });
 
-    it('step checkReadiness function returns correct results', function() {
+    it('step checkReadiness function returns true when promise is resolved', function() {
       decoratorService(spec);
       var readinessResult;
       deferred.resolve('foo');
@@ -68,7 +75,18 @@
         readinessResult = result;
       });
       $scope.$apply();
-      expect(readinessResult).toEqual(['foo']);
+      expect(readinessResult).toEqual(true);
+    });
+
+    it('step checkReadiness function returns false when promise is rejected', function() {
+      decoratorService(spec);
+      var readinessResult;
+      deferred.reject();
+      steps[1].checkReadiness().then(function(result) {
+        readinessResult = result;
+      });
+      $scope.$apply();
+      expect(readinessResult).toEqual(false);
     });
 
   });

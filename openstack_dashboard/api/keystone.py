@@ -537,7 +537,7 @@ def user_verify_admin_password(request, admin_password):
     # verify if it's correct.
     client = keystone_client_v2 if VERSIONS.active < 3 else keystone_client_v3
     try:
-        endpoint = _get_endpoint_url(request, 'internalURL')
+        endpoint = _get_endpoint_url(request, 'publicURL')
         insecure = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)
         cacert = getattr(settings, 'OPENSTACK_SSL_CACERT', None)
         client.Client(
@@ -672,7 +672,7 @@ def get_project_groups_roles(request, project):
 @profiler.trace
 def role_assignments_list(request, project=None, user=None, role=None,
                           group=None, domain=None, effective=False,
-                          include_subtree=True):
+                          include_subtree=True, include_names=False):
     if VERSIONS.active < 3:
         raise exceptions.NotAvailable
 
@@ -683,7 +683,8 @@ def role_assignments_list(request, project=None, user=None, role=None,
 
     return manager.list(project=project, user=user, role=role, group=group,
                         domain=domain, effective=effective,
-                        include_subtree=include_subtree)
+                        include_subtree=include_subtree,
+                        include_names=include_names)
 
 
 @profiler.trace

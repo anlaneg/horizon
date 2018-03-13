@@ -16,9 +16,9 @@
 # Ilya Alekseyev <ilyaalekseyev@acm.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev124\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-09-21 04:56+0000\n"
+"POT-Creation-Date: 2018-02-01 07:30+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -108,45 +108,6 @@ msgstr ""
 "<b>Том</b>: Используется уже существующий том. Новый том не создаётся. Можно "
 "выбрать удаление тома при завершении работы инстанса. <em>Примечание: опция "
 "Том позволяет запустить только один инстанс.</em>"
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Heads up!</strong>\n"
-"           This\n"
-"          <a href=\"#\" class=\"alert-link\">alert needs your attention</"
-"a>,\n"
-"           but it's not super important."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Внимание!</strong>\n"
-"           Это\n"
-"          <a href=\"#\" class=\"alert-link\">уведомление требует "
-"вмешательства</a>,\n"
-"          но это не очень важно."
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Oh snap!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Change a few things up</a>\n"
-"          and try submitting again."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Ошибка!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Исправьте кое-что</a>\n"
-"          и повторите попытку."
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Well done!</strong>\n"
-"          You successfully read\n"
-"          <a href=\"#\" class=\"alert-link\">this important alert message</"
-"a>."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Отлично!</strong>\n"
-"          Вы успешно прочли\n"
-"          <a href=\"#\" class=\"alert-link\">это важное тревожное сообщение</"
-"a>."
 
 msgid "<small>This line of text is meant to be treated as fine print.</small>"
 msgstr ""
@@ -1166,13 +1127,6 @@ msgstr "ИД ядра"
 
 msgid "Key Pair"
 msgstr "Ключевая пара"
-
-msgid ""
-"Key Pair Name\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-msgstr ""
-"Имя пары ключей\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
 
 msgid "Key Pairs"
 msgstr "Пары ключей"
@@ -2541,9 +2495,6 @@ msgstr "Невозможно получить тип инстанса."
 msgid "Unable to retrieve the flavors."
 msgstr "Невозможно получить типы инстансов."
 
-msgid "Unable to retrieve the heat services."
-msgstr "Не удалось получить сервисы heat."
-
 msgid "Unable to retrieve the image custom properties."
 msgstr "Не удалось получить расширенные свойства образа."
 
@@ -2663,9 +2614,6 @@ msgstr "Не удалось обновить образ."
 msgid "Unable to upload the object."
 msgstr "Не удаётся загрузить объект."
 
-msgid "Unable to validate the template."
-msgstr "Невозможно проверить шаблон."
-
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -2737,6 +2685,9 @@ msgstr "Пользователь"
 
 msgid "User ID"
 msgstr "ID пользователя"
+
+msgid "User Name"
+msgstr "Имя пользователя"
 
 msgid "Users"
 msgstr "Пользователи"
@@ -2942,20 +2893,8 @@ msgstr[0] "Выбрано образов: \"%s\". Восстановить уд�
 msgstr[1] "Выбрано образов: \"%s\". Восстановить удаленные образы невозможно."
 msgstr[2] "Выбрано образов: \"%s\". Восстановить удаленные образы невозможно."
 
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "ошибка"
-msgstr[1] "ошибки"
-msgstr[2] "ошибок"
-
 msgid "image"
 msgstr "изображение"
-
-msgid "message"
-msgid_plural "messages"
-msgstr[0] "сообщение"
-msgstr[1] "сообщения"
-msgstr[2] "сообщений"
 
 #, python-format
 msgid "resource load failed: %s"
@@ -2963,24 +2902,6 @@ msgstr "загрузка ресурса не удалась: %s"
 
 msgid "snapshot"
 msgstr "моментальная копия"
-
-msgid "submit"
-msgid_plural "submits"
-msgstr[0] "отправка"
-msgstr[1] "отправки"
-msgstr[2] "отправки"
-
-msgid "success"
-msgid_plural "successs"
-msgstr[0] "успешный"
-msgstr[1] "успешные"
-msgstr[2] "успешные"
-
-msgid "title"
-msgid_plural "titles"
-msgstr[0] "заголовок"
-msgstr[1] "заголовки"
-msgstr[2] "заголовки"
 
 msgid ""
 "{$ ctrl.model.counted.files $} files in\n"

@@ -19,10 +19,10 @@ Views for managing volumes.
 from collections import OrderedDict
 import json
 
-from django.core.urlresolvers import reverse
-from django.core.urlresolvers import reverse_lazy
-from django import http
+from django import shortcuts
 from django.template.defaultfilters import slugify
+from django.urls import reverse
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.utils import encoding
 from django.utils.translation import ugettext_lazy as _
@@ -147,7 +147,7 @@ class DetailView(tabs.TabbedTableView):
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
-        volume = self.get_data()
+        volume, snapshots = self.get_data()
         table = volume_tables.VolumesTable(self.request)
         context["volume"] = volume
         context["url"] = self.get_redirect_url()
@@ -156,13 +156,17 @@ class DetailView(tabs.TabbedTableView):
         volume.status_label = filters.get_display_label(choices, volume.status)
         return context
 
+    def get_search_opts(self, volume):
+        return {'volume_id': volume.id}
+
     @memoized.memoized_method
     def get_data(self):
         try:
             volume_id = self.kwargs['volume_id']
             volume = cinder.volume_get(self.request, volume_id)
+            search_opts = self.get_search_opts(volume)
             snapshots = cinder.volume_snapshot_list(
-                self.request, search_opts={'volume_id': volume.id})
+                self.request, search_opts=search_opts)
             if snapshots:
                 setattr(volume, 'has_snapshot', True)
             for att in volume.attachments:
@@ -185,14 +189,15 @@ class DetailView(tabs.TabbedTableView):
                 _('Unable to retrieve volume messages.'),
                 ignore=True,
             )
-        return volume
+        return volume, snapshots
 
     def get_redirect_url(self):
         return reverse('horizon:project:volumes:index')
 
     def get_tabs(self, request, *args, **kwargs):
-        volume = self.get_data()
-        return self.tab_group_class(request, volume=volume, **kwargs)
+        volume, snapshots = self.get_data()
+        return self.tab_group_class(
+            request, volume=volume, snapshots=snapshots, **kwargs)
 
 
 class CreateView(forms.ModalFormView):
@@ -378,6 +383,11 @@ class CreateTransferView(forms.ModalFormView):
     def get_initial(self):
         return {'volume_id': self.kwargs["volume_id"]}
 
+    def get_form_kwargs(self):
+        kwargs = super(CreateTransferView, self).get_form_kwargs()
+        kwargs['next_view'] = ShowTransferView
+        return kwargs
+
 
 class AcceptTransferView(forms.ModalFormView):
     form_class = volume_forms.AcceptTransferForm
@@ -395,6 +405,7 @@ class ShowTransferView(forms.ModalFormView):
     template_name = 'project/volumes/show_transfer.html'
     success_url = reverse_lazy('horizon:project:volumes:index')
     modal_id = "show_volume_transfer_modal"
+    modal_header = _("Volume Transfer")
     submit_url = "horizon:project:volumes:show_transfer"
     cancel_label = _("Close")
     download_label = _("Download transfer credentials")
@@ -416,8 +427,6 @@ class ShowTransferView(forms.ModalFormView):
         context = super(ShowTransferView, self).get_context_data(**kwargs)
         context['transfer_id'] = self.kwargs['transfer_id']
         context['auth_key'] = self.kwargs['auth_key']
-        context['submit_url'] = reverse(self.submit_url, args=[
-            context['transfer_id'], context['auth_key']])
         context['download_label'] = self.download_label
         context['download_url'] = reverse(
             'horizon:project:volumes:download_transfer_creds',
@@ -635,15 +644,14 @@ class DownloadTransferCreds(generic.View):
             transfer = cinder.transfer_get(self.request, transfer_id)
         except Exception:
             transfer = None
-        response = http.HttpResponse(content_type='application/text')
-        response['Content-Disposition'] = \
-            'attachment; filename=%s.txt' % slugify(transfer_id)
-        response.write('%s: %s\n%s: %s\n%s: %s' % (
-            _("Transfer name"),
-            getattr(transfer, 'name', ''),
-            _("Transfer ID"),
-            transfer_id,
-            _("Authorization Key"),
-            auth_key))
-        response['Content-Length'] = str(len(response.content))
+        context = {'transfer': {
+            'name': getattr(transfer, 'name', ''),
+            'id': transfer_id,
+            'auth_key': auth_key,
+        }}
+        response = shortcuts.render_to_response(
+            'project/volumes/download_transfer_creds.html',
+            context, content_type='application/text')
+        response['Content-Disposition'] = (
+            'attachment; filename=%s.txt' % slugify(transfer_id))
         return response

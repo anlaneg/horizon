@@ -48,7 +48,7 @@ Default:
 
     {
         'images_panel': True,
-        'key_pairs_panel': False,
+        'key_pairs_panel': True,
         'flavors_panel': False,
         'domains_panel': False,
         'users_panel': False,
@@ -556,7 +556,7 @@ Default:
 
     {
         "data-processing": 1.1,
-        "identity": 2.0,
+        "identity": 3,
         "volume": 2,
         "compute": 2
     }
@@ -768,6 +768,41 @@ will be from the beginning of the current month until the current date. The
 legacy behaviour is not recommended for large deployments as Horizon suffers
 significant lag in this case.
 
+POLICY_CHECK_FUNCTION
+---------------------
+
+.. versionadded:: 2013.2(Havana)
+
+Default:: ``openstack_auth.policy.check``
+
+This value should not be changed, although removing it or setting it to
+``None`` would be a means to bypass all policy checks.
+
+POLICY_DIRS
+-----------
+
+.. versionadded:: 13.0.0(Queens)
+
+Default:
+
+.. code-block:: python
+
+    {
+        'compute': ['nova_policy.d'],
+        'volume': ['cinder_policy.d'],
+    }
+
+Specifies a list of policy directories per service types. The directories
+are relative to `POLICY_FILES_PATH`_. Services whose additional policies
+are defined here must be defined in `POLICY_FILES`_ too. Otherwise,
+additional policies specified in ``POLICY_DIRS`` are not loaded.
+
+.. note::
+
+   ``cinder_policy.d`` and ``nova_policy.d`` are registered by default
+   to maintain policies which have ben dropped from nova and cinder
+   but horizon still uses. We recommend not to drop them.
+
 POLICY_FILES
 ------------
 
@@ -778,12 +813,11 @@ Default:
 .. code-block:: python
 
     {
-        'identity': 'keystone_policy.json',
         'compute': 'nova_policy.json',
-        'volume': 'cinder_policy.json',
+        'identity': 'keystone_policy.json',
         'image': 'glance_policy.json',
-        'orchestration': 'heat_policy.json',
         'network': 'neutron_policy.json',
+        'volume': 'cinder_policy.json',
     }
 
 This should essentially be the mapping of the contents of `POLICY_FILES_PATH`_
@@ -844,6 +878,16 @@ This SESSION_TIMEOUT is a method to supercede the token timeout with a shorter
 horizon session timeout (in seconds).  So if your token expires in 60 minutes,
 a value of 1800 will log users out after 30 minutes.
 
+SHOW_KEYSTONE_V2_RC
+--------------------
+
+.. versionadded:: 13.0.0(Queens)
+
+Default: ``True``
+
+Controls whether the keystone v2 openrc file is accessable from the user
+menu and the api access panel.
+
 THEME_COLLECTION_DIR
 --------------------
 
@@ -865,6 +909,45 @@ Default: ``"theme"``
 
 This setting tells Horizon in which cookie key to store the currently
 set theme.  The cookie expiration is currently set to a year.
+
+USER_MENU_LINKS
+-----------------
+
+.. versionadded:: 13.0.0(Queens)
+
+Default::
+
+  [
+    {'name': _('OpenStack RC File v2'),
+     'icon_classes': ['fa-download', ],
+     'url': 'horizon:project:api_access:openrcv2',
+     'external': False,
+     },
+    {'name': _('OpenStack RC File v3'),
+     'icon_classes': ['fa-download', ],
+     'url': 'horizon:project:api_access:openrc',
+     'external': False,
+     }
+  ]
+
+This setting controls the additional links on the user drop down menu.
+A list of dictionaries defining all of the links should be provided. This
+defaults to the standard OpenStack RC files.
+
+Each dictionary should contain these values:
+
+name
+    The name of the link
+
+url
+    Either the reversible Django url name or an absolute url
+
+external
+    True for absolute URLs, False for django urls.
+
+icon_classes
+    A list of classes for the icon next to the link. If 'None' or
+    an empty list is provided a download icon will show
 
 WEBROOT
 -------
@@ -1103,29 +1186,6 @@ Default:
 Used to customize features related to the image service, such as the list of
 supported image formats.
 
-Heat
-----
-
-OPENSTACK_HEAT_STACK
-~~~~~~~~~~~~~~~~~~~~
-
-.. versionadded:: 9.0.0(Mitaka)
-
-Default:
-
-.. code-block:: python
-
-    {
-        'enable_user_pass': True
-    }
-
-A dictionary of settings to use with heat stacks. Currently, the only setting
-available is "enable_user_pass", which can be used to disable the password
-field while launching the stack. Currently HEAT API needs user password to
-perform all the heat operations because in HEAT API trusts is not enabled by
-default. So, this setting can be set as "False" in-case HEAT uses trusts by
-default otherwise it needs to be set as "True".
-
 Keystone
 --------
 
@@ -1165,7 +1225,7 @@ AVAILABLE_REGIONS
 Default: ``None``
 
 A list of tuples which define multiple regions. The tuple format is
-``('http://{{ keystone_host }}:5000/v2.0', '{{ region_name }}')``. If any regions
+``('http://{{ keystone_host }}:5000/v3', '{{ region_name }}')``. If any regions
 are specified the login form will have a dropdown selector for authenticating
 to the appropriate region, and there will be a region switcher dropdown in
 the site header when logged in.
@@ -1363,7 +1423,7 @@ OPENSTACK_KEYSTONE_URL
 
   Horizon's `OPENSTACK_HOST`_ documentation
 
-Default: ``"http://%s:5000/v2.0" % OPENSTACK_HOST``
+Default: ``"http://%s:5000/v3" % OPENSTACK_HOST``
 
 The full URL for the Keystone endpoint used for authentication. Unless you
 are using HTTPS, running your Keystone server on a nonstandard port, or using
@@ -1449,6 +1509,17 @@ The commom value for this setting is ``HTTP_X_REAL_IP`` or
 ``HTTP_X_FORWARDED_FOR``.
 If not present, then ``REMOTE_ADDR`` header is used. (``REMOTE_ADDR`` is the
 field of Django HttpRequest object which contains IP address of the client.)
+
+TOKEN_DELETION_DISABLED
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. versionadded:: 10.0.0(Newton)
+
+Default: ``False``
+
+This setting allows deployers to control whether a token is deleted on log out.
+This can be helpful when there are often long running processes being run
+in the Horizon environment.
 
 TOKEN_TIMEOUT_MARGIN
 ~~~~~~~~~~~~~~~~~~~~
@@ -1888,11 +1959,15 @@ CONSOLE_TYPE
 
     Added the ``SERIAL`` option
 
+.. versionchanged:: 2017.11(Queens)
+
+    Added the ``MKS`` option
+
 Default:  ``"AUTO"``
 
 This setting specifies the type of in-browser console used to access the VMs.
 Valid values are  ``"AUTO"``, ``"VNC"``, ``"SPICE"``, ``"RDP"``,
-``"SERIAL"``, and ``None``.
+``"SERIAL"``, ``"MKS"``, and ``None``.
 
 ENABLE_FLAVOR_EDIT
 ~~~~~~~~~~~~~~~~~~
@@ -2112,6 +2187,39 @@ a key pair when launching an instance.
 Setting ``enable_quotas`` to ``False`` will make Horizon treat all Nova
 quotas as disabled, thus it won't try to modify them. By default, quotas are
 enabled.
+
+OPENSTACK_INSTANCE_RETRIEVE_IP_ADDRESSES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. versionadded:: 13.0.0(Queens)
+
+Default: ``True``
+
+This settings controls whether IP addresses of servers are retrieved from
+neutron in the project instance table. Setting this to ``False`` may mitigate
+a performance issue in the project instance table in large deployments.
+
+If your deployment has no support of floating IP like provider network
+scenario, you can set this to ``False`` in most cases. If your deployment
+supports floating IP, read the detail below and understand the under-the-hood
+before setting this to ``False``.
+
+Nova has a mechanism to cache network info but it is not fast enough
+in some cases. For example, when a user associates a floating IP or
+updates an IP address of an server port, it is not reflected to the nova
+network info cache immediately. This means an action which a user makes
+from the horizon instance table is not reflected into the table content
+just after the action. To avoid this, horizon retrieves IP address info
+from neutron when retrieving a list of servers from nova.
+
+On the other hand, this operation requires a full list of neutron ports
+and can potentially lead to a performance issue in large deployments
+(`bug 1722417 <https://bugs.launchpad.net/horizon/+bug/1722417>`__).
+This issue can be avoided by skipping querying IP addresses to neutron
+and setting this to ``False`` achieves this.
+Note that when disabling the query to neutron it takes some time until
+associated floating IPs are visible in the project instance table and
+users may reload the table to check them.
 
 OPENSTACK_NOVA_EXTENSIONS_BLACKLIST
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

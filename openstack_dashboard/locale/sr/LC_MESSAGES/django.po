@@ -1,9 +1,9 @@
 # OpenStack Infra <zanata@openstack.org>, 2015. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev209\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-10-21 13:30+0000\n"
+"POT-Creation-Date: 2018-02-09 15:08+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,17 +69,11 @@ msgstr ", izmenite grupe projekta"
 msgid "-"
 msgstr "-"
 
-msgid "A local environment to upload."
-msgstr "Lokalno okruženje za postavljanje."
-
 msgid "A local image to upload."
 msgstr "Lokalni image za prebacivanje."
 
 msgid "A local metadata definition file to upload."
 msgstr "Lokalni fajl sa podaciza za definisanje metadata"
-
-msgid "A local template to upload."
-msgstr "Lokalni šablon za upload."
 
 msgid ""
 "A script or set of commands to be executed after the instance has been built "
@@ -203,9 +197,6 @@ msgstr "Dodeljena slobodna IP %(ip)s."
 
 msgid "Allocation Pools"
 msgstr "Određivanje grupa"
-
-msgid "An external (HTTP) URL to load the template from."
-msgstr "Spoljni (HTTP) URL odakle se učitava šablon."
 
 msgid ""
 "An instance can be launched with varying types of attached storage. You may "
@@ -334,12 +325,6 @@ msgstr "Promena"
 
 msgid "Change Password"
 msgstr "Promena lozinke"
-
-msgid "Change Stack Template"
-msgstr "Promena šablona stack-a"
-
-msgid "Change Template"
-msgstr "Promena šablona"
 
 msgid "Changing password is not supported."
 msgstr "Nije podržana promena lozinke."
@@ -494,9 +479,6 @@ msgstr "Kreiranje sigurnosne grupe"
 msgid "Create Snapshot"
 msgstr "Kreirajte snapshot"
 
-msgid "Create Stack"
-msgstr "Kreiranje Stack-a"
-
 msgid "Create Subnet"
 msgstr "Kreiranje podmreže"
 
@@ -520,9 +502,6 @@ msgstr "Kreiraj Tip Entkripcije Volumen-a"
 
 msgid "Create a Router"
 msgstr "Kreirajte ruter"
-
-msgid "Create a new stack with the provided values."
-msgstr "Kreirajte novi stack sa datim vrednostima."
 
 msgid "Created"
 msgstr "Kreirano"
@@ -571,9 +550,6 @@ msgstr "Kreira se Volume \"%s\""
 msgid "Creating volume snapshot \"%s\"."
 msgstr "Kreiranje snapshot-a volume-a \"%s\"."
 
-msgid "Creation Timeout (minutes)"
-msgstr "Dozvoljeno vreme za kreiranje (minuta)"
-
 msgid "Current Host"
 msgstr "Trenutni Host"
 
@@ -594,9 +570,6 @@ msgstr "Prilagođeno UDP pravilo"
 
 msgid "DNS Name Servers"
 msgstr "Serveri za DNS imena"
-
-msgid "Date Updated"
-msgstr "Datum izmene"
 
 msgid "Decrypt Password"
 msgstr "Dešifrovanje lozinke"
@@ -673,9 +646,6 @@ msgstr "Ime uredjaja"
 
 msgid "Device Owner"
 msgstr "Vlasnik uređaja"
-
-msgid "Device owner attached to the port"
-msgstr "Vlasnik uređaja priključenog na port"
 
 msgid "Device size (GB)"
 msgstr "Veličina jedinice (GB)"
@@ -818,9 +788,6 @@ msgstr "Izmena sigurnosnih grupa"
 msgid "Edit Subnet"
 msgstr "Izmena podmreže"
 
-msgid "Edit Template"
-msgstr "Izmena šablona"
-
 msgid "Edit Volume"
 msgstr "Izmena Volume-a"
 
@@ -843,10 +810,6 @@ msgstr "Email"
 msgid "Enable DHCP"
 msgstr "Uposli DHCP"
 
-msgid "Enable rollback on create/update failure."
-msgstr ""
-"Omogući vraćanje na prethodno stanje u slučaju greške tokom kreiranja/izmene."
-
 msgid "Enabled"
 msgstr "Aktiviran"
 
@@ -865,15 +828,6 @@ msgstr "Unesite vrednost za ICMP tip u opsegu (-1: 255)"
 
 msgid "Enter an integer value between 1 and 65535."
 msgstr "Unesite celobroj između 1 i 65535."
-
-msgid "Environment Data"
-msgstr "Podaci okruženja"
-
-msgid "Environment File"
-msgstr "File iz okruženja"
-
-msgid "Environment Source"
-msgstr "Izvor iz okruženja"
 
 msgid "Ephemeral Disk"
 msgstr "Ephemeral Disk"
@@ -933,9 +887,6 @@ msgid ""
 "Evacuate the servers from the selected down host to an active target host."
 msgstr "Spasite server sa izabranog hosta na aktivan host."
 
-msgid "Events"
-msgstr "Događaji"
-
 msgid "Extend Volume"
 msgstr "Proširenje volume-a"
 
@@ -961,10 +912,6 @@ msgid "Failed to add %s project groups and update project quotas."
 msgstr "Neuspelo dodavanje %s grupa projekta i izmena projektnih kvota."
 
 #, python-format
-msgid "Failed to create a port for network %s"
-msgstr "Neuspešno kreiranje porta za mrežu %s"
-
-#, python-format
 msgid "Failed to create network \"%(network)s\": %(reason)s"
 msgstr "Neuspelo kreiranje mreže \"%(network)s\": %(reason)s"
 
@@ -977,24 +924,12 @@ msgid "Failed to create router \"%s\"."
 msgstr "Neuspešno kreiran ruter \"%s\"."
 
 #, python-format
-msgid "Failed to delete interface %s"
-msgstr "Neuspešno brisanje interface-a %s"
-
-#, python-format
 msgid "Failed to delete network \"%s\""
 msgstr "Neuspelo brisanje mreže \"%s\""
 
 #, python-format
-msgid "Failed to delete network %s"
-msgstr "Neuspešno brisanje mreže %s"
-
-#, python-format
 msgid "Failed to delete port %s"
 msgstr "Neuspelo brisanje port-a %s"
-
-#, python-format
-msgid "Failed to delete subnet %s"
-msgstr "Neuspelo brisanje subnet-a %s"
 
 #, python-format
 msgid "Failed to disable compute service for host: %s."
@@ -1039,10 +974,6 @@ msgstr "Neuspešno dobijanje podataka mreže %s za podmrežu"
 #, python-format
 msgid "Failed to update network %s"
 msgstr "Neuspešno ažuriranje mreže %s"
-
-#, python-format
-msgid "Failed to update port %s"
-msgstr "Neuspešno ažuriranje porta %s"
 
 #, python-format
 msgid "Failed to update subnet \"%(sub)s\":  %(reason)s"
@@ -1423,9 +1354,6 @@ msgstr ""
 msgid "Language"
 msgstr "Jezik"
 
-msgid "Last Updated"
-msgstr "Zadnje izmenjeno"
-
 msgctxt "Time since the last update"
 msgid "Last Updated"
 msgstr "Zadnje izmenjeno"
@@ -1435,12 +1363,6 @@ msgstr "Pokrenite"
 
 msgid "Launch Instance"
 msgstr "Kreiranje instance"
-
-msgid "Launch Parameters"
-msgstr "Pokretanje parametara"
-
-msgid "Launch Stack"
-msgstr "Pokretanje stack-a"
 
 msgid "Launch instance in these security groups."
 msgstr "Pokretanje instance u ovim sigurnosnim grupama."
@@ -1539,9 +1461,6 @@ msgstr "Minimalni RAM"
 msgid "Minimum Disk (GB)"
 msgstr "Najmanji disk (GB)"
 
-msgid "Minutes"
-msgstr "Minuti"
-
 #, python-format
 msgid "Modified domain \"%s\"."
 msgstr "Domen \"%s\" izmenjen."
@@ -1588,20 +1507,6 @@ msgstr "Neprimenljivo"
 
 msgid "Name"
 msgstr "Ime"
-
-msgid ""
-"Name may only contain letters, numbers, underscores, periods and hyphens."
-msgstr "Ime može da sadrži slova, brojeve, podcrte, tačke ili crtice."
-
-msgid ""
-"Name must start with a letter and may only contain letters, numbers, "
-"underscores, periods and hyphens."
-msgstr ""
-"Ime mora početi sa slovom i može sadržati samo slova, brojeve, donje crte, "
-"tačke i crtice."
-
-msgid "Name of the stack to create."
-msgstr "Ime stack-a koji treba da se kreira."
 
 #, python-format
 msgid "Name: %(name)s ID: %(uuid)s"
@@ -1668,9 +1573,6 @@ msgstr "Novi Host"
 
 msgid "New password"
 msgstr "Nova lozinka"
-
-msgid "Next"
-msgstr "Sledeći"
 
 msgid "No Host selected."
 msgstr "Nije izabran ni jedan host."
@@ -1814,9 +1716,6 @@ msgstr "Otvorite port"
 msgid "Other Protocol"
 msgstr "Drugi protokoli"
 
-msgid "Outputs"
-msgstr "Izhodi"
-
 msgid "Overview"
 msgstr "Pregled"
 
@@ -1832,10 +1731,6 @@ msgstr "Lozinka"
 
 msgid "Password changed. Please log in again to continue."
 msgstr "Lozinka je promenjena. Molimo Vas, pristupite ponovo za nastavak."
-
-#, python-format
-msgid "Password for user \"%s\""
-msgstr "Lozinka za korisnika \"%s\""
 
 msgid "Passwords do not match."
 msgstr "Lozinka se ne podudara."
@@ -1861,10 +1756,6 @@ msgstr "Fizička mreža"
 
 msgid "Please note: "
 msgstr "Molimo obratite pažnju:"
-
-#, python-format
-msgid "Please specify a %s using only one source method."
-msgstr "Molim odredite %s koršćenjem samo jednog izvornog metoda."
 
 #, python-format
 msgid "Please try again later [Error: %s]."
@@ -2045,15 +1936,6 @@ msgctxt "Task status of an Instance"
 msgid "Resizing or Migrating"
 msgstr "Promena veličine ili seoba"
 
-msgid "Resource"
-msgstr "Resurs"
-
-msgid "Resource ID"
-msgstr "ID resursa"
-
-msgid "Resource Metadata"
-msgstr "Meta podaci resursa"
-
 msgid "Resources"
 msgstr "Resursi"
 
@@ -2102,12 +1984,6 @@ msgstr "Uloge uspešno izmenjene."
 
 msgid "Roles"
 msgstr "Uloge"
-
-msgid "Rollback"
-msgstr "Vraćanje unazad"
-
-msgid "Rollback On Failure"
-msgstr "Vraćanje prethodnog stanja u slučaju greške"
 
 msgid "Root Disk"
 msgstr "Root Disk"
@@ -2174,9 +2050,6 @@ msgstr "Odaberite snapshot instance."
 
 msgid "Select Subnet"
 msgstr "Odaberite podmrežu"
-
-msgid "Select Template"
-msgstr "Odaberite šablon"
 
 msgid "Select Volume"
 msgstr "Odaberite volume"
@@ -2322,42 +2195,6 @@ msgstr "Odredite detalje prilikom pokretanja instance."
 msgid "Specs"
 msgstr "Specifikacije"
 
-msgid "Stack Events"
-msgstr "Događaji stack-a"
-
-msgid "Stack ID"
-msgstr "ID stack-a"
-
-msgid "Stack Name"
-msgstr "Ime stack-a"
-
-msgid "Stack Parameters"
-msgstr "Parametri stack-a"
-
-msgid "Stack Resource"
-msgstr "Resurs stack-a"
-
-msgid "Stack Resource ID"
-msgstr "ID resursa stack-a"
-
-msgid "Stack Resource Type"
-msgstr "Vrsta resursa stack-a"
-
-msgid "Stack Resources"
-msgstr "Resursi stack-a"
-
-msgid "Stack creation started."
-msgstr "Pokrenuto kreiranje stack-a"
-
-msgid "Stack creation timeout in minutes."
-msgstr "Dozvoljeno vreme za kreitanje stack-a u minutima."
-
-msgid "Stack update started."
-msgstr "Izmena stack-a je pokrenuta."
-
-msgid "Stacks"
-msgstr "Stack-ovi"
-
 msgid "Start"
 msgstr "Pokretanje"
 
@@ -2381,9 +2218,6 @@ msgstr "Status"
 
 msgid "Status ="
 msgstr "Status"
-
-msgid "Status Reason"
-msgstr "Razlozi statusa"
 
 msgid "Subnet"
 msgstr "Podmreža"
@@ -2468,18 +2302,6 @@ msgstr "Traženi Host"
 
 msgid "Task"
 msgstr "Zadatak"
-
-msgid "Template Data"
-msgstr "Podaci šablona"
-
-msgid "Template File"
-msgstr "Šablonski file"
-
-msgid "Template Source"
-msgstr "Izvor šablona"
-
-msgid "Template URL"
-msgstr "šablon URL"
 
 msgid "The \"from\" port number is invalid."
 msgstr "\"from\" broj porta je navažeći."
@@ -2570,9 +2392,6 @@ msgstr "Ime \"%s\" se već koristi za drugu aromu."
 msgid "The name \"%s\" is already used by another host aggregate."
 msgstr "Naziv \"%s\" se već koristi za drugi skup hostova."
 
-msgid "The page you were looking for doesn't exist"
-msgstr "Stranica koju tražite ne postoji"
-
 msgid ""
 "The private key will be only used in your browser and will not be sent to "
 "the server"
@@ -2582,12 +2401,6 @@ msgstr ""
 
 msgid "The pseudo folder cannot be deleted since it is not empty."
 msgstr "Nije moguće obrisati kontejner jer nije prazan"
-
-msgid "The raw contents of the environment file."
-msgstr "Sirovi sadržaj iz file-a okruženja."
-
-msgid "The raw contents of the template."
-msgstr "Neobrađeni sadržaj šablona."
 
 msgid "The specified port is invalid."
 msgstr "Odabrani port je nevažeći."
@@ -2622,25 +2435,14 @@ msgstr ""
 "(cloud.key.pub). Stavite sadržaj file-a javnog ključa ovde."
 
 msgid ""
-"This is required for operations to be performed throughout the lifecycle of "
-"the stack"
-msgstr "Ovo je potrebno radi funkcionalnosti da se učini tokom života stack-a"
-
-msgid ""
 "This volume is currently attached to an instance. In some cases, creating a "
 "snapshot from an attached volume can result in a corrupted snapshot."
 msgstr ""
 "Ovaj volume je trenutno prikačen na instancu. U nekim slučajevima, kreiranje "
 "snapshot-a priključenog volume-a može dati neispravan snapshot."
 
-msgid "Time Since Event"
-msgstr "Vreme od događaja"
-
 msgid "Time since created"
 msgstr "Vreme od kreiranja"
-
-msgid "Timeout"
-msgstr "Vreme je isteklo"
 
 msgid "Timezone"
 msgstr "Vremenska zona"
@@ -2676,9 +2478,6 @@ msgstr "Ukupna veličina volume-a i snapshot-ova (GB)"
 msgid "Type"
 msgstr "Vrsta"
 
-msgid "URL"
-msgstr "URL"
-
 msgid "Unable to add rule to security group."
 msgstr "Nemoguće je dodati pravilo sigurnosnoj grupi."
 
@@ -2697,10 +2496,6 @@ msgstr "Nemoguće priključiti volume."
 
 msgid "Unable to change password."
 msgstr "Nemoguće je promeniti lozinku."
-
-#, python-format
-msgid "Unable to clear gateway for router \"%(name)s\": \"%(msg)s\""
-msgstr "Nemoguće je obrisati gateway za ruter \"%(name)s\": \"%(msg)s\""
 
 msgid "Unable to connect to Neutron."
 msgstr "Nije moguće povezati se sa Neutronom."
@@ -2756,10 +2551,6 @@ msgstr "Nemoguće je kreirati tip volume-a."
 msgid "Unable to create volume."
 msgstr "Ne može se kreirati Volume."
 
-#, python-format
-msgid "Unable to delete router \"%s\""
-msgstr "Nemoguće je obrisati ruter \"%s\""
-
 msgid "Unable to determine if availability zones extension is supported."
 msgstr "Nemoguće je zaključiti da li je podržano proširenja zona dostupnosti."
 
@@ -2787,10 +2578,6 @@ msgstr "Nemouguće je dobiti VNC konzolu za instance \"%s\"."
 msgid "Unable to get cinder services list."
 msgstr "Nemoguće je dobiti listu Cinder servisa"
 
-#, python-format
-msgid "Unable to get events for stack \"%s\"."
-msgstr "Ne mogu da dobijem događaje za stack \"%s\"."
-
 msgid "Unable to get flavor list"
 msgstr "Nije moguće dobiti listu aroma"
 
@@ -2812,10 +2599,6 @@ msgstr "Nemoguće je dobiti listu nova servisa."
 
 msgid "Unable to get quota info."
 msgstr "Nemoguće je dobiti podatke o kvoti."
-
-#, python-format
-msgid "Unable to get resources for stack \"%s\"."
-msgstr "Ne mogu da dobijem resurse za stack \"%s\"."
 
 #, python-format
 msgid "Unable to get subnet \"%s\""
@@ -2897,9 +2680,6 @@ msgstr "Nemoguće je dobiti podatke o compute host-u"
 
 msgid "Unable to retrieve compute limit information."
 msgstr "Nemoguće je dobiti podatke o ograničenjima compute-ova."
-
-msgid "Unable to retrieve default Neutron quota values."
-msgstr "Nemožete dobiti podrazumevane vrednosti Neutron kvote."
 
 msgid "Unable to retrieve default quota values."
 msgstr "Nemoguće je dobiti podrazumevane vrednosti kvote."
@@ -3025,9 +2805,6 @@ msgstr "Nemoguće izvući listu snapshot-a volume-a."
 msgid "Unable to retrieve list of volumes."
 msgstr "Nemoguće je dobiti listu volume-a."
 
-msgid "Unable to retrieve metadata."
-msgstr "Ne mogu da povratim meta podatke."
-
 msgid "Unable to retrieve network details."
 msgstr "Nemoguće je dobiti detalje mreže."
 
@@ -3061,9 +2838,6 @@ msgstr "Nemoguće je dobiti javne image-e."
 msgid "Unable to retrieve quota information."
 msgstr "Nemoguće je dobiti podatke o kvoti."
 
-msgid "Unable to retrieve resource."
-msgstr "Ne mogu da povratim resurse."
-
 msgid "Unable to retrieve role list."
 msgstr "Nemoguće je dobiti listu uloge - role"
 
@@ -3090,12 +2864,6 @@ msgstr "Nemoguće je dobiti sigurnosne grupe."
 
 msgid "Unable to retrieve snapshot details."
 msgstr "Nemoguće je dobiti detalje snapshot-a."
-
-msgid "Unable to retrieve stack list."
-msgstr "Ne mogu da povratim listu stack-a."
-
-msgid "Unable to retrieve stack."
-msgstr "Ne mogu da povratim stack."
 
 msgid "Unable to retrieve subnet details"
 msgstr "Nemoguće je dobiti detalje podmreže"
@@ -3245,12 +3013,6 @@ msgstr "Izmena uloge"
 msgid "Update Router"
 msgstr "Osveži Ruter"
 
-msgid "Update Stack"
-msgstr "Izmena stack-a"
-
-msgid "Update Stack Parameters"
-msgstr "Izmenite parametre stack-a"
-
 msgid "Update Status"
 msgstr "Osveži Status"
 
@@ -3288,13 +3050,6 @@ msgstr "Upotrebite volume kao izvor"
 
 msgid "Use image as a source"
 msgstr "Iskoristite image kao izvor"
-
-msgid ""
-"Use one of the available template source options to specify the template to "
-"be used in creating this stack."
-msgstr ""
-"Uzmite jedan od predefinisanih šablona da definišete šablon koji će se "
-"koristiti za kreiranje stack-a."
 
 msgid "Use snapshot as a source"
 msgstr "Iskoristite snapshot kao izvor"
@@ -3477,9 +3232,6 @@ msgstr "Morate odabrati image."
 msgid "You must set volume size"
 msgstr "Morate podesiti veličinu volume-a"
 
-msgid "You must specify a template via one of the available sources."
-msgstr "Morate odrediti šablon preko jednog od dostupnih izvora."
-
 msgid ""
 "You must specify the source of the traffic to be allowed via this rule. You "
 "may do so either in the form of an IP address block (CIDR) or via a source "
@@ -3510,14 +3262,8 @@ msgstr "oboje"
 msgid "dm-crypt"
 msgstr "dm-crypt"
 
-msgid "environment"
-msgstr "okruženje"
-
 msgid "front-end"
 msgstr "prednji deo"
 
 msgid "instance"
 msgstr "instanca"
-
-msgid "template"
-msgstr "šablon"

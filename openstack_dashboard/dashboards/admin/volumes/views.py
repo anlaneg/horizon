@@ -18,8 +18,8 @@ Admin views for managing volumes and snapshots.
 from collections import OrderedDict
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -33,6 +33,8 @@ from openstack_dashboard.dashboards.admin.volumes \
     import forms as volumes_forms
 from openstack_dashboard.dashboards.admin.volumes \
     import tables as volumes_tables
+from openstack_dashboard.dashboards.admin.volumes \
+    import tabs as volumes_tabs
 from openstack_dashboard.dashboards.project.volumes \
     import views as volumes_views
 
@@ -108,11 +110,18 @@ class VolumesView(tables.PagedTableMixin, volumes_views.VolumeTableMixIn,
 
 
 class DetailView(volumes_views.DetailView):
+    tab_group_class = volumes_tabs.VolumeDetailTabs
+
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         table = volumes_tables.VolumesTable(self.request)
         context["actions"] = table.render_row_actions(context["volume"])
         return context
+
+    def get_search_opts(self, volume):
+        search_opts = super(DetailView, self).get_search_opts(volume)
+        search_opts['all_tenants'] = True
+        return search_opts
 
     def get_redirect_url(self):
         return reverse('horizon:admin:volumes:index')

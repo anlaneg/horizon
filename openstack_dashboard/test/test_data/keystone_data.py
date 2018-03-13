@@ -56,13 +56,25 @@ SERVICE_CATALOG = [
      "endpoints_links": [],
      "endpoints": [
          {"region": "RegionOne",
-          "adminURL": "http://admin.nova.example.com:8776/v2",
-          "internalURL": "http://int.nova.example.com:8776/v2",
-          "publicURL": "http://public.nova.example.com:8776/v2"},
+          "adminURL": "http://admin.cinder.example.com:8776/v2",
+          "internalURL": "http://int.cinder.example.com:8776/v2",
+          "publicURL": "http://public.cinder.example.com:8776/v2"},
          {"region": "RegionTwo",
-          "adminURL": "http://admin.nova.example.com:8776/v2",
-          "internalURL": "http://int.nova.example.com:8776/v2",
-          "publicURL": "http://public.nova.example.com:8776/v2"}]},
+          "adminURL": "http://admin.cinder.example.com:8776/v2",
+          "internalURL": "http://int.cinder.example.com:8776/v2",
+          "publicURL": "http://public.cinder.example.com:8776/v2"}]},
+    {"type": "volumev3",
+     "name": "cinderv3",
+     "endpoints_links": [],
+     "endpoints": [
+         {"region": "RegionOne",
+          "adminURL": "http://admin.cinder.example.com:8776/v3",
+          "internalURL": "http://int.cinder.example.com:8776/v3",
+          "publicURL": "http://public.cinder.example.com:8776/v3"},
+         {"region": "RegionTwo",
+          "adminURL": "http://admin.cinder.example.com:8776/v3",
+          "internalURL": "http://int.cinder.example.com:8776/v3",
+          "publicURL": "http://public.cinder.example.com:8776/v3"}]},
     {"type": "image",
      "name": "glance",
      "endpoints_links": [],
@@ -103,14 +115,6 @@ SERVICE_CATALOG = [
           "adminURL": "http://admin.nova.example.com:8773/services/Admin",
           "publicURL": "http://public.nova.example.com:8773/services/Cloud",
           "internalURL": "http://int.nova.example.com:8773/services/Cloud"}]},
-    {"type": "orchestration",
-     "name": "Heat",
-     "endpoints_links": [],
-     "endpoints": [
-         {"region": "RegionOne",
-          "adminURL": "http://admin.heat.example.com:8004/v1",
-          "publicURL": "http://public.heat.example.com:8004/v1",
-          "internalURL": "http://int.heat.example.com:8004/v1"}]}
 ]
 
 

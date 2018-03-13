@@ -18,7 +18,6 @@ from horizon import exceptions
 from horizon import tabs
 from openstack_dashboard.api import base
 from openstack_dashboard.api import cinder
-from openstack_dashboard.api import heat
 from openstack_dashboard.api import neutron
 from openstack_dashboard.api import nova
 from openstack_dashboard.dashboards.admin.info import constants
@@ -79,7 +78,8 @@ class CinderServicesTab(tabs.TableTab):
     slug = tables.CinderServicesTable.Meta.name
     template_name = constants.INFO_DETAIL_TEMPLATE_NAME
     permissions = (
-        ('openstack.services.volume', 'openstack.services.volumev2'),
+        ('openstack.services.volume', 'openstack.services.volumev2',
+         'openstack.services.volumev3'),
     )
 
     def get_cinder_services_data(self):
@@ -118,32 +118,8 @@ class NetworkAgentsTab(tabs.TableTab):
         return agents
 
 
-class HeatServiceTab(tabs.TableTab):
-    table_classes = (tables.HeatServiceTable,)
-    name = tables.HeatServiceTable.Meta.verbose_name
-    slug = tables.HeatServiceTable.Meta.name
-    template_name = constants.INFO_DETAIL_TEMPLATE_NAME
-
-    def allowed(self, request):
-        try:
-            return base.is_service_enabled(request, 'orchestration')
-        except Exception:
-            exceptions.handle(request, _('Orchestration service is disabled.'))
-            return False
-
-    def get_heat_services_data(self):
-        try:
-            services = heat.service_list(self.tab_group.request)
-        except Exception:
-            msg = _('Unable to get Orchestration service list.')
-            exceptions.check_message(["Connection", "refused"], msg)
-            exceptions.handle(self.request, msg)
-            services = []
-        return services
-
-
 class SystemInfoTabs(tabs.TabGroup):
     slug = "system_info"
     tabs = (ServicesTab, NovaServicesTab, CinderServicesTab,
-            NetworkAgentsTab, HeatServiceTab)
+            NetworkAgentsTab)
     sticky = True

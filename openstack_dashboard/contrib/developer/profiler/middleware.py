@@ -15,7 +15,7 @@
 
 from django.conf import settings
 from django.core import exceptions
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils import safestring
 from django.utils.translation import ugettext_lazy as _
 from osprofiler import _utils as profiler_utils
@@ -39,10 +39,16 @@ class ProfilerClientMiddleware(object):
         ('HTTP_X_TRACE_HMAC', 'X-Trace-HMAC')
     ]
 
-    def __init__(self):
+    def __init__(self, get_response):
         if not PROFILER_ENABLED:
             raise exceptions.MiddlewareNotUsed()
         super(ProfilerClientMiddleware, self).__init__()
+        self.get_response = get_response
+
+    def __call__(self, request):
+        self.process_request(request)
+        response = self.get_response(request)
+        return response
 
     def is_async_profiling(self, request):
         return self.profiler_headers[0][0] in request.META
@@ -62,17 +68,23 @@ class ProfilerClientMiddleware(object):
 
 
 class ProfilerMiddleware(object):
-    def __init__(self):
+    def __init__(self, get_response):
         self.name = PROFILER_CONF.get('facility_name', 'horizon')
         self.hmac_keys = PROFILER_CONF.get('keys', [])
+        self.get_response = get_response
         if PROFILER_ENABLED:
             api.init_notifier(PROFILER_CONF.get('notifier_connection_string'))
         else:
             raise exceptions.MiddlewareNotUsed()
 
+    def __call__(self, request):
+        response = self.get_response(request)
+        response = self.process_response(request, response)
+        return response
+
     @staticmethod
     def is_authenticated(request):
-        return hasattr(request, "user") and request.user.is_authenticated()
+        return hasattr(request, "user") and request.user.is_authenticated
 
     def is_enabled(self, request):
         return self.is_authenticated(request) and settings.DEBUG

@@ -16,8 +16,10 @@ from importlib import import_module
 import logging
 
 from django.conf import settings
-from django.core import urlresolvers
+from django import http
 from django import shortcuts
+from django import urls
+from django.utils.translation import ugettext as _
 import django.views.decorators.vary
 from django.views.generic import TemplateView
 from six.moves import urllib
@@ -54,7 +56,7 @@ def get_user_home(user):
 
 @django.views.decorators.vary.vary_on_cookie
 def splash(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         raise exceptions.NotAuthenticated()
 
     response = shortcuts.redirect(horizon.get_user_home(request.user))
@@ -72,9 +74,9 @@ def splash(request):
 def get_url_with_pagination(request, marker_name, prev_marker_name, url_string,
                             object_id=None):
     if object_id:
-        url = urlresolvers.reverse(url_string, args=(object_id,))
+        url = urls.reverse(url_string, args=(object_id,))
     else:
-        url = urlresolvers.reverse(url_string)
+        url = urls.reverse(url_string)
     marker = request.GET.get(marker_name, None)
     if marker:
         return "{}?{}".format(url,
@@ -118,3 +120,14 @@ class ExtensibleHeaderView(TemplateView):
 
         context['header_sections'] = header_sections
         return context
+
+
+def csrf_failure(request, reason=""):
+    if reason:
+        reason += " "
+    reason += _("Cookies may be turned off. "
+                "Make sure cookies are enabled and try again.")
+
+    url = settings.LOGIN_URL + "?csrf_failure=%s" % urllib.parse.quote(reason)
+    response = http.HttpResponseRedirect(url)
+    return response

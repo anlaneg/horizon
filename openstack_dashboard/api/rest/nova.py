@@ -51,7 +51,7 @@ class Features(generic.View):
     @rest_utils.ajax()
     def get(self, request, name):
         """Check if a specified feature is supported."""
-        return api.nova.is_feature_available(request, name)
+        return api.nova.is_feature_available(request, (name,))
 
 
 @urls.register
@@ -100,6 +100,10 @@ class Keypair(generic.View):
     def get(self, request, name):
         """Get a specific keypair."""
         return api.nova.keypair_get(request, name).to_dict()
+
+    @rest_utils.ajax()
+    def delete(self, request, name):
+        api.nova.keypair_delete(request, name)
 
 
 @urls.register
@@ -242,7 +246,8 @@ class RemoteConsoleInfo(generic.View):
         CONSOLES = OrderedDict([('VNC', api.nova.server_vnc_console),
                                 ('SPICE', api.nova.server_spice_console),
                                 ('RDP', api.nova.server_rdp_console),
-                                ('SERIAL', api.nova.server_serial_console)])
+                                ('SERIAL', api.nova.server_serial_console),
+                                ('MKS', api.nova.server_mks_console)])
 
         """Get a tuple of console url and console type."""
         if console_type == 'AUTO':

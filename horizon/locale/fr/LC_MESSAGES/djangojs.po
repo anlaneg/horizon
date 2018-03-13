@@ -5,17 +5,17 @@
 # Corinne Verheyde <cverheyd@gmail.com>, 2016. #zanata
 # Gérald LONLAS <g.lonlas@gmail.com>, 2016. #zanata
 # JF Taltavull <jftalta@gmail.com>, 2017. #zanata
-# Loic Nicolle <loic.nicolle@orange.com>, 2017. #zanata
+# JF Taltavull <jftalta@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev209\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-10-21 13:30+0000\n"
+"POT-Creation-Date: 2018-01-27 09:04+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-10-20 02:47+0000\n"
-"Last-Translator: Loic Nicolle <loic.nicolle@orange.com>\n"
+"PO-Revision-Date: 2018-01-27 04:01+0000\n"
+"Last-Translator: JF Taltavull <jftalta@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "X-Generator: Zanata 3.9.6\n"
@@ -135,14 +135,18 @@ msgstr "Confirmer %s"
 msgid "Confirm Delete Foobars"
 msgstr "Confirmer la suppression de Foobars"
 
+#. Strings between {$ and $} should be left untranslated.
+msgid ""
+"Content size: {$ (textBytes || 0) | bytes $} of {$ ::maxBytes | bytes $}"
+msgstr ""
+"Taille du contenu : {$ (textBytes || 0) | bytes $} sur {$ ::maxBytes | bytes "
+"$}"
+
 msgid "Current Usage"
 msgstr "Utilisation actuelle"
 
 msgid "Custom"
 msgstr "Personnalisé"
-
-msgid "Customization Script"
-msgstr "Script de personnalisation"
 
 msgid "Danger"
 msgstr "Danger"
@@ -210,7 +214,7 @@ msgid "Expand to see available items"
 msgstr "Développer pour voir les éléments disponibles"
 
 msgid "Failed to populate extensible header."
-msgstr "Impossible de remplir l'en-tête extensible."
+msgstr "Echec lors du remplissage de l'en-tête extensible."
 
 msgid "Filter"
 msgstr "Filtrer"
@@ -220,6 +224,9 @@ msgstr "Terminer"
 
 msgid "Flavor"
 msgstr "Gabarit"
+
+msgid "Forbidden. Redirecting to login"
+msgstr "Accès interdit. Retour à la page de connexion."
 
 msgid "Format validation failed"
 msgstr "La validation du format a échoué"
@@ -239,8 +246,8 @@ msgstr "Type invalide, {$schema.type$} attendu"
 msgid "Keyword failed: '{$title$}'"
 msgstr "Le mot clé a échoué : '{$title$}'"
 
-msgid "Load script from a file"
-msgstr "Charger un script depuis un fichier"
+msgid "Load {$ ::title $} from a file"
+msgstr "Charger {$ ::title $} depuis un fichier"
 
 msgid "Loading"
 msgstr "Chargement..."
@@ -329,14 +336,6 @@ msgstr "Requis"
 msgid "Roles"
 msgstr "Rôles"
 
-#. Strings between {$ and $} should be left untranslated.
-msgid ""
-"Script size: {$ (scriptLength || 0) | bytes $} of {$ config.MAX_SCRIPT_SIZE "
-"| bytes $}"
-msgstr ""
-"Taille du script : {$ (scriptLength || 0) | bytes $} sur {$ config."
-"MAX_SCRIPT_SIZE | bytes $}"
-
 msgid "Search in current results"
 msgstr "Rechercher dans les résultats courants"
 
@@ -374,11 +373,11 @@ msgstr ""
 "Cette action ne peut pas être effectuée. Le contenu de cette ligne contient "
 "des erreurs ou manque d'informations."
 
+msgid "The content is larger than the maximum byte size"
+msgstr "Le contenu est plus grand que la taille maximale"
+
 msgid "The data in this field is invalid"
 msgstr "Les données de ce champ sont invalides"
-
-msgid "The script is larger than the maximum size"
-msgstr "Le script est plus grand que la taille maximale"
 
 msgid "There was a problem communicating with the server, please try again."
 msgstr "Problème de communication avec le serveur, veuillez réessayer."
@@ -403,6 +402,9 @@ msgstr ""
 #, python-format
 msgid "Unable to delete: %s."
 msgstr "Impossible de supprimer : %s."
+
+msgid "Unauthorized. Redirecting to login"
+msgstr "Accès non autorisé. Retour à la page de connexion."
 
 msgid "Unknown property (not in schema)"
 msgstr "Propriété inconnue (non présente dans le schéma)"

@@ -16,6 +16,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import glob
 import logging
 import os
 import sys
@@ -26,6 +27,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from openstack_dashboard import exceptions
 from openstack_dashboard import theme_settings
+from openstack_dashboard.utils import config
 from openstack_dashboard.utils import settings as settings_utils
 
 from horizon.utils.escape import monkeypatch_escape
@@ -105,14 +107,13 @@ OPENSTACK_IMAGE_BACKEND = {
     ]
 }
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'horizon.middleware.OperationLogMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'horizon.middleware.HorizonMiddleware',
     'horizon.themes.ThemeMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -212,12 +213,15 @@ SESSION_COOKIE_MAX_SIZE = 4093
 #                https://bugs.launchpad.net/horizon/+bug/1349463
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
+CSRF_FAILURE_VIEW = 'openstack_dashboard.views.csrf_failure'
+
 LANGUAGES = (
     ('cs', 'Czech'),
     ('de', 'German'),
     ('en', 'English'),
     ('en-au', 'Australian English'),
     ('en-gb', 'British English'),
+    ('eo', 'Esperanto'),
     ('es', 'Spanish'),
     ('fr', 'French'),
     ('id', 'Indonesian'),
@@ -259,8 +263,13 @@ POLICY_FILES = {
     'compute': 'nova_policy.json',
     'volume': 'cinder_policy.json',
     'image': 'glance_policy.json',
-    'orchestration': 'heat_policy.json',
     'network': 'neutron_policy.json',
+}
+# Services for which horizon has extra policies are defined
+# in POLICY_DIRS by default.
+POLICY_DIRS = {
+    'compute': ['nova_policy.d'],
+    'volume': ['cinder_policy.d'],
 }
 
 SECRET_KEY = None
@@ -288,6 +297,17 @@ SECURITY_GROUP_RULES = {
 }
 
 ADD_INSTALLED_APPS = []
+
+USER_MENU_LINKS = [
+    {'name': _('OpenStack RC File v2'),
+     'icon_classes': ['fa-download', ],
+     'url': 'horizon:project:api_access:openrcv2'
+     },
+    {'name': _('OpenStack RC File v3'),
+     'icon_classes': ['fa-download', ],
+     'url': 'horizon:project:api_access:openrc'
+     }
+]
 
 # Deprecated Theme Settings
 CUSTOM_THEME_PATH = None
@@ -321,10 +341,12 @@ CSRF_COOKIE_AGE = None
 
 COMPRESS_OFFLINE_CONTEXT = 'horizon.themes.offline_context'
 
+SHOW_KEYSTONE_V2_RC = True
+
 # Dictionary of currently available angular features
 ANGULAR_FEATURES = {
     'images_panel': True,
-    'key_pairs_panel': False,
+    'key_pairs_panel': True,
     'flavors_panel': False,
     'domains_panel': False,
     'users_panel': False,
@@ -339,10 +361,26 @@ OPENSTACK_PROFILER = {
     'enabled': False
 }
 
+if not LOCAL_PATH:
+    LOCAL_PATH = os.path.join(ROOT_PATH, 'local')
+LOCAL_SETTINGS_DIR_PATH = os.path.join(LOCAL_PATH, "local_settings.d")
+
+_files = glob.glob(os.path.join(LOCAL_PATH, 'local_settings.conf'))
+_files.extend(
+    sorted(glob.glob(os.path.join(LOCAL_SETTINGS_DIR_PATH, '*.conf'))))
+_config = config.load_config(_files, ROOT_PATH, LOCAL_PATH)
+
+# Apply the general configuration.
+config.apply_config(_config, globals())
+
 try:
     from local.local_settings import *  # noqa: F403,H303
 except ImportError:
     _LOG.warning("No local_settings file found.")
+
+# configure templates
+if not TEMPLATES[0]['DIRS']:
+    TEMPLATES[0]['DIRS'] = [os.path.join(ROOT_PATH, 'templates')]
 
 # configure template debugging
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG

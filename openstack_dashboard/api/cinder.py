@@ -55,12 +55,15 @@ CONSUMER_CHOICES = (
     ('both', pgettext_lazy('Both of front-end and back-end', u'both')),
 )
 
-VERSIONS = base.APIVersionManager("volume", preferred_version='2')
+VERSIONS = base.APIVersionManager("volume", preferred_version='3')
 
 try:
     from cinderclient.v2 import client as cinder_client_v2
     VERSIONS.load_supported_version('2', {"client": cinder_client_v2,
                                           "version": '2'})
+    from cinderclient.v3 import client as cinder_client_v3
+    VERSIONS.load_supported_version('3', {"client": cinder_client_v3,
+                                          "version": '3'})
 except ImportError:
     pass
 
@@ -231,7 +234,7 @@ def cinderclient(request_auth_params, version=None):
     return c
 
 
-def get_microversion(request, feature):
+def get_microversion(request, features):
     for service_name in ('volume', 'volumev2', 'volumev3'):
         try:
             cinder_url = base.url_for(request, service_name)
@@ -241,8 +244,8 @@ def get_microversion(request, feature):
     else:
         return None
     min_ver, max_ver = cinder_client.get_server_version(cinder_url)
-    return (microversions.get_microversion_for_feature(
-        'cinder', feature, api_versions.APIVersion, min_ver, max_ver))
+    return (microversions.get_microversion_for_features(
+        'cinder', features, api_versions.APIVersion, min_ver, max_ver))
 
 
 def _replace_v2_parameters(data):
@@ -411,7 +414,7 @@ def volume_delete_metadata(request, volume_id, keys):
 
 @profiler.trace
 def volume_reset_state(request, volume_id, state):
-    return cinderclient(request).volumes.reset_state(volume_id, state)
+    cinderclient(request).volumes.reset_state(volume_id, state)
 
 
 @profiler.trace
@@ -739,7 +742,7 @@ def volume_manage(request,
                   metadata,
                   bootable):
     source = {id_type: identifier}
-    return cinderclient(request).volumes.manage(
+    cinderclient(request).volumes.manage(
         host=host,
         ref=source,
         name=name,
@@ -967,8 +970,8 @@ def qos_specs_list(request):
 
 @profiler.trace
 @memoized
-def tenant_absolute_limits(request):
-    limits = cinderclient(request).limits.get().absolute
+def tenant_absolute_limits(request, tenant_id=None):
+    limits = cinderclient(request).limits.get(tenant_id=tenant_id).absolute
     limits_dict = {}
     for limit in limits:
         if limit.value < 0:
@@ -1061,7 +1064,7 @@ def pool_list(request, detailed=False):
 
 @profiler.trace
 def message_list(request, search_opts=None):
-    version = get_microversion(request, 'message_list')
+    version = get_microversion(request, ['message_list'])
     if version is None:
         LOG.warning("insufficient microversion for message_list")
         return []
@@ -1071,9 +1074,9 @@ def message_list(request, search_opts=None):
 
 def is_volume_service_enabled(request):
     return bool(
-        base.is_service_enabled(request, 'volume') or
+        base.is_service_enabled(request, 'volumev3') or
         base.is_service_enabled(request, 'volumev2') or
-        base.is_service_enabled(request, 'volumev3')
+        base.is_service_enabled(request, 'volume')
     )
 
 

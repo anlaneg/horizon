@@ -14,8 +14,8 @@
 
 import logging
 
-from django.core.urlresolvers import reverse
 from django.template import defaultfilters
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 
@@ -76,7 +76,6 @@ class DeleteGroupsAction(policy.PolicyTargetMixin, tables.DeleteAction):
             count
         )
 
-    name = "delete"
     policy_rules = (("identity", "identity:delete_group"),)
 
     def allowed(self, request, datum):

@@ -16,8 +16,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import collections
-import copy
 from functools import wraps
 from importlib import import_module
 import logging
@@ -25,22 +23,26 @@ import os
 import traceback
 import unittest
 
-import django
 from django.conf import settings
 from django.contrib.messages.storage import default_storage
 from django.core.handlers import wsgi
-from django.core import urlresolvers
 from django import http as http_request
 from django.test.client import RequestFactory
-from django.test import utils as django_test_utils
+from django import urls
 from django.utils import http
 
 from cinderclient import client as cinder_client
 import glanceclient
-from heatclient import client as heat_client
 from keystoneclient.v2_0 import client as keystone_client
+# As of Rocky, we are in the process of removing mox usage.
+# To allow mox-free horizon plugins to consume the test helper,
+# mox import is now optional. If tests depends on mox,
+# mox (or mox3) must be declared in test-requirements.txt.
 import mock
-from mox3 import mox
+try:
+    from mox3 import mox
+except ImportError:
+    pass
 from neutronclient.v2_0 import client as neutron_client
 from novaclient import api_versions as nova_api_versions
 from novaclient.v2 import client as nova_client
@@ -63,6 +65,8 @@ LOG = logging.getLogger(__name__)
 
 # Makes output of failing mox tests much easier to read.
 wsgi.WSGIRequest.__repr__ = lambda self: "<class 'django.http.HttpRequest'>"
+
+update_settings = horizon_helpers.update_settings
 
 
 def create_stubs(stubs_to_create=None):
@@ -120,6 +124,72 @@ def create_stubs(stubs_to_create=None):
     return inner_stub_out
 
 
+def create_mocks(target_methods):
+    """decorator to simplify setting up multiple mocks at once
+
+    :param target_methods: a dict to define methods to be patched using mock.
+
+    A key of "target_methods" is a target object whose attribute(s) are
+    patched.
+
+    A value of "target_methods" is a list of methods to be patched
+    using mock. Each element can be a string or a tuple
+    consisting of two strings.
+
+    A string specifies a method name of "target" object to be mocked.
+    The decorator create a mock object for the method and the started mock
+    can be accessed via 'mock_<method-name>' of the test class.
+    For example, in case of::
+
+        @create_mocks({api.nova: ['server_list']})
+
+    you can access the mocked method via "self.mock_server_list"
+    inside a test class.
+
+    The tuple version is useful when there are multiple methods with
+    a same name are mocked in a single test.
+    The format of the tuple is::
+
+        ("<method-name-to-be-mocked>", "<attr-name>")
+
+    The decorator create a mock object for "<method-name-to-be-mocked>"
+    and the started mock can be accessed via 'mock_<attr-name>' of
+    the test class.
+
+    Example::
+
+        @create_mocks({
+            api.nova: [
+                'usage_get',
+                ('tenant_absolute_limits', 'nova_tenant_absolute_limits'),
+                'extension_supported',
+            ]})
+        def test_example(self):
+            ...
+            self.mock_usage_get.return_value = ...
+            self.mock_nova_tenant_absolute_limits.return_value = ...
+            ...
+            self.mock_extension_supported.assert_has_calls(....)
+
+    """
+    def wrapper(function):
+        @wraps(function)
+        def wrapped(inst, *args, **kwargs):
+            for target, methods in target_methods.items():
+                for method in methods:
+                    if isinstance(method, str):
+                        method_mocked = method
+                        attr_name = method
+                    else:
+                        method_mocked = method[0]
+                        attr_name = method[1]
+                    m = mock.patch.object(target, method_mocked)
+                    setattr(inst, 'mock_%s' % attr_name, m.start())
+            return function(inst, *args, **kwargs)
+        return wrapped
+    return wrapper
+
+
 def _apply_panel_mocks(patchers=None):
     """Global mocks on panels that get called on all views."""
     if patchers is None:
@@ -166,6 +236,7 @@ class TestCase(horizon_helpers.TestCase):
       :class:`~openstack_dashboard.test.test_data.utils.TestData`
       for more information.
     * The ``mox`` mocking framework via ``self.mox``.
+      if ``use_mox`` attribute is set to True.
     * A set of request context data via ``self.context``.
     * A ``RequestFactory`` class which supports Django's ``contrib.messages``
       framework via ``self.factory``.
@@ -177,6 +248,11 @@ class TestCase(horizon_helpers.TestCase):
     # To force test failures when unmocked API calls are attempted, provide
     # boolean variable to store failures
     missing_mocks = False
+
+    # Most openstack_dashbaord tests depends on mox,
+    # we mark use_mox to True by default.
+    # Eventually we can drop this when mock migration has good progress.
+    use_mox = True
 
     def fake_conn_request(self):
         # print a stacktrace to illustrate where the unmocked API call
@@ -264,14 +340,10 @@ class TestCase(horizon_helpers.TestCase):
         Asserts that the given response issued a 302 redirect without
         processing the view which is redirected to.
         """
-        if django.VERSION >= (1, 9):
-            loc = six.text_type(response._headers.get('location', None)[1])
-            loc = http.urlunquote(loc)
-            expected_url = http.urlunquote(expected_url)
-            self.assertEqual(loc, expected_url)
-        else:
-            self.assertEqual(response._headers.get('location', None),
-                             ('Location', settings.TESTSERVER + expected_url))
+        loc = six.text_type(response._headers.get('location', None)[1])
+        loc = http.urlunquote(loc)
+        expected_url = http.urlunquote(expected_url)
+        self.assertEqual(loc, expected_url)
         self.assertEqual(response.status_code, 302)
 
     def assertNoFormErrors(self, response, context_name="form"):
@@ -367,13 +439,18 @@ class TestCase(horizon_helpers.TestCase):
     @staticmethod
     def mock_rest_request(**args):
         mock_args = {
-            'user.is_authenticated.return_value': True,
+            'user.is_authenticated': True,
             'is_ajax.return_value': True,
             'policy.check.return_value': True,
             'body': ''
         }
         mock_args.update(args)
         return mock.Mock(**mock_args)
+
+    def assert_mock_multiple_calls_with_same_arguments(
+            self, mocked_method, count, expected_call):
+        self.assertEqual(count, mocked_method.call_count)
+        mocked_method.assert_has_calls([expected_call] * count)
 
 
 class BaseAdminViewTests(TestCase):
@@ -433,7 +510,6 @@ class APITestCase(TestCase):
         self._original_novaclient = api.nova.novaclient
         self._original_neutronclient = api.neutron.neutronclient
         self._original_cinderclient = api.cinder.cinderclient
-        self._original_heatclient = api.heat.heatclient
 
         # Replace the clients with our stubs.
         api.glance.glanceclient = fake_glanceclient
@@ -441,8 +517,6 @@ class APITestCase(TestCase):
         api.nova.novaclient = fake_novaclient
         api.neutron.neutronclient = lambda request: self.stub_neutronclient()
         api.cinder.cinderclient = lambda request: self.stub_cinderclient()
-        api.heat.heatclient = (lambda request, password=None:
-                               self.stub_heatclient())
 
     def tearDown(self):
         super(APITestCase, self).tearDown()
@@ -451,9 +525,17 @@ class APITestCase(TestCase):
         api.keystone.keystoneclient = self._original_keystoneclient
         api.neutron.neutronclient = self._original_neutronclient
         api.cinder.cinderclient = self._original_cinderclient
-        api.heat.heatclient = self._original_heatclient
+
+    def _warn_client(self, service, removal_version):
+        LOG.warning(
+            "APITestCase has been deprecated for %(service)s-related "
+            "tests and will be removerd in '%(removal_version)s' release. "
+            "Please convert your to use APIMockTestCase instead.",
+            {'service': service, 'removal_version': removal_version}
+        )
 
     def stub_novaclient(self):
+        self._warn_client('nova', 'S')
         if not hasattr(self, "novaclient"):
             self.mox.StubOutWithMock(nova_client, 'Client')
             # mock the api_version since MockObject.__init__ ignores it.
@@ -468,9 +550,7 @@ class APITestCase(TestCase):
         return self.novaclient
 
     def stub_cinderclient(self):
-        LOG.warning("APITestCase has been deprecated for Cinder-related "
-                    "tests and will be removerd in 'S' release. Please "
-                    "convert  your to use APIMockTestCase instead.")
+        self._warn_client('cinder', 'S')
         if not hasattr(self, "cinderclient"):
             self.mox.StubOutWithMock(cinder_client, 'Client')
             self.cinderclient = self.mox.CreateMock(cinder_client.Client)
@@ -490,6 +570,7 @@ class APITestCase(TestCase):
         return self.keystoneclient
 
     def stub_glanceclient(self):
+        self._warn_client('glance', 'S')
         if not hasattr(self, "glanceclient"):
             self.mox.StubOutWithMock(glanceclient, 'Client')
             self.glanceclient = self.mox.CreateMock(glanceclient.Client)
@@ -502,6 +583,7 @@ class APITestCase(TestCase):
         return self.neutronclient
 
     def stub_swiftclient(self, expected_calls=1):
+        self._warn_client('swift', 'S')
         if not hasattr(self, "swiftclient"):
             self.mox.StubOutWithMock(swift_client, 'Connection')
             self.swiftclient = self.mox.CreateMock(swift_client.Connection)
@@ -518,18 +600,29 @@ class APITestCase(TestCase):
                 expected_calls -= 1
         return self.swiftclient
 
-    def stub_heatclient(self):
-        if not hasattr(self, "heatclient"):
-            self.mox.StubOutWithMock(heat_client, 'Client')
-            self.heatclient = self.mox.CreateMock(heat_client.Client)
-        return self.heatclient
-
 
 class APIMockTestCase(APITestCase):
+
+    use_mox = False
+
+    def stub_novaclient(self):
+        if not hasattr(self, "novaclient"):
+            self.novaclient = mock.Mock()
+        return self.novaclient
+
     def stub_cinderclient(self):
         if not hasattr(self, "cinderclient"):
             self.cinderclient = mock.Mock()
         return self.cinderclient
+
+    def stub_glanceclient(self):
+        if not hasattr(self, "glanceclient"):
+            self.glanceclient = mock.Mock()
+        return self.glanceclient
+
+    def stub_swiftclient(self):
+        # This method should not be called.
+        raise NotImplementedError
 
 
 # Need this to test both Glance API V1 and V2 versions
@@ -655,34 +748,9 @@ class PluginTestCase(TestCase):
         to be re-calculated after registering new dashboards. Useful
         only for testing and should never be used on a live site.
         """
-        urlresolvers.clear_url_caches()
+        urls.clear_url_caches()
         moves.reload_module(import_module(settings.ROOT_URLCONF))
         base.Horizon._urls()
-
-
-class update_settings(django_test_utils.override_settings):
-    """override_settings which allows override an item in dict.
-
-    django original override_settings replaces a dict completely,
-    however OpenStack dashboard setting has many dictionary configuration
-    and there are test case where we want to override only one item in
-    a dictionary and keep other items in the dictionary.
-    This version of override_settings allows this if keep_dict is True.
-
-    If keep_dict False is specified, the original behavior of
-    Django override_settings is used.
-    """
-
-    def __init__(self, keep_dict=True, **kwargs):
-        if keep_dict:
-            for key, new_value in kwargs.items():
-                value = getattr(settings, key, None)
-                if (isinstance(new_value, collections.Mapping) and
-                        isinstance(value, collections.Mapping)):
-                    copied = copy.copy(value)
-                    copied.update(new_value)
-                    kwargs[key] = copied
-        super(update_settings, self).__init__(**kwargs)
 
 
 def mock_obj_to_dict(r):
@@ -696,7 +764,16 @@ def mock_factory(r):
     return mocked
 
 
-class IsHttpRequest(object):
-    """Class to compare param is django.http.HttpRequest."""
+class IsA(object):
+    """Class to compare param is a specified class."""
+    def __init__(self, cls):
+        self.cls = cls
+
     def __eq__(self, other):
-        return isinstance(other, http_request.HttpRequest)
+        return isinstance(other, self.cls)
+
+
+class IsHttpRequest(IsA):
+    """Class to compare param is django.http.HttpRequest."""
+    def __init__(self):
+        super(IsHttpRequest, self).__init__(http_request.HttpRequest)

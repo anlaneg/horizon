@@ -17,8 +17,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.core.urlresolvers import reverse
 from django import http
+from django.urls import reverse
 from django.utils.http import urlencode
 
 from mox3.mox import IsA
@@ -54,17 +54,14 @@ class FloatingIpViewTests(test.TestCase):
         # Verify that our "associated" floating IP isn't in the choices list.
         self.assertNotIn(self.floating_ips.first(), choices)
 
-    @test.create_stubs({api.neutron: ('floating_ip_target_list',
-                                      'floating_ip_target_get_by_instance',
+    @test.create_stubs({api.neutron: ('floating_ip_target_list_by_instance',
                                       'tenant_floating_ip_list',)})
     def test_associate_with_instance_id(self):
         targets = self._get_fip_targets()
         target = targets[0]
-        api.neutron.floating_ip_target_list(IsA(http.HttpRequest)) \
-            .AndReturn(targets)
-        api.neutron.floating_ip_target_get_by_instance(
-            IsA(http.HttpRequest), target.instance_id, targets) \
-            .AndReturn(target.id)
+        api.neutron.floating_ip_target_list_by_instance(
+            IsA(http.HttpRequest), target.instance_id) \
+            .AndReturn([target])
         api.neutron.tenant_floating_ip_list(IsA(http.HttpRequest)) \
             .AndReturn(self.floating_ips.list())
         self.mox.ReplayAll()
@@ -249,8 +246,7 @@ class FloatingIpViewTests(test.TestCase):
     def test_allocate_button_attributes(self):
         floating_ips = self.floating_ips.list()
         floating_pools = self.pools.list()
-        quota_data = self.quota_usages.first()
-        quota_data['floating_ips']['available'] = 10
+        quota_data = self.neutron_quota_usages.first()
 
         api.neutron.tenant_floating_ip_list(
             IsA(http.HttpRequest)) \
@@ -262,7 +258,7 @@ class FloatingIpViewTests(test.TestCase):
             IsA(http.HttpRequest), detailed=False) \
             .AndReturn([self.servers.list(), False])
         quotas.tenant_quota_usages(
-            IsA(http.HttpRequest), targets=('floating_ips', )).MultipleTimes() \
+            IsA(http.HttpRequest), targets=('floatingip', )).MultipleTimes() \
             .AndReturn(quota_data)
 
         self.mox.ReplayAll()
@@ -287,8 +283,8 @@ class FloatingIpViewTests(test.TestCase):
     def test_allocate_button_disabled_when_quota_exceeded(self):
         floating_ips = self.floating_ips.list()
         floating_pools = self.pools.list()
-        quota_data = self.quota_usages.first()
-        quota_data['floating_ips']['available'] = 0
+        quota_data = self.neutron_quota_usages.first()
+        quota_data['floatingip']['available'] = 0
 
         api.neutron.tenant_floating_ip_list(
             IsA(http.HttpRequest)) \
@@ -300,7 +296,7 @@ class FloatingIpViewTests(test.TestCase):
             IsA(http.HttpRequest), detailed=False) \
             .AndReturn([self.servers.list(), False])
         quotas.tenant_quota_usages(
-            IsA(http.HttpRequest), targets=('floating_ips', )).MultipleTimes() \
+            IsA(http.HttpRequest), targets=('floatingip', )).MultipleTimes() \
             .AndReturn(quota_data)
 
         self.mox.ReplayAll()
@@ -336,10 +332,10 @@ class FloatingIpViewTests(test.TestCase):
             .AndReturn(True)
         api.neutron.is_router_enabled(IsA(http.HttpRequest)) \
             .AndReturn(True)
+        api.neutron.is_extension_supported(IsA(http.HttpRequest),
+                                           'quota_details').AndReturn(False)
         api.neutron.tenant_quota_get(IsA(http.HttpRequest), self.tenant.id) \
             .AndReturn(self.neutron_quotas.first())
-        api.neutron.floating_ip_supported(IsA(http.HttpRequest)) \
-            .AndReturn(True)
         api.neutron.tenant_floating_ip_list(IsA(http.HttpRequest)) \
             .MultipleTimes().AndReturn(self.floating_ips.list())
         api.neutron.floating_ip_pools_list(IsA(http.HttpRequest)) \
@@ -348,5 +344,5 @@ class FloatingIpViewTests(test.TestCase):
 
         url = reverse('%s:allocate' % NAMESPACE)
         res = self.client.get(url)
-        self.assertEqual(res.context['usages']['floating_ips']['quota'],
+        self.assertEqual(res.context['usages']['floatingip']['quota'],
                          self.neutron_quotas.first().get('floatingip').limit)

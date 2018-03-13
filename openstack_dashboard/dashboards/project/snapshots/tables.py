@@ -13,7 +13,7 @@
 #    under the License.
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.http import urlencode
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
@@ -208,7 +208,8 @@ class VolumeDetailsSnapshotsTable(volume_tables.VolumesTableBase):
         row_class = UpdateRow
         status_columns = ("status",)
         permissions = [
-            ('openstack.services.volume', 'openstack.services.volumev2'),
+            ('openstack.services.volume', 'openstack.services.volumev2',
+             'openstack.services.volumev3'),
         ]
 
 

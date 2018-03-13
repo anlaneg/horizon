@@ -20,8 +20,8 @@
 import futurist
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -61,9 +61,9 @@ def rdp(args, **kvargs):
     return views.rdp(args, **kvargs)
 
 
-# re-use get_resource_id_by_name from project.instances.views
-def swap_filter(resources, filters, fake_field, real_field):
-    return views.swap_filter(resources, filters, fake_field, real_field)
+# re-use mks from project.instances.views to make reflection work
+def mks(args, **kvargs):
+    return views.mks(args, **kvargs)
 
 
 class AdminUpdateView(views.UpdateView):
@@ -86,6 +86,7 @@ class AdminIndexView(tables.DataTableView):
         tenants = []
         tenant_dict = {}
         images = []
+        image_map = {}
         flavors = []
         full_flavors = {}
 
@@ -124,6 +125,7 @@ class AdminIndexView(tables.DataTableView):
             try:
                 tmp_images = api.glance.image_list_detailed(self.request)[0]
                 images.extend(tmp_images)
+                image_map.update([(image.id, image) for image in images])
             except Exception:
                 msg = _("Unable to retrieve image list.")
                 exceptions.handle(self.request, msg)
@@ -153,37 +155,33 @@ class AdminIndexView(tables.DataTableView):
                 # don't call api.network
                 return
 
-            try:
-                api.network.servers_update_addresses(self.request, instances,
-                                                     all_tenants=True)
-            except Exception:
-                exceptions.handle(
-                    self.request,
-                    message=_('Unable to retrieve IP addresses from Neutron.'),
-                    ignore=True)
-
         with futurist.ThreadPoolExecutor(max_workers=3) as e:
             e.submit(fn=_task_get_tenants)
             e.submit(fn=_task_get_images)
             e.submit(fn=_task_get_flavors)
 
-        if 'project' in search_opts and \
-                not swap_filter(tenants, search_opts, 'project', 'tenant_id'):
-                self._more = False
-                return instances
-        elif 'image_name' in search_opts and \
-                not swap_filter(images, search_opts, 'image_name', 'image'):
-                self._more = False
-                return instances
-        elif "flavor_name" in search_opts and \
-                not swap_filter(flavors, search_opts, 'flavor_name', 'flavor'):
-                self._more = False
-                return instances
+        non_api_filter_info = (
+            ('project', 'tenant_id', tenants),
+            ('image_name', 'image', images),
+            ('flavor_name', 'flavor', flavors),
+        )
+        if not views.process_non_api_filters(search_opts, non_api_filter_info):
+            self._more = False
+            return []
 
         _task_get_instances()
 
-        # Loop through instances to get flavor and tenant info.
+        # Loop through instances to get image, flavor and tenant info.
         for inst in instances:
+            if hasattr(inst, 'image') and isinstance(inst.image, dict):
+                if inst.image.get('id') in image_map:
+                    inst.image = image_map[inst.image.get('id')]
+                # In case image not found in image_map, set name to empty
+                # to avoid fallback API call to Glance in api/nova.py
+                # until the call is deprecated in api itself
+                else:
+                    inst.image['name'] = _("-")
+
             flavor_id = inst.flavor["id"]
             try:
                 if flavor_id in full_flavors:
@@ -217,7 +215,9 @@ class LiveMigrateView(forms.ModalFormView):
     @memoized.memoized_method
     def get_hosts(self, *args, **kwargs):
         try:
-            return api.nova.host_list(self.request)
+            services = api.nova.service_list(self.request,
+                                             binary='nova-compute')
+            return [s.host for s in services]
         except Exception:
             redirect = reverse("horizon:admin:instances:index")
             msg = _('Unable to retrieve host information.')

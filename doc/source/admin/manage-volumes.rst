@@ -21,8 +21,7 @@ Create a volume type
 #. Log in to the dashboard and select the :guilabel:`admin`
    project from the drop-down list.
 
-#. On the :guilabel:`Admin` tab, open the :guilabel:`System` tab
-   and click the :guilabel:`Volumes` category.
+#. On the :guilabel:`Admin` tab, open the :guilabel:`Volume` tab.
 
 #. Click the :guilabel:`Volume Types` tab, and click
    :guilabel:`Create Volume Type` button. In the
@@ -46,7 +45,7 @@ Create an encrypted volume type
    available options (see table):
 
    Provider
-     Specifies the class responsible for configuring the encryption.
+     Specifies the encryption provider format.
    Control Location
      Specifies whether the encryption is from the front end (nova) or the
      back end (cinder).
@@ -68,16 +67,16 @@ volumes.
 |      Encryption    |      Parameter        |   Comments                 |
 |      parameters    |      options          |                            |
 +====================+=======================+============================+
-|   Provider         |nova.volume.encryptors.|Allows easier import and    |
-|                    |luks.LuksEncryptor     |migration of imported       |
-|                    |(Recommended)          |encrypted volumes, and      |
+|   Provider         | luks                  |Allows easier import and    |
+|                    | (Recommended)         |migration of imported       |
+|                    |                       |encrypted volumes, and      |
 |                    |                       |allows access key to be     |
 |                    |                       |changed without             |
 |                    |                       |re-encrypting the volume    |
 +                    +-----------------------+----------------------------+
-|                    |nova.volume.encryptors.|Less disk overhead than     |
-|                    |cryptsetup.            |LUKS                        |
-|                    |CryptsetupEncryptor    |                            |
+|                    | plain                 |Less disk overhead than     |
+|                    |                       |LUKS                        |
+|                    |                       |                            |
 +--------------------+-----------------------+----------------------------+
 | Control Location   | front-end             |The encryption occurs within|
 |                    | (Recommended)         |nova so that the data       |
@@ -114,12 +113,12 @@ volumes.
 
 `*` Source `NIST SP 800-38E <http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38e.pdf>`_
 
-   .. note::
+.. note::
 
-      To see further information and CLI instructions, see
-      `Create an encrypted volume type
-      <https://docs.openstack.org/cinder/latest/configuration/block-storage/volume-encryption.html>`__
-      in the OpenStack Configuration Reference.
+   To see further information and CLI instructions, see
+   `Create an encrypted volume type
+   <https://docs.openstack.org/cinder/latest/configuration/block-storage/volume-encryption.html#create-an-encrypted-volume-type>`__
+   in the OpenStack Block Storage Configuration Guide.
 
 Delete volume types
 ~~~~~~~~~~~~~~~~~~~
@@ -129,8 +128,7 @@ When you delete a volume type, volumes of that type are not deleted.
 #. Log in to the dashboard and select the :guilabel:`admin` project from
    the drop-down list.
 
-#. On the :guilabel:`Admin` tab, open the :guilabel:`System` tab
-   and click the :guilabel:`Volumes` category.
+#. On the :guilabel:`Admin` tab, open the :guilabel:`Volume` tab.
 
 #. Click the :guilabel:`Volume Types` tab, select the volume type
    or types that you want to delete.
@@ -153,10 +151,10 @@ destroyed.
 #. Log in to the dashboard and select the :guilabel:`admin` project
    from the drop-down list.
 
-#. On the :guilabel:`Admin` tab, open the :guilabel:`System` tab
-   and click the :guilabel:`Volumes` category.
+#. On the :guilabel:`Admin` tab, open the :guilabel:`Volume` tab.
 
-#. Select the volume or volumes that you want to delete.
+#. Click the :guilabel:`Volumes` tab, Select the volume or volumes
+   that you want to delete.
 
 #. Click :guilabel:`Delete Volumes` button.
 

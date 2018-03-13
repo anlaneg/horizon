@@ -9,19 +9,22 @@
 # Fernando Pimenta <fernando.c.pimenta@gmail.com>, 2017. #zanata
 # José Mello <jose.eduardo.jr@gmail.com>, 2017. #zanata
 # Marcio <marciofoz@gmail.com>, 2017. #zanata
+# Fernando Pimenta <fernando.c.pimenta@gmail.com>, 2018. #zanata
+# Marcelo Dieder <marcelodieder@gmail.com>, 2018. #zanata
+# Rodrigo Loures <rmoraesloures@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev234\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-10-25 02:59+0000\n"
+"POT-Creation-Date: 2018-03-01 14:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-10-24 07:27+0000\n"
-"Last-Translator: Fernando Pimenta <fernando.c.pimenta@gmail.com>\n"
+"PO-Revision-Date: 2018-02-01 03:52+0000\n"
+"Last-Translator: Rodrigo Loures <rmoraesloures@gmail.com>\n"
 "Language-Team: Portuguese (Brazil)\n"
-"Language: pt-BR\n"
-"X-Generator: Zanata 3.9.6\n"
+"Language: pt_BR\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgid "#"
@@ -102,47 +105,41 @@ msgstr ""
 "<em>Observação: ao selecionar Volume, você pode lançar somente uma instância."
 "</em>"
 
+msgid "<small>This line of text is meant to be treated as fine print.</small>"
+msgstr "<small>Essa linha do texto deve ser tratada como um detalhe.</small>"
+
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Heads up!</strong>\n"
+"<strong>Heads up!</strong>\n"
 "           This\n"
 "          <a href=\"#\" class=\"alert-link\">alert needs your attention</"
 "a>,\n"
 "           but it's not super important."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Atenção!</strong>\n"
-"           Este\n"
-"          <a href=\"#\" class=\"alert-link\">alerta necessita de sua "
-"atenção</a>,\n"
-"           mas ele não é super importante."
+"<strong>Atenção!</strong>\n"
+"           Esse\n"
+"          <a href=\"#\" class=\"alert-link\">alerta precisa de sua atenção</"
+"a>,\n"
+"           mas não é tão importante."
 
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Oh snap!</strong>\n"
+"<strong>Oh snap!</strong>\n"
 "          <a href=\"#\" class=\"alert-link\">Change a few things up</a>\n"
 "          and try submitting again."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Ah, não!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Altere algumas coisas</a>\n"
-"          e tente submeter novamente."
+"<strong>Quebra!</strong>\n"
+"          <a href=\"#\" class=\"alert-link\">Altere algumas coisas acima</a> "
+"e tente enviar novamente."
 
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Well done!</strong>\n"
+"<strong>Well done!</strong>\n"
 "          You successfully read\n"
 "          <a href=\"#\" class=\"alert-link\">this important alert message</"
 "a>."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Muito bem!</strong>\n"
-"          Você conseguiu ler\n"
-"          <a href=\"#\" class=\"alert-link\">esta importante mensagem de "
+"<strong>Muito bom!</strong>\n"
+"          Você leu com sucesso \n"
+"          <a href=\"#\" class=\"alert-link\">essa importante mensagem de "
 "alerta</a>."
-
-msgid "<small>This line of text is meant to be treated as fine print.</small>"
-msgstr "<small>Essa linha do texto deve ser tratada como um detalhe.</small>"
 
 msgid "A Confirmation Dialog"
 msgstr "Um diálogo de confirmação"
@@ -280,6 +277,9 @@ msgstr "Adicionar Interface"
 msgid "Add Ons, Required and Feedback"
 msgstr "Add Ons, Obrigatório e Feedback"
 
+msgid "Admin Password"
+msgstr "Senha do Administrador"
+
 msgid "Admin State"
 msgstr "Estado de Admin"
 
@@ -303,6 +303,15 @@ msgstr ""
 
 msgid "Alerts"
 msgstr "Alertas"
+
+msgid ""
+"Also note that segmentation details may be mandatory\n"
+"  or optional depending on the backend. Notably Ironic may provide\n"
+"  segmentation details instead of the user."
+msgstr ""
+"Observe também que os detalhes de segmentação podem ser obrigatórios\n"
+"  ou opcionais dependendo do backend. Notadamente o Ironic pode fornecer\n"
+"  detalhes de segmentação em vez do usuário."
 
 msgid "Amount of RAM in MB that is required to boot the image."
 msgstr "Quantidade de RAM em MB que é requerida para dar boot na imagem."
@@ -343,6 +352,23 @@ msgstr ""
 "Selecionar <b>Automático</b> redimensiona o disco e o configura com uma "
 "única partição. Selecionar <b>Manual</b> permite criar múltiplas partições "
 "no disco."
+
+msgid ""
+"An arbitrary amount (0, 1, 2, ...) of regular Neutron\n"
+"  ports with segmentation details (ie. type and ID). May be provided\n"
+"  when the trunk is created. Also may be attached or detached later\n"
+"  during the trunk's (and the instance's) life."
+msgstr ""
+"Uma quantidade arbitrária (0, 1, 2, ...) de portas regulares do Neutron com "
+"detalhes de segmentação (ou seja, tipo e ID). Pode ser fornecido quando for "
+"criada a versão. Também pode ser anexado ou desanexado mais tarde durante a "
+"vida da versão (e a instância)."
+
+msgid "An arbitrary description for the trunk."
+msgstr "Uma descrição arbitrária para o trunk."
+
+msgid "An arbitrary name for the trunk. May not be unique."
+msgstr "Um nome arbitrário para o trunk. Pode não ser único."
 
 msgid "An external (HTTP) URL is required"
 msgstr "Uma URL (HTTP) externa é necessária"
@@ -462,6 +488,13 @@ msgstr "Não é possível obter o catálogo de serviços a partir do keystone."
 msgid "Cannot get the extension list."
 msgstr "Não foi possível obter lista de extensão."
 
+msgid "Change Password"
+msgstr "Alterar Senha"
+
+msgid "Change user's password. We highly recommend you create a strong one."
+msgstr ""
+"Alterar a senha do usuário. Recomendamos muito que crie uma senha forte."
+
 msgid "Charts"
 msgstr "Gráficos"
 
@@ -532,6 +565,11 @@ msgid_plural "Confirm Delete Images"
 msgstr[0] "Confirmar Exclusão de Imagem"
 msgstr[1] "Confirmar Exclusão de Imagens"
 
+msgid "Confirm Delete Key Pair"
+msgid_plural "Confirm Delete Key Pairs"
+msgstr[0] "Confirmar Exclusão de Par de Chaves"
+msgstr[1] "Confirmar Exclusão de Pares de Chaves"
+
 msgid "Confirm Delete Role"
 msgid_plural "Confirm Delete Roles"
 msgstr[0] "Confirmar Exclusão de Função"
@@ -541,6 +579,11 @@ msgid "Confirm Delete Trunk"
 msgid_plural "Confirm Delete Trunks"
 msgstr[0] "Confirmar Excluir Trunk"
 msgstr[1] "Confirmar Excluir Trunks"
+
+msgid "Confirm Delete User"
+msgid_plural "Confirm Delete Users"
+msgstr[0] "Confirmar Exclusão de Usuário"
+msgstr[1] "Confirmar Exclusão de Usuários"
 
 msgid "Connecting"
 msgstr "Conectando"
@@ -623,8 +666,21 @@ msgstr "Criar Função"
 msgid "Create Subnet"
 msgstr "Criar Subrede"
 
+msgid "Create Trunk"
+msgstr "Criar Trunk"
+
+msgid "Create User"
+msgstr "Criar Usuário"
+
 msgid "Create Volume"
 msgstr "Criar Volume"
+
+msgid ""
+"Create a new user and set related properties including the Primary Project "
+"and Role."
+msgstr ""
+"Criar um novo usuário e configurar as propriedades relacionadas, incluindo o "
+"Projeto Primário e  Função."
 
 msgid "Created"
 msgstr "Criado"
@@ -656,6 +712,9 @@ msgstr ""
 "conseguir instalar <samp>cloud-init</samp> dentro de um sistema operacional "
 "convidado, você pode usar um script personalizado para obter uma chave "
 "pública e adicioná-lo à conta de usuário."
+
+msgid "Customization Script"
+msgstr "Script de Customização"
 
 msgid "DNS Domain"
 msgstr "Domínio de DNS"
@@ -714,6 +773,12 @@ msgstr "Botão Padrão"
 msgid "Default input"
 msgstr "Entrada padrão"
 
+msgid "Default: Empty string"
+msgstr "Padrão: String vazia"
+
+msgid "Default: Enabled"
+msgstr "Padrão: Ativado"
+
 msgid "Definition list"
 msgstr "Lista de definições"
 
@@ -751,6 +816,14 @@ msgstr "Excluir Instância"
 msgid "Delete Interface"
 msgstr "Excluir Interface"
 
+msgid "Delete Key Pair"
+msgid_plural "Delete Key Pairs"
+msgstr[0] "Excluir Par de Chaves"
+msgstr[1] "Excluir Pares de Chaves"
+
+msgid "Delete Key Pairs"
+msgstr "Excluir Pares de Chaves"
+
 msgid "Delete Network"
 msgstr "Excluir Rede"
 
@@ -776,6 +849,14 @@ msgstr[1] "Excluir Trunks"
 msgid "Delete Trunks"
 msgstr "Excluir Trunks"
 
+msgid "Delete User"
+msgid_plural "Delete Users"
+msgstr[0] "Excluir Usuário"
+msgstr[1] "Excluir Usuários"
+
+msgid "Delete Users"
+msgstr "Excluir Usuários"
+
 msgid "Delete Volume on Instance Delete"
 msgstr "Excluir Volume na Exclusão da Instância"
 
@@ -795,6 +876,12 @@ msgstr[0] "Imagem Excluída: %s."
 msgstr[1] "Imagens Excluídas: %s."
 
 #, python-format
+msgid "Deleted Key Pair: %s."
+msgid_plural "Deleted Key Pairs: %s."
+msgstr[0] "Excluir Par de Chaves: %s."
+msgstr[1] "Excluir Pares de Chaves: %s."
+
+#, python-format
 msgid "Deleted Role: %s."
 msgid_plural "Deleted Roles: %s."
 msgstr[0] "Função Excluída: %s."
@@ -805,6 +892,12 @@ msgid "Deleted Trunk: %s."
 msgid_plural "Deleted Trunks: %s."
 msgstr[0] "Trunk Excluído: %s."
 msgstr[1] "Trunks Excluídos: %s."
+
+#, python-format
+msgid "Deleted User: %s."
+msgid_plural "Deleted Users: %s."
+msgstr[0] "Usuário Excluído: %s."
+msgstr[1] "Usuários Excluídos:%s."
 
 msgid "Deleting"
 msgstr "Deletando"
@@ -824,8 +917,14 @@ msgstr "Detalhes"
 msgid "Details Views:"
 msgstr "Visualizações de Detalhes:"
 
+msgid "Device ID"
+msgstr "ID do Dispositivo"
+
 msgid "Device Name"
 msgstr "Nome do Dispositivo"
+
+msgid "Device Owner"
+msgstr "Proprietário do Dispositivo"
 
 msgid "Dialogs"
 msgstr "Diálogos"
@@ -838,6 +937,9 @@ msgstr "Físico Direto"
 
 msgid "Direction"
 msgstr "Direção"
+
+msgid "Disable User"
+msgstr "Desativar Usuário"
 
 msgid "Disabled"
 msgstr "Desativado"
@@ -865,6 +967,9 @@ msgstr "Domínio"
 
 msgid "Domain ID"
 msgstr "ID do Domínio"
+
+msgid "Domain Id"
+msgstr "Id de Domínio"
 
 msgid "Domain Name"
 msgstr "Nome do Domínio"
@@ -908,11 +1013,26 @@ msgstr "Editar Imagem"
 msgid "Edit Role"
 msgstr "Editar Função"
 
+msgid "Edit Trunk"
+msgstr "Editar Trunk"
+
+msgid "Edit User"
+msgstr "Editar Usuário"
+
+msgid "Edit the user's details, including the Primary Project."
+msgstr "Editar detalhes do usuário, incluindo o Projeto Principal."
+
 msgid "Email"
 msgstr "Email"
 
 msgid "Emphasis classes"
 msgstr "Classes de ênfase"
+
+msgid "Enable User"
+msgstr "Ativar Usuário"
+
+msgid "Enable/Disable subport addition, removal and trunk delete."
+msgstr "Ativar/Desativar adição de sub-porta, remoção e exclusão de trunk."
 
 msgid "Enabled"
 msgstr "Habilitado"
@@ -940,6 +1060,13 @@ msgstr "Erro ao Deletar"
 
 msgid "Ether Type"
 msgstr "Tipo Ether"
+
+msgid ""
+"Exactly one regular Neutron port. Has to be provided when\n"
+"  the trunk is created. Cannot be changed during the trunk's life."
+msgstr ""
+"Exatamente uma porta regular do Neutron. Tem que ser fornecida quando\n"
+"  o trunk é criado. Pode ser alterada ao longo da vida do trunk."
 
 msgid "Example body text"
 msgstr "Texto do corpo de exemplo"
@@ -1008,6 +1135,20 @@ msgstr "Pasta %(name)s criada."
 
 msgid "Folder Name"
 msgstr "Nome da Pasta"
+
+msgid ""
+"For ports on provider networks you may choose the special\n"
+"  segmentation type <em>inherit</em>. Then the subport's segmentation\n"
+"  type and ID will be automagically inherited from the provider network's\n"
+"  segmentation type and ID. This is useful when the switch is incapable of\n"
+"  remapping (tag pop-push) for example as usual for Ironic instances."
+msgstr ""
+"Para portas nas redes de provedores você pode escolher o tipo especial\n"
+"  de segmentação <em>herdado</em>. Então o tipo e ID de segmentação\n"
+"  serão automaticamente herdados do tipo e ID da rede\n"
+"  do provedor. Isto é útil quando o switch é incapaz de\n"
+"  fazer remapeamento (tag pop-push) por exemplo como é usual para instâncias "
+"do Ironic."
 
 msgid "Form"
 msgstr "Formulário"
@@ -1197,6 +1338,9 @@ msgstr "Impacto na sua cota"
 msgid "Import Key Pair"
 msgstr "Importar par de chaves"
 
+msgid "Import Public Key"
+msgstr "Importar Chave Pública"
+
 msgid "Indicators"
 msgstr "Indicadores"
 
@@ -1232,6 +1376,29 @@ msgstr "Sucesso de entrada"
 
 msgid "Input warning"
 msgstr "Aviso de entrada"
+
+msgid ""
+"Inside the instance a particular subport's network will\n"
+"  be presented as tagged frames transmitted and received on the vNIC\n"
+"  belonging to the parent port. The cloud user may control the tagging\n"
+"  by setting the <em>segmentation type</em> and <em>segmentation ID</em>\n"
+"  of the subport."
+msgstr ""
+"Dentro da instância, uma rede de subport poderá ser apresentada como quadros "
+"etiquetados transmitidos e recebidos pelo vNIC\n"
+"  pertencentes à porta principal. O usuário da nuvem pode controlar a "
+"marcação definindo o <em>tipo</em> e <em>o ID da segmentação</em>\n"
+"  da subport."
+
+msgid ""
+"Inside the instance the parent port's network will always\n"
+"  be presented as the untagged network. It will be available early from\n"
+"  the moment of bootup."
+msgstr ""
+"dentro da instância, a rede da porta pai será sempre\n"
+"  apresentada como uma rede não 'tagueada'. Ela estará disponível "
+"anteriormente ao\n"
+"  momento da inicialização."
 
 msgid "Instance"
 msgstr "Instância"
@@ -1285,13 +1452,6 @@ msgstr "Par de chaves"
 msgid "Key Pair Name"
 msgstr "Nome do Par de Chaves"
 
-msgid ""
-"Key Pair Name\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-msgstr ""
-"Nome do Par de Chaves\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-
 msgid "Key Pairs"
 msgstr "Pares de Chave"
 
@@ -1317,6 +1477,35 @@ msgstr ""
 "      Escolha um nome de par de chaves que você reconhecerá.\n"
 "      Os nomes podem incluir somente caracteres alfanuméricos, espaços ou "
 "traços."
+
+msgid ""
+"Key Pairs are how you login to your instance after it is launched.\n"
+"  Choose a key pair name you will recognize and paste your SSH public key "
+"into the\n"
+"  space provided."
+msgstr ""
+"Pares de Chaves são a forma como você faz login em sua instância após tê-la "
+"lançado.\n"
+"  Escolha um nome para o par de chaves que você reconheça e cole sua chave "
+"pública SSH no\n"
+"  espaço fornecido."
+
+msgid ""
+"Key Pairs are how you login to your instance after it is launched.\n"
+"  Choose a key pair name you will recognize.\n"
+"  Names may only include alphanumeric characters, spaces, or dashes."
+msgstr ""
+"Pares de Chaves são a forma como você faz login em sua instância após tê-la "
+"lançado.\n"
+"  Escolha um nome para o par de chaves que você reconheça.\n"
+"  Nomes podem incluir apenas caracteres alfanuméricos, espaços, ou traços."
+
+#, python-format
+msgid "Key pair %(name)s was successfully created."
+msgstr "Par de chaves %(name)s foi criado com sucesso."
+
+msgid "Key pair already exists."
+msgstr "Par de chaves já existe."
 
 msgid "Keypair already exists or name contains bad characters."
 msgstr "O par de chaves já existe ou o nome contém caracteres inválidos"
@@ -1387,6 +1576,12 @@ msgstr "Carregar Função:"
 msgid "Loading"
 msgstr "Carregando"
 
+msgid "Loading ports... Please Wait"
+msgstr "Carregando portas... Por favor, aguarde"
+
+msgid "Loading trunk... Please Wait"
+msgstr "Carregando trunk... Por favor, aguarde"
+
 msgid "Location"
 msgstr "Localização"
 
@@ -1398,6 +1593,9 @@ msgstr "Olha, eu estou em um poço pequeno!"
 
 msgid "Look, I'm in a well!"
 msgstr "Olha, eu estou em um poço!"
+
+msgid "MAC Address"
+msgstr "Endereço MAC"
 
 msgid "MacVTap"
 msgstr "MacVTap"
@@ -1503,8 +1701,18 @@ msgstr "Modelo"
 msgid "Month"
 msgstr "Mês"
 
+msgid ""
+"Must not be the parent or a subport of any other\n"
+"  trunks."
+msgstr ""
+"Não deve ser a porta pai ou a sub-porta de quaisquer outros\n"
+"  trunks."
+
 msgid "Name"
 msgstr "Nome"
+
+msgid "Name/ID"
+msgstr "Nome/ID"
 
 msgid "Names:"
 msgstr "Nomes:"
@@ -1551,6 +1759,16 @@ msgstr "Características de rede"
 msgid "Networks"
 msgstr "Redes"
 
+msgid ""
+"Networks of subports may become available later than the\n"
+"  moment of bootup. But they will be available after the trunk reached\n"
+"  the <em>ACTIVE</em> status."
+msgstr ""
+"Redes das sub-portas podem se tornar disponíveis posteriormente ao\n"
+"  momento da inicialização. Mas elas estarão disponíveis depois que o trunk "
+"alcançar\n"
+"  o estado <em>ATIVO</em>."
+
 msgid "Networks provide the communication channels for instances in the cloud."
 msgstr "As redes fornecem os canais de comunicação para instâncias na nuvem."
 
@@ -1581,6 +1799,13 @@ msgstr "Nenhuma dica de agendador existente"
 msgid "No items to display."
 msgstr "Nenhum item a apresentar"
 
+msgid ""
+"No subport can be the parent or a subport of any other\n"
+"  trunks."
+msgstr ""
+"nenhuma sub-porta pode ser o pai ou uma sub-porta de quaisquer outros\n"
+"  trunks."
+
 msgid "None"
 msgstr "Nenhum"
 
@@ -1592,6 +1817,28 @@ msgstr "Não Definido"
 
 msgid "Not public"
 msgstr "Não público"
+
+msgid ""
+"Note that most guest operating systems will not\n"
+"  automatically configure and bring up the VLAN subinterfaces belonging\n"
+"  to subports. You may have to do that yourself. For example:"
+msgstr ""
+"Observe que a maioria dos sistemas operacionais guest não irão configurar\n"
+"  automaticamente e trazer as sub-interfaces de VLAN pertencentes às\n"
+"  sub-portas. Você pode ter que fazer isso por contra própria. por exemplo:"
+
+msgid ""
+"Note that some Neutron backends (notably the Open vSwitch\n"
+"  based backend) only allow trunk creation before an instance is launched\n"
+"  on the parent port.  Other backends may allow trunk creation at any\n"
+"  time during the life of a port."
+msgstr ""
+"Observe que alguns backends de Neutron (notadamente backends baseados no\n"
+"  Open vSwitch) somente permitem a criação de trunk antes de que uma "
+"instância seja lançada\n"
+"  na porta pai.  Outros backends podem permitir a criação de trunk em "
+"qualquer\n"
+"  tempo durante a vida de uma porta."
 
 msgid ""
 "Note: Delimiters ('{$ ctrl.model.DELIMETER $}') are allowed in the\n"
@@ -1731,6 +1978,9 @@ msgstr "Painéis"
 msgid "Parent Port"
 msgstr "Código Pai"
 
+msgid "Parent port"
+msgstr "Porta Pai"
+
 msgid "Password"
 msgstr "Senha"
 
@@ -1802,6 +2052,9 @@ msgstr "Marcador Primário"
 msgid "Primary Button"
 msgstr "Botão Primário"
 
+msgid "Primary Project"
+msgstr "Projeto Primário"
+
 msgid "Primary Project ID"
 msgstr "ID do Projeto Primário"
 
@@ -1844,6 +2097,9 @@ msgstr "Protegido"
 
 msgid "Protocol"
 msgstr "Protocolo"
+
+msgid "Provide basic properties of the trunk to be created. All optional."
+msgstr "Fornece propriedades básicas do trunk para ser criado. Tudo opcional."
 
 msgid "Provider Network"
 msgstr "Rede do Provedor"
@@ -2006,8 +2262,18 @@ msgstr ""
 msgid "Segmentation ID"
 msgstr "ID de Segmentação"
 
+msgid "Segmentation Id"
+msgstr "Id da Segmentação"
+
 msgid "Segmentation Type"
 msgstr "Tipo de Segmentação"
+
+msgid ""
+"Select <em>exactly one port</em> as the parent port of the trunk to\n"
+"    be created. Mandatory."
+msgstr ""
+"Selecione <em>exatamente uma porta</em> como porta pai do trunk a\n"
+"    ser criado. Obrigatório."
 
 msgid "Select Boot Source"
 msgstr "Selecionar origem da Inicialização da Instância"
@@ -2030,11 +2296,30 @@ msgstr "Selecione um grupo de servidores dos grupos disponíveis abaixo."
 msgid "Select a source from those listed below."
 msgstr "Selecione uma fonte dentre as listadas abaixo."
 
+msgid ""
+"Select an <em>arbitrary amount of ports (0, 1, 2, ...)</em> and their\n"
+"    segmentation details as the subports of the trunk to be created.\n"
+"    Optional."
+msgstr ""
+"Selecione uma <em>quantidade arbitrária de portas (0, 1, 2, ...)</em> e "
+"seus\n"
+"    detalhes de segmentação como sub-portas do trunk a ser criado. \n"
+"    Opcional."
+
 msgid "Select an item from Available items below"
 msgstr "Selecione um item dentre os disponíveis abaixo"
 
 msgid "Select at least one network"
 msgstr "Selecione ao menos uma rede"
+
+msgid "Select from the list of available ports below."
+msgstr "Selecione a partir da lista de portas disponíveis abaixo."
+
+msgid "Select items from Available items below"
+msgstr "Selecione itens a partir dos itens Disponíveis abaixo"
+
+msgid "Select many"
+msgstr "Selecionar vários"
 
 msgid "Select networks from those listed below."
 msgstr "Selecione redes dentre as disponíveis abaixo"
@@ -2152,6 +2437,9 @@ msgstr "Alguém famoso no"
 msgid "Something else here"
 msgstr "Digite algo aqui"
 
+msgid "Something wrong to change password."
+msgstr "Algo errado ao alterar a senha."
+
 msgid "Source"
 msgstr "Origem"
 
@@ -2197,6 +2485,9 @@ msgstr "Sub-redes Associadas"
 
 msgid "Subport Count"
 msgstr "Contagem de Versão"
+
+msgid "Subports"
+msgstr "Subportas"
 
 msgid "Success"
 msgstr "Sucesso"
@@ -2258,6 +2549,9 @@ msgstr "Área de texto"
 
 msgid "The access permission for the image."
 msgstr "A permissão de acesso para a imagem."
+
+msgid "The admin password is incorrect."
+msgstr "A senha do administrador está incorreta."
 
 msgid "The architecture of the image."
 msgstr "A arquitetura da imagem."
@@ -2348,6 +2642,36 @@ msgstr "O nome do Volume."
 msgid "The name of the image."
 msgstr "O nome da imagem."
 
+msgid ""
+"The parent port is the port you have to add to the instance\n"
+"  at launch. Do not try to add the trunk or any of the subports to the\n"
+"  instance directly."
+msgstr ""
+"A porta pai é a porta que você tem que adicionar à instância\n"
+"  no lançamento. Não tente adicionar o trunk ou qualquer das sub-portas à\n"
+"  instância diretamente."
+
+msgid ""
+"The segmentation type and ID are decoupled (and\n"
+"  therefore independent) from Neutron's network virtualization\n"
+"  implementation. Different segmentation types will be remapped as frames\n"
+"  leave/enter the instance."
+msgstr ""
+"O tipo e o ID de segmentação são desacoplados (e,\n"
+"  portanto, independentes) da implementação da virtualização de rede do\n"
+"  Neutron. Tipos diferentes de segmentação serão remapeados como frames\n"
+"  deixando/entrando na instância."
+
+msgid ""
+"The segmentation type, ID tuples of subports must be unique\n"
+"  (in the scope of a trunk), otherwise networks of subports could not\n"
+"  be distinguished inside the instance."
+msgstr ""
+"O tipo de segmentação, tuplas de ID das sub-portas devem ser únicos\n"
+"  (no escopo de um trunk), do contrário, redes de sub-portas não poderão "
+"ser\n"
+"  distinguidas dentro da instância."
+
 #, python-format
 msgid ""
 "The selected %(sourceType)s source requires a flavor with at least "
@@ -2430,6 +2754,13 @@ msgid ""
 msgstr ""
 "Este objeto JavaScript contém seu novo formulário e pode ser utilizado com "
 "<code>horizon.framework.widgets.form.ModalFormService</code>"
+
+msgid ""
+"This can be simplified by reusing the parent's MAC address\n"
+"  for all subports of the trunk earlier at port creation. Eg.:"
+msgstr ""
+"Isto pode ser simplificado através da reutilização do endereço MAC do pai\n"
+"  para todas as sub-portas do trunk anteriormente na criação da porta. Ex.:"
 
 msgid ""
 "This command generates a pair of keys: a private key (cloud.key)\n"
@@ -2534,6 +2865,14 @@ msgstr "Volumes Totais"
 msgid "Trunk"
 msgstr "Código base"
 
+#, python-format
+msgid "Trunk %s was successfully created."
+msgstr "Trunk %s foi criado com sucesso."
+
+#, python-format
+msgid "Trunk %s was successfully edited."
+msgstr "Trunk %s foi editado com sucesso."
+
 msgid "Trunks"
 msgstr "Códigos base"
 
@@ -2563,6 +2902,9 @@ msgstr "Não foi possível associar endereço de IP flutuante."
 
 msgid "Unable to change the container access."
 msgstr "Não é possível alterar o acesso ao container."
+
+msgid "Unable to check the Nova service feature."
+msgstr "Não é possível verificar a funcionalidade de serviço Nova."
 
 msgid "Unable to copy the object."
 msgstr "Não é possível copiar o objeto."
@@ -2606,6 +2948,9 @@ msgstr "Não foi possível criar o servidor."
 msgid "Unable to create the subnet."
 msgstr "Não foi possível criar sub-rede"
 
+msgid "Unable to create the trunk."
+msgstr "Não é possível criar o trunk."
+
 msgid "Unable to create the user."
 msgstr "Não foi possível criar o usuário."
 
@@ -2625,6 +2970,12 @@ msgstr[0] "Não é possível excluir a Imagem: %s."
 msgstr[1] "Não é possível excluir as Imagens: %s."
 
 #, python-format
+msgid "Unable to delete Key Pair: %s."
+msgid_plural "Unable to delete Key Pairs: %s."
+msgstr[0] "Impossível excluir o Par de Chaves: %s."
+msgstr[1] "Impossível excluir os Pares de Chaves: %s."
+
+#, python-format
 msgid "Unable to delete Role: %s."
 msgid_plural "Unable to delete Roles: %s."
 msgstr[0] "Não é possível excluir Função: %s."
@@ -2635,6 +2986,12 @@ msgid "Unable to delete Trunk: %s."
 msgid_plural "Unable to delete Trunks: %s."
 msgstr[0] "Impossível excluir Trunk: %s"
 msgstr[1] "Impossível excluir Trunks: %s"
+
+#, python-format
+msgid "Unable to delete User: %s."
+msgid_plural "Unable to delete Users: %s."
+msgstr[0] "Não é possível excluir Usuário: %s."
+msgstr[1] "Não é possível excluir usuários: %s."
 
 msgid "Unable to delete the container."
 msgstr "Não é possível apagar o container."
@@ -2661,6 +3018,10 @@ msgstr "Não é possível excluir os grupos."
 #, python-format
 msgid "Unable to delete the image with id: %(id)s"
 msgstr "Não foi possível apagar a imagem com id:%(id)s"
+
+#, python-format
+msgid "Unable to delete the keypair with name: %(name)s"
+msgstr "Não é possível excluir o par de chaves com nome: %(name)s"
 
 msgid "Unable to delete the object."
 msgstr "Não é possível apagar o objeto."
@@ -2832,6 +3193,9 @@ msgstr "Não foi possível recuperar os serviços do Cinder."
 msgid "Unable to retrieve the current user session."
 msgstr "Não é possível recuperar a sessão atual do usuário."
 
+msgid "Unable to retrieve the default domain."
+msgstr "Não é possível recuperar o domínio padrão."
+
 msgid "Unable to retrieve the default quotas."
 msgstr "Não é possível recuperar as quotas padrão."
 
@@ -2861,9 +3225,6 @@ msgstr "Não foi possível recuperar flavors."
 
 msgid "Unable to retrieve the group."
 msgstr "Não é possível recuperar o grupo."
-
-msgid "Unable to retrieve the heat services."
-msgstr "Não é possível recuperar os serviços do Heat."
 
 msgid "Unable to retrieve the image custom properties."
 msgstr "Não é possível recuperar as propriedades das imagens de customização."
@@ -3000,11 +3361,11 @@ msgstr "Não foi possível atualizar o flavor."
 msgid "Unable to update the image."
 msgstr "Não foi possível atualizar a imagem."
 
+msgid "Unable to update the trunk."
+msgstr "Não é possível atualizar o trunk."
+
 msgid "Unable to upload the object."
 msgstr "Não é possível enviar objeto."
-
-msgid "Unable to validate the template."
-msgstr "Não é possível validar o modelo."
 
 msgid "Unknown"
 msgstr "Desconhecido"
@@ -3099,8 +3460,30 @@ msgstr ""
 msgid "User"
 msgstr "Usuário"
 
+#, python-format
+msgid "User %s was successfully created."
+msgstr "Usuário %s foi criado com sucesso."
+
+#, python-format
+msgid "User %s was successfully disabled."
+msgstr "Usuário %s foi desativado com sucesso."
+
+#, python-format
+msgid "User %s was successfully enabled."
+msgstr "Usuário %s foi ativado com sucesso."
+
+#, python-format
+msgid "User %s was successfully updated."
+msgstr "Usuário %s foi atualizado com sucesso."
+
 msgid "User ID"
 msgstr "ID de Usuário"
+
+msgid "User Name"
+msgstr "Nome do Usuário"
+
+msgid "User password has been updated successfully."
+msgstr "A senha do usuário foi atualizada com sucesso."
 
 msgid "Users"
 msgstr "Usuários"
@@ -3284,10 +3667,6 @@ msgstr "Sim"
 msgid "You are not allowed to delete images: %s"
 msgstr "Você não tem permissão para excluir imagens: %s"
 
-#, python-format
-msgid "You are not allowed to delete trunks: %s"
-msgstr "Você não está autorizado a excluir trunks: %s"
-
 msgid "You can add arbitrary metadata to your image."
 msgstr "Você pode adicionar metadados arbitrários à sua imagem."
 
@@ -3344,26 +3723,32 @@ msgstr[0] "Você selecionou \"%s\". Imagem excluída não é recuperável."
 msgstr[1] "Você selecionou \"%s\". Imagens excluídas não  são recuperáveis."
 
 #, python-format
+msgid "You have selected \"%s\". Deleted key pair is not recoverable."
+msgid_plural "You have selected \"%s\". Deleted key pairs are not recoverable."
+msgstr[0] "Você selecionou \"%s\". Par de chaves excluídos não é recuperável."
+msgstr[1] ""
+"Você selecionou \"%s\". Pares de chaves excluídos não são recuperáveis."
+
+#, python-format
 msgid "You have selected \"%s\". Deleted role is not recoverable."
 msgid_plural "You have selected \"%s\". Deleted roles are not recoverable."
 msgstr[0] "Você selecionou \"%s\". Uma função excluída não é recuperável."
 msgstr[1] "Você selecionou \"%s\". Funções excluídas não são recuperáveis."
 
+#, python-format
+msgid "You have selected \"%s\". Deleted user is not recoverable."
+msgid_plural "You have selected \"%s\". Deleted users are not recoverable."
+msgstr[0] "Você selecionou \"%s\". A exclusão de usuário não é recuperável."
+msgstr[1] "Você selecionou \"%s\". A exclusão de usuários não é recuperável."
+
 msgid "Your Form as JavaScript"
 msgstr "Seu Formulário como JavaScript"
-
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "erro"
-msgstr[1] "erros"
 
 msgid "image"
 msgstr "imagem"
 
-msgid "message"
-msgid_plural "messages"
-msgstr[0] "mensagem"
-msgstr[1] "mensagens"
+msgid "inherit"
+msgstr "herdar"
 
 #, python-format
 msgid "resource load failed: %s"
@@ -3372,23 +3757,11 @@ msgstr "falha no carregamento de recurso: %s"
 msgid "snapshot"
 msgstr "captura instantânea"
 
-msgid "submit"
-msgid_plural "submits"
-msgstr[0] "envio"
-msgstr[1] "envios"
-
-msgid "success"
-msgid_plural "successs"
-msgstr[0] "sucesso"
-msgstr[1] "sucessos"
-
-msgid "title"
-msgid_plural "titles"
-msgstr[0] "título"
-msgstr[1] "títulos"
-
 msgid "volume"
 msgstr "volume"
+
+msgid "{$ address $} on subnet {$ subnet $}"
+msgstr "{$ address $} na subnet {$ subnet $}"
 
 msgid ""
 "{$ ctrl.model.counted.files $} files in\n"

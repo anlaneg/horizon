@@ -15,8 +15,8 @@
 
 import logging
 
-from django.core.urlresolvers import reverse
 from django import shortcuts
+from django.urls import reverse
 from django.utils.http import urlencode
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import string_concat
@@ -48,8 +48,8 @@ class AllocateIP(tables.LinkAction):
 
     def allowed(self, request, fip=None):
         usages = quotas.tenant_quota_usages(request,
-                                            targets=('floating_ips', ))
-        if usages['floating_ips']['available'] <= 0:
+                                            targets=('floatingip', ))
+        if usages['floatingip']['available'] <= 0:
             if "disabled" not in self.classes:
                 self.classes = [c for c in self.classes] + ['disabled']
                 self.verbose_name = string_concat(self.verbose_name, ' ',
@@ -187,6 +187,8 @@ class FloatingIPsTable(tables.DataTable):
     ip = tables.Column("ip",
                        verbose_name=_("IP Address"),
                        attrs={'data-type': "ip"})
+    description = tables.Column("description",
+                                verbose_name=_("Description"))
     fixed_ip = tables.Column(get_instance_info,
                              link=get_instance_link,
                              verbose_name=_("Mapped Fixed IP Address"))

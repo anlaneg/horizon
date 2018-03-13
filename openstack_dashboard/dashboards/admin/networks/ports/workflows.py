@@ -15,7 +15,7 @@
 
 import logging
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import forms
@@ -27,28 +27,58 @@ from openstack_dashboard.dashboards.project.networks.ports \
 LOG = logging.getLogger(__name__)
 
 
-class UpdatePortInfoAction(project_workflow.UpdatePortInfoAction):
-    device_id = forms.CharField(
-        max_length=100, label=_("Device ID"),
-        help_text=_("Device ID attached to the port"),
-        required=False)
-    device_owner = forms.CharField(
-        max_length=100, label=_("Device Owner"),
-        help_text=_("Device owner attached to the port"),
-        required=False)
+class CreatePortInfoAction(project_workflow.CreatePortInfoAction):
     binding__host_id = forms.CharField(
         label=_("Binding: Host"),
         help_text=_("The ID of the host where the port is allocated. In some "
                     "cases, different implementations can run on different "
                     "hosts."),
         required=False)
-    mac_address = forms.MACAddressField(
-        label=_("MAC Address"),
-        required=False,
-        help_text=_("MAC address for the port"))
 
     class Meta(object):
         name = _("Info")
+        slug = 'create_info'
+        help_text_template = 'project/networks/ports/_create_port_help.html'
+
+
+class CreatePortInfo(project_workflow.CreatePortInfo):
+    action_class = CreatePortInfoAction
+    depends_on = ("network_id", "target_tenant_id")
+    contributes = (project_workflow.CreatePortInfo.contributes
+                   + ['binding__host_id'])
+
+
+class CreatePort(project_workflow.CreatePort):
+    default_steps = (CreatePortInfo, project_workflow.CreatePortSecurityGroup)
+
+    def get_success_url(self):
+        return reverse("horizon:admin:networks:detail",
+                       args=(self.context['network_id'],))
+
+    def _construct_parameters(self, context):
+        params = super(CreatePort, self)._construct_parameters(context)
+        params.update({'tenant_id': context['target_tenant_id'],
+                       'binding__host_id': context['binding__host_id']})
+        return params
+
+
+class UpdatePortInfoAction(project_workflow.UpdatePortInfoAction):
+    device_id = forms.CharField(
+        max_length=100, label=_("Device ID"),
+        required=False)
+    device_owner = forms.CharField(
+        max_length=100, label=_("Device Owner"),
+        required=False)
+    binding__host_id = forms.CharField(
+        label=_("Binding: Host"),
+        required=False)
+    mac_address = forms.MACAddressField(
+        label=_("MAC Address"),
+        required=False)
+
+    class Meta(object):
+        name = _("Info")
+        help_text_template = 'admin/networks/ports/_edit_port_help.html'
 
 
 class UpdatePortInfo(project_workflow.UpdatePortInfo):
@@ -60,7 +90,7 @@ class UpdatePortInfo(project_workflow.UpdatePortInfo):
 
 
 class UpdatePort(project_workflow.UpdatePort):
-    default_steps = (UpdatePortInfo, )
+    default_steps = (UpdatePortInfo, project_workflow.UpdatePortSecurityGroup)
 
     def get_success_url(self):
         return reverse("horizon:admin:networks:detail",

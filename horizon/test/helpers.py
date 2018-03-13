@@ -16,12 +16,15 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import collections
+import copy
 import logging
 import os
 import socket
 import time
 import unittest
 
+from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import Permission
 from django.contrib.auth.models import User
@@ -32,6 +35,7 @@ from django.core.handlers import wsgi
 from django import http
 from django import test as django_test
 from django.test.client import RequestFactory
+from django.test import utils as django_test_utils
 from django.utils.encoding import force_text
 import six
 
@@ -55,8 +59,14 @@ except ImportError as e:
     LOG.warning("%s, force WITH_SELENIUM=False", e)
     os.environ['WITH_SELENIUM'] = ''
 
-
-from mox3 import mox
+# As of Rocky, we are in the process of removing mox usage.
+# To allow mox-free horizon plugins to consume the test helper,
+# mox import is now optional. If tests depends on mox,
+# mox (or mox3) must be declared in test-requirements.txt.
+try:
+    from mox3 import mox
+except ImportError:
+    pass
 
 from horizon import middleware
 
@@ -117,20 +127,30 @@ class RequestFactoryWithMessages(RequestFactory):
 class TestCase(django_test.TestCase):
     """Base test case class for Horizon with numerous additional features.
 
-      * The ``mox`` mocking framework via ``self.mox``.
+      * The ``mox`` mocking framework via ``self.mox``
+        if ``use_mox`` attribute is set to True.
+        Note that ``use_mox`` defaults to False.
       * A ``RequestFactory`` class which supports Django's ``contrib.messages``
         framework via ``self.factory``.
       * A ready-to-go request object via ``self.request``.
     """
+
+    use_mox = False
+
     def setUp(self):
         super(TestCase, self).setUp()
-        self.mox = mox.Mox()
+        if self.use_mox:
+            self.mox = mox.Mox()
         self._setup_test_data()
         self._setup_factory()
         self._setup_user()
         self._setup_request()
-        middleware.HorizonMiddleware().process_request(self.request)
-        AuthenticationMiddleware().process_request(self.request)
+        # A dummy get_response function (which is not callable) is passed
+        # because middlewares below are used only to populate request attrs.
+        middleware.HorizonMiddleware('dummy_get_response') \
+            .process_request(self.request)
+        AuthenticationMiddleware('dummy_get_response') \
+            .process_request(self.request)
         os.environ["HORIZON_TEST_RUN"] = "True"
 
     def _setup_test_data(self):
@@ -149,8 +169,9 @@ class TestCase(django_test.TestCase):
 
     def tearDown(self):
         super(TestCase, self).tearDown()
-        self.mox.UnsetStubs()
-        self.mox.VerifyAll()
+        if self.use_mox:
+            self.mox.UnsetStubs()
+            self.mox.VerifyAll()
         del os.environ["HORIZON_TEST_RUN"]
 
     def set_permissions(self, permissions=None):
@@ -314,3 +335,28 @@ class JasmineTests(SeleniumTestCase):
         if self.__class__ == JasmineTests:
             return
         self.run_jasmine()
+
+
+class update_settings(django_test_utils.override_settings):
+    """override_settings which allows override an item in dict.
+
+    django original override_settings replaces a dict completely,
+    however OpenStack dashboard setting has many dictionary configuration
+    and there are test case where we want to override only one item in
+    a dictionary and keep other items in the dictionary.
+    This version of override_settings allows this if keep_dict is True.
+
+    If keep_dict False is specified, the original behavior of
+    Django override_settings is used.
+    """
+
+    def __init__(self, keep_dict=True, **kwargs):
+        if keep_dict:
+            for key, new_value in kwargs.items():
+                value = getattr(settings, key, None)
+                if (isinstance(new_value, collections.Mapping) and
+                        isinstance(value, collections.Mapping)):
+                    copied = copy.copy(value)
+                    copied.update(new_value)
+                    kwargs[key] = copied
+        super(update_settings, self).__init__(**kwargs)

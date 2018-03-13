@@ -12,7 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.core import urlresolvers
+from django import urls
 from django.utils.translation import string_concat
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
@@ -52,8 +52,8 @@ class DeleteKeyPairs(tables.DeleteAction):
 class QuotaKeypairMixin(object):
     def allowed(self, request, datum=None):
         usages = quotas.tenant_quota_usages(request, targets=('key_pairs', ))
-        count = len(self.table.data)
-        if (usages.get('key_pairs') and usages['key_pairs']['quota'] <= count):
+        usages.tally('key_pairs', len(self.table.data))
+        if usages['key_pairs']['available'] <= 0:
             if "disabled" not in self.classes:
                 self.classes = [c for c in self.classes] + ['disabled']
                 self.verbose_name = string_concat(self.verbose_name, ' ',
@@ -88,7 +88,7 @@ class CreateLinkNG(QuotaKeypairMixin, tables.LinkAction):
     policy_rules = (("compute", "os_compute_api:os-keypairs:create"),)
 
     def get_default_attrs(self):
-        url = urlresolvers.reverse(self.url)
+        url = urls.reverse(self.url)
         ngclick = "modal.createKeyPair({ successUrl: '%s' })" % url
         self.attrs.update({
             'ng-controller': 'KeypairController as modal',

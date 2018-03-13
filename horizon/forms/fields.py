@@ -21,12 +21,12 @@ import six
 from oslo_utils import uuidutils
 
 from django.core.exceptions import ValidationError
-from django.core import urlresolvers
 from django.forms import fields
 from django.forms import forms
 from django.forms.utils import flatatt
 from django.forms import widgets
 from django.template.loader import get_template
+from django import urls
 from django.utils.encoding import force_text
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import Promise
@@ -236,7 +236,7 @@ class SelectWidget(widgets.Widget):
         return mark_safe('\n'.join(output))
 
     def build_attrs(self, extra_attrs=None, **kwargs):
-        "Helper function for building an attribute dictionary."
+        """Helper function for building an attribute dictionary."""
         attrs = dict(self.attrs, **kwargs)
         if extra_attrs:
             attrs.update(extra_attrs)
@@ -364,11 +364,11 @@ class DynamicSelectWidget(SelectWidget):
             return self.add_item_link()
         try:
             if self.add_item_link_args:
-                return urlresolvers.reverse(self.add_item_link,
-                                            args=self.add_item_link_args)
+                return urls.reverse(self.add_item_link,
+                                    args=self.add_item_link_args)
             else:
-                return urlresolvers.reverse(self.add_item_link)
-        except urlresolvers.NoReverseMatch:
+                return urls.reverse(self.add_item_link)
+        except urls.NoReverseMatch:
             return self.add_item_link
 
 

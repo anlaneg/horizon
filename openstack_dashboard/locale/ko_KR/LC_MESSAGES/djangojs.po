@@ -10,19 +10,25 @@
 # Wonil Choi <wonil0522@gmail.com>, 2017. #zanata
 # YoungKyun Kim <chancethecoder@gmail.com>, 2017. #zanata
 # minwook-shin <minwook0106@gmail.com>, 2017. #zanata
+# ByungYeol Woo <wby1089@gmail.com>, 2018. #zanata
+# Ian Y. Choi <ianyrchoi@gmail.com>, 2018. #zanata
+# Jaewook Oh <kyle.oh95@gmail.com>, 2018. #zanata
+# Sungjin Kang <gang.sungjin@gmail.com>, 2018. #zanata
+# Wonil Choi <wonil0522@gmail.com>, 2018. #zanata
+# minwook-shin <minwook0106@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev124\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-09-21 04:56+0000\n"
+"POT-Creation-Date: 2018-03-09 17:54+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-08-03 03:39+0000\n"
-"Last-Translator: Sungjin Kang <gang.sungjin@gmail.com>\n"
+"PO-Revision-Date: 2018-03-10 06:21+0000\n"
+"Last-Translator: Jaewook Oh <kyle.oh95@gmail.com>\n"
 "Language-Team: Korean (South Korea)\n"
-"Language: ko-KR\n"
-"X-Generator: Zanata 3.9.6\n"
+"Language: ko_KR\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 msgid "#"
@@ -99,47 +105,41 @@ msgstr ""
 "지 않습니다. 인스턴스 삭제 시 해당 볼륨을 삭제하도록 선택할 수 있습니다. <em>"
 "알림: 볼륨 선택 시 하나의 인스턴스에서만 실행할 수 있습니다.</em>"
 
+msgid "<small>This line of text is meant to be treated as fine print.</small>"
+msgstr "<small>이 줄의 글자는 작은 글자로 출력됩니다.</small>"
+
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Heads up!</strong>\n"
+"<strong>Heads up!</strong>\n"
 "           This\n"
 "          <a href=\"#\" class=\"alert-link\">alert needs your attention</"
 "a>,\n"
 "           but it's not super important."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>조심하십시오!</strong>\n"
+"<strong>조심하십시오!</strong>\n"
 "           해당\n"
 "          <a href=\"#\" class=\"alert-link\">경보는 주의를 필요로 합니다</"
 "a>,\n"
 "           그러나 매우 중요하지는 않습니다."
 
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Oh snap!</strong>\n"
+"<strong>Oh snap!</strong>\n"
 "          <a href=\"#\" class=\"alert-link\">Change a few things up</a>\n"
 "          and try submitting again."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>오 이런!</strong>\n"
+" <strong>오 이런!</strong>\n"
 "          <a href=\"#\" class=\"alert-link\">몇 가지 사항을 변경하였으며</"
 "a>\n"
 "          따라서 다시 제출을 시도합니다."
 
 msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Well done!</strong>\n"
+"<strong>Well done!</strong>\n"
 "          You successfully read\n"
 "          <a href=\"#\" class=\"alert-link\">this important alert message</"
 "a>."
 msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>훌륭합니다!</strong>\n"
+"<strong>훌륭합니다!</strong>\n"
 "          <a href=\"#\" class=\"alert-link\">이 중요한 경보 메시지를</a>\n"
 "          성공적으로 읽었습니다."
-
-msgid "<small>This line of text is meant to be treated as fine print.</small>"
-msgstr "<small>This line of text is meant to be treated as fine print.</small>"
 
 msgid "A Confirmation Dialog"
 msgstr "확인 대화 상자"
@@ -270,6 +270,9 @@ msgstr "인터페이스 추가"
 msgid "Add Ons, Required and Feedback"
 msgstr "애드온, 필수, 피드백"
 
+msgid "Admin Password"
+msgstr "관리자 비밀번호"
+
 msgid "Admin State"
 msgstr "관리자 상태"
 
@@ -290,6 +293,15 @@ msgstr "관리자는 인스턴스에 연결하여 사용할 floating IP 풀을 �
 
 msgid "Alerts"
 msgstr "Alerts"
+
+msgid ""
+"Also note that segmentation details may be mandatory\n"
+"  or optional depending on the backend. Notably Ironic may provide\n"
+"  segmentation details instead of the user."
+msgstr ""
+"또한 참고로 세그멘테이션 세부 사항은 백엔드에 따라\n"
+"  필수 또는 선택일 수 있습니다. 분명한 것은 Ironic은 세그멘테이션\n"
+"  세부 사항을 사용자 대신 제공할 수 있다는 것입니다."
 
 msgid "Amount of RAM in MB that is required to boot the image."
 msgstr "이미지를 부팅하는 데 필요한 RAM (MB)"
@@ -327,6 +339,23 @@ msgstr ""
 "두 가지 디스크 파티션 옵션이 있습니다. <b>자동</b>으로 선택하면 디스크 크기"
 "를 재조정하여 단일 파티션으로 설정합니다. <b>수동</b>으로 선택하면 해당 디스"
 "크에 여러 파티션을 생성할 수 있습니다."
+
+msgid ""
+"An arbitrary amount (0, 1, 2, ...) of regular Neutron\n"
+"  ports with segmentation details (ie. type and ID). May be provided\n"
+"  when the trunk is created. Also may be attached or detached later\n"
+"  during the trunk's (and the instance's) life."
+msgstr ""
+"세그멘테이션 세부 사항 (즉, 유형 및 ID)이 있는\n"
+"  정규 Neutron 포트에 대한 임의의 양 (0, 1, 2, ...). 트렁크가 생성될\n"
+"  때 제공 될 수 있습니다. 또한 트렁크 (및 인스턴스)의  수명 동안\n"
+"  연결하거나 나중에 분리할 수 있습니다."
+
+msgid "An arbitrary description for the trunk."
+msgstr "트렁크에 대한 가상 설명입니다."
+
+msgid "An arbitrary name for the trunk. May not be unique."
+msgstr "트렁크 이름에 대한 가상 이름입니다. 유일하지 않아도 됩니다."
 
 msgid "An external (HTTP) URL is required"
 msgstr "외부 (HTTP) URL이 필요합니다"
@@ -446,6 +475,12 @@ msgstr "Keystone으로부터 서비스 카탈로그를 가져오지 못했습니
 msgid "Cannot get the extension list."
 msgstr "확장 목록을 가져오지 못했습니다."
 
+msgid "Change Password"
+msgstr "비밀번호 변경"
+
+msgid "Change user's password. We highly recommend you create a strong one."
+msgstr "사용자 암호를 변경합니다. 강한 사용자 암호를 만드는 것이 중요합니다."
+
 msgid "Charts"
 msgstr "차트"
 
@@ -459,7 +494,7 @@ msgstr ""
 "에 붙어 메타데이터를 액세스합니다."
 
 msgid "Checkbox"
-msgstr "체크박스"
+msgstr "Checkbox"
 
 msgid "Checking if this name is used..."
 msgstr "이름이 이미 사용중인지 검사합니다."
@@ -514,6 +549,10 @@ msgid "Confirm Delete Image"
 msgid_plural "Confirm Delete Images"
 msgstr[0] "삭제 이미지 확인"
 
+msgid "Confirm Delete Key Pair"
+msgid_plural "Confirm Delete Key Pairs"
+msgstr[0] "키 페어 삭제 확인"
+
 msgid "Confirm Delete Role"
 msgid_plural "Confirm Delete Roles"
 msgstr[0] "역활 삭제 확인"
@@ -521,6 +560,10 @@ msgstr[0] "역활 삭제 확인"
 msgid "Confirm Delete Trunk"
 msgid_plural "Confirm Delete Trunks"
 msgstr[0] "Trunk 삭제 확인"
+
+msgid "Confirm Delete User"
+msgid_plural "Confirm Delete Users"
+msgstr[0] "사용자 삭제 확인"
 
 msgid "Connecting"
 msgstr "연결중"
@@ -589,7 +632,7 @@ msgid "Create Image"
 msgstr "이미지 생성"
 
 msgid "Create Key Pair"
-msgstr "캐 페어 생성"
+msgstr "키 페어 생성"
 
 msgid "Create Keypair"
 msgstr "키 페어 생성"
@@ -603,8 +646,19 @@ msgstr "역할 생성"
 msgid "Create Subnet"
 msgstr "서브넷 생성"
 
+msgid "Create Trunk"
+msgstr "트렁크 생성"
+
+msgid "Create User"
+msgstr "사용자 생성"
+
 msgid "Create Volume"
 msgstr "볼륨 생성"
+
+msgid ""
+"Create a new user and set related properties including the Primary Project "
+"and Role."
+msgstr "새 사용자를 생성하고 기본 프로젝트와 역할을 포함한 속성을 설정합니다."
 
 msgid "Created"
 msgstr "생성 완료"
@@ -635,6 +689,9 @@ msgstr ""
 "어, 게스트 OS에 <samp>cloud-init</samp>를 설치하지 않았을 경우, 사용자 스크립"
 "트를 이용하여 공개키를 가져오고, 새로운 사용자를 등록할 수 있습니다."
 
+msgid "Customization Script"
+msgstr "사용자 정의 스크립트"
+
 msgid "DNS Domain"
 msgstr "DNS 도메인"
 
@@ -654,10 +711,10 @@ msgid "Danger"
 msgstr "Danger"
 
 msgid "Danger Anchor"
-msgstr "위험 앵커"
+msgstr "Danger Anchor"
 
 msgid "Danger Button"
-msgstr "위험 버튼"
+msgstr "Danger Button"
 
 msgid "Data"
 msgstr "Data"
@@ -669,7 +726,7 @@ msgid "Date Created"
 msgstr "생성된 날짜"
 
 msgid "Datepicker"
-msgstr "날짜 선택기"
+msgstr "Datepicker"
 
 msgid "Datetime"
 msgstr "Datetime"
@@ -681,10 +738,10 @@ msgid "Default"
 msgstr "Default"
 
 msgid "Default Anchor"
-msgstr "디폴트 앵커"
+msgstr "Default Anchor"
 
 msgid "Default Button"
-msgstr "디폴트 버튼"
+msgstr "Default Button"
 
 msgid "Default button"
 msgstr "Default button"
@@ -692,8 +749,14 @@ msgstr "Default button"
 msgid "Default input"
 msgstr "기본 입력"
 
+msgid "Default: Empty string"
+msgstr "디폴트: 빈 문자열"
+
+msgid "Default: Enabled"
+msgstr "기본: 활성화됨"
+
 msgid "Definition list"
-msgstr "정의 목록"
+msgstr "Definition list"
 
 msgid "Degraded"
 msgstr "감소됨"
@@ -727,6 +790,13 @@ msgstr "인스턴스 삭제"
 msgid "Delete Interface"
 msgstr "인터페이스 삭제"
 
+msgid "Delete Key Pair"
+msgid_plural "Delete Key Pairs"
+msgstr[0] "키 페어 삭제"
+
+msgid "Delete Key Pairs"
+msgstr "키 페어 삭제"
+
 msgid "Delete Network"
 msgstr "네트워크 삭제"
 
@@ -750,6 +820,13 @@ msgstr[0] "Trunk 삭제"
 msgid "Delete Trunks"
 msgstr "Trunks 삭제"
 
+msgid "Delete User"
+msgid_plural "Delete Users"
+msgstr[0] "사용자 삭제"
+
+msgid "Delete Users"
+msgstr "사용자 삭제"
+
 msgid "Delete Volume on Instance Delete"
 msgstr "인스턴스 삭제시 볼륨 삭제"
 
@@ -767,6 +844,11 @@ msgid_plural "Deleted Images: %s."
 msgstr[0] "이미지 삭제됨: %s"
 
 #, python-format
+msgid "Deleted Key Pair: %s."
+msgid_plural "Deleted Key Pairs: %s."
+msgstr[0] "삭제된 키 페어: %s."
+
+#, python-format
 msgid "Deleted Role: %s."
 msgid_plural "Deleted Roles: %s."
 msgstr[0] "역할 삭제됨: %s"
@@ -775,6 +857,11 @@ msgstr[0] "역할 삭제됨: %s"
 msgid "Deleted Trunk: %s."
 msgid_plural "Deleted Trunks: %s."
 msgstr[0] "Trunk 삭제: %s"
+
+#, python-format
+msgid "Deleted User: %s."
+msgid_plural "Deleted Users: %s."
+msgstr[0] "사용자 삭제됨: %s."
 
 msgid "Deleting"
 msgstr "삭제 중"
@@ -786,7 +873,7 @@ msgid "Description"
 msgstr "설명"
 
 msgid "Description lists"
-msgstr "설명 목록"
+msgstr "Description lists"
 
 msgid "Details"
 msgstr "세부 정보"
@@ -794,8 +881,14 @@ msgstr "세부 정보"
 msgid "Details Views:"
 msgstr "세부사항 뷰:"
 
+msgid "Device ID"
+msgstr "장치 ID"
+
 msgid "Device Name"
 msgstr "장치 이름"
+
+msgid "Device Owner"
+msgstr "장치 소유자"
 
 msgid "Dialogs"
 msgstr "Dialogs"
@@ -808,6 +901,9 @@ msgstr "Direct Physical"
 
 msgid "Direction"
 msgstr "방향"
+
+msgid "Disable User"
+msgstr "사용자 비활성화"
 
 msgid "Disabled"
 msgstr "Disabled"
@@ -831,10 +927,13 @@ msgid "Docker"
 msgstr "Docker"
 
 msgid "Domain"
-msgstr "도메인"
+msgstr "도매인"
 
 msgid "Domain ID"
 msgstr "도메인 ID"
+
+msgid "Domain Id"
+msgstr "도메인 Id"
 
 msgid "Domain Name"
 msgstr "도메인 이름"
@@ -852,7 +951,7 @@ msgid "Download"
 msgstr "다운로드"
 
 msgid "Dropdown"
-msgstr "드롭다운"
+msgstr "Dropdown"
 
 msgid "Dropdown header"
 msgstr "Dropdown header"
@@ -861,7 +960,7 @@ msgid "Dropdown link"
 msgstr "Dropdown link"
 
 msgid "Dropup"
-msgstr "드롭업"
+msgstr "Dropup"
 
 msgid "Edit"
 msgstr "편집"
@@ -878,11 +977,26 @@ msgstr "이미지 편집"
 msgid "Edit Role"
 msgstr "역할 편집"
 
+msgid "Edit Trunk"
+msgstr "트렁크 편집"
+
+msgid "Edit User"
+msgstr "사용자 수정"
+
+msgid "Edit the user's details, including the Primary Project."
+msgstr "주 프로젝트를 포함하여 사용자 세부 정보를 수정하세요."
+
 msgid "Email"
 msgstr "Email"
 
 msgid "Emphasis classes"
 msgstr "Emphasis classes"
+
+msgid "Enable User"
+msgstr "사용자 활성화"
+
+msgid "Enable/Disable subport addition, removal and trunk delete."
+msgstr "Subport 추가, 삭제와 trunk 삭제 활성화/비활성화"
 
 msgid "Enabled"
 msgstr "활성화"
@@ -910,6 +1024,13 @@ msgstr "삭제 중 에러"
 
 msgid "Ether Type"
 msgstr "Ether 유형"
+
+msgid ""
+"Exactly one regular Neutron port. Has to be provided when\n"
+"  the trunk is created. Cannot be changed during the trunk's life."
+msgstr ""
+"정확한 정규 Neutron 포트 하나. Trunk 생성시 제공되어야합니다.\n"
+"  trunk가 살아있는 동안 변경할 수 없습니다."
 
 msgid "Example body text"
 msgstr "Example body text"
@@ -978,6 +1099,19 @@ msgstr "%(name)s 폴더가 생성디었습니다."
 msgid "Folder Name"
 msgstr "폴더 이름"
 
+msgid ""
+"For ports on provider networks you may choose the special\n"
+"  segmentation type <em>inherit</em>. Then the subport's segmentation\n"
+"  type and ID will be automagically inherited from the provider network's\n"
+"  segmentation type and ID. This is useful when the switch is incapable of\n"
+"  remapping (tag pop-push) for example as usual for Ironic instances."
+msgstr ""
+"프로바이더 네트워크의 포트의 경우 특별한 세그멘테이션\n"
+"  유형인 <em>inherit</em>을 선택할 수 있습니다. 그 후 하위 포트의\n"
+"  세그멘테이션 유형과 ID는 자동적으로 프로바이더 네트워크의\n"
+"  세그멘테이션 유형과 ID에서 상속됩니다. 이는 스위치가 Ironic 인스턴스처럼\n"
+"  재매핑 (태그 pop-push)를 할 수 없을 때 유용합니다."
+
 msgid "Form"
 msgstr "Form"
 
@@ -1040,7 +1174,7 @@ msgid "Home"
 msgstr "Home"
 
 msgid "Horizontal Definition List"
-msgstr "가로(Horizontal) 표시 정의 목록"
+msgstr "Horizontal Definition List"
 
 msgid "Host ID"
 msgstr "호스트 ID"
@@ -1162,6 +1296,9 @@ msgstr "설정된 quota를 넘을 수 없습니다"
 msgid "Import Key Pair"
 msgstr "키 페어 등록"
 
+msgid "Import Public Key"
+msgstr "공개 키 가져오기"
+
 msgid "Indicators"
 msgstr "Indicators"
 
@@ -1169,16 +1306,16 @@ msgid "Info"
 msgstr "Info"
 
 msgid "Info Anchor"
-msgstr "정보 앵커"
+msgstr "Info Anchor"
 
 msgid "Info Button"
-msgstr "정보 버튼"
+msgstr "Info Button"
 
 msgid "Inline"
-msgstr "인라인"
+msgstr "Inline"
 
 msgid "Inline Form"
-msgstr "인라인 Form"
+msgstr "Inline Form"
 
 msgid "Input Sizes"
 msgstr "입력 크기"
@@ -1197,6 +1334,28 @@ msgstr "입력 성공"
 
 msgid "Input warning"
 msgstr "입력 경고"
+
+msgid ""
+"Inside the instance a particular subport's network will\n"
+"  be presented as tagged frames transmitted and received on the vNIC\n"
+"  belonging to the parent port. The cloud user may control the tagging\n"
+"  by setting the <em>segmentation type</em> and <em>segmentation ID</em>\n"
+"  of the subport."
+msgstr ""
+"인스턴스 내에서 특정 하위 포트의 네트워크는\n"
+"  상위 포트에 속해있는 vNIC에서 전송되고 수신되는\n"
+"  태그된 프래임으로 표시됩니다. 클라우드 사용자는 \n"
+"  하위 포트의  <em>segmentation type</em> 과 <em>segmentation ID</em>\n"
+"  을 설정함으로서 태깅을 제어할 수 있습니다."
+
+msgid ""
+"Inside the instance the parent port's network will always\n"
+"  be presented as the untagged network. It will be available early from\n"
+"  the moment of bootup."
+msgstr ""
+"인스턴스 내부에서 부모 포트에 해당하는 네트워크는 항상\n"
+"  태깅이 되어 있지 않은 네트워크로 보여질 것입니다. 부트업되는 초창기\n"
+"  시점부터 사용 가능합니다."
 
 msgid "Instance"
 msgstr "인스턴스"
@@ -1249,13 +1408,6 @@ msgstr "키 페어"
 msgid "Key Pair Name"
 msgstr "키 페어 이름"
 
-msgid ""
-"Key Pair Name\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-msgstr ""
-"키 페어 이름\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-
 msgid "Key Pairs"
 msgstr "키 페어"
 
@@ -1278,6 +1430,32 @@ msgstr ""
 "      인증에 사용할 키 쌍 이름을 선택합니다.\n"
 "      이름에는 알파벳, 숫자, 공백, 대시를 포함할 수 있습니다."
 
+msgid ""
+"Key Pairs are how you login to your instance after it is launched.\n"
+"  Choose a key pair name you will recognize and paste your SSH public key "
+"into the\n"
+"  space provided."
+msgstr ""
+"키 페어는 인스턴스가 구동된 후 로그인하는 방법에 대한 것입니다.\n"
+" 인식하고자 하는 키 페어 이름을 선택하고 SSH 공개키를 제공된 공간에\n"
+" 붙여넣기합니다."
+
+msgid ""
+"Key Pairs are how you login to your instance after it is launched.\n"
+"  Choose a key pair name you will recognize.\n"
+"  Names may only include alphanumeric characters, spaces, or dashes."
+msgstr ""
+"키 페어는 인스턴스가 실행되었을때 로그인할 수 있는 방법입니다.\n"
+"  인증에 사용할 키 쌍 이름을 선택합니다.\n"
+"  이름에는 알파벳, 숫자, 공백, 대시를 포함할 수 있습니다."
+
+#, python-format
+msgid "Key pair %(name)s was successfully created."
+msgstr "키 페어 %(name)s 를 성공적으로 생성하였습니다."
+
+msgid "Key pair already exists."
+msgstr "키 페어가 이미 존재합니다."
+
 msgid "Keypair already exists or name contains bad characters."
 msgstr "키 페어가 이미 있거나 이름에 잘못된 문자가 포함되어 있습니다."
 
@@ -1285,7 +1463,7 @@ msgid "Killed"
 msgstr "Killed"
 
 msgid "Large Modal"
-msgstr "큰 Modal"
+msgstr "Large Modal"
 
 msgid "Large button"
 msgstr "Large button"
@@ -1345,7 +1523,13 @@ msgid "Load Function:"
 msgstr "기능 로드:"
 
 msgid "Loading"
-msgstr "불러 오는 중"
+msgstr "Loading"
+
+msgid "Loading ports... Please Wait"
+msgstr "포트를 불러오는 중...잠시만 기다려주세요"
+
+msgid "Loading trunk... Please Wait"
+msgstr "Trunk 불러오는중... 잠시만 기다려주세요."
 
 msgid "Location"
 msgstr "위치"
@@ -1358,6 +1542,9 @@ msgstr "Look, I'm in a small well!"
 
 msgid "Look, I'm in a well!"
 msgstr "Look, I'm in a well!"
+
+msgid "MAC Address"
+msgstr "MAC 주소"
 
 msgid "MacVTap"
 msgstr "MacVTap"
@@ -1461,8 +1648,18 @@ msgstr "모델"
 msgid "Month"
 msgstr "Month"
 
+msgid ""
+"Must not be the parent or a subport of any other\n"
+"  trunks."
+msgstr ""
+"반드시 다른 trunk 의 subport나 parent port가\n"
+" 아니어야 합니다."
+
 msgid "Name"
 msgstr "이름"
+
+msgid "Name/ID"
+msgstr "이름/ID"
 
 msgid "Names:"
 msgstr "이름:"
@@ -1509,6 +1706,15 @@ msgstr "네트워크 특징"
 msgid "Networks"
 msgstr "네트워크"
 
+msgid ""
+"Networks of subports may become available later than the\n"
+"  moment of bootup. But they will be available after the trunk reached\n"
+"  the <em>ACTIVE</em> status."
+msgstr ""
+"하위 포트의 네트워크는 부팅 이후에 사용 가능합니다.\n"
+"  그러나 트렁크가 <em>ACTIVE</em> 상태가 되어야만\n"
+"  사용할 수 있습니다."
+
 msgid "Networks provide the communication channels for instances in the cloud."
 msgstr "네트워크는 클라우드 내 인스턴스에 대한 통신 채널을 제공합니다."
 
@@ -1539,6 +1745,11 @@ msgstr "기존 스케줄러 힌트가 없습니다."
 msgid "No items to display."
 msgstr "표시할 항목이 없습니다."
 
+msgid ""
+"No subport can be the parent or a subport of any other\n"
+"  trunks."
+msgstr "서브포트는 다른 trunk에 대한 부모 또는 서브포트일 수 없습니다."
+
 msgid "None"
 msgstr "None"
 
@@ -1550,6 +1761,26 @@ msgstr "설정되지 않음"
 
 msgid "Not public"
 msgstr "공개되지 않음"
+
+msgid ""
+"Note that most guest operating systems will not\n"
+"  automatically configure and bring up the VLAN subinterfaces belonging\n"
+"  to subports. You may have to do that yourself. For example:"
+msgstr ""
+"대부분의 게스트 OS는 자동적으로 하위포트에 속한\n"
+"  VLAN 서브인터페이스를 설정하거나 동작시키지 않음을 유의하세요.\n"
+"  직접 수행해야 합니다. 예시:"
+
+msgid ""
+"Note that some Neutron backends (notably the Open vSwitch\n"
+"  based backend) only allow trunk creation before an instance is launched\n"
+"  on the parent port.  Other backends may allow trunk creation at any\n"
+"  time during the life of a port."
+msgstr ""
+"어떤 Neutron backend (유명한 Open vSwitch 기반 backend)는\n"
+"오직 인스턴스 실행 전에만 parent port에 대한 trunk 생성이 가능하다는\n"
+"점에 주의하세요. 다른 backend는 포트 존재시 아무때나 trunk 생성이\n"
+"가능합니다."
 
 msgid ""
 "Note: Delimiters ('{$ ctrl.model.DELIMETER $}') are allowed in the\n"
@@ -1581,7 +1812,7 @@ msgid "OVA - Open Virtual Appliance"
 msgstr "OVA - 오픈 가상 어플라이언스 (Open Virtual Appliance)"
 
 msgid "Object"
-msgstr "오브젝트"
+msgstr "Object"
 
 msgid "Object Count"
 msgstr "오브젝트 카운트"
@@ -1590,7 +1821,7 @@ msgid "Object Details"
 msgstr "오브젝트 세부 정보"
 
 msgid "Objects"
-msgstr "오브젝트들"
+msgstr "Objects"
 
 msgid "Ok"
 msgstr "Ok"
@@ -1599,22 +1830,22 @@ msgid "Older"
 msgstr "Older"
 
 msgid "One fine body…"
-msgstr "일반 body…"
+msgstr "One fine body…"
 
 msgid "One large body…"
-msgstr "큰 body…"
+msgstr "One large body…"
 
 msgid "One more separated link"
 msgstr "One more separated link"
 
 msgid "One small body…"
-msgstr "작은 body…"
+msgstr "One small body…"
 
 msgid "One super large body…"
-msgstr "매우 큰 body…"
+msgstr "One super large body…"
 
 msgid "One tiny body…"
-msgstr "매우 작은 body…"
+msgstr "One tiny body…"
 
 msgid "Open"
 msgstr "열림"
@@ -1629,13 +1860,13 @@ msgid "Option two can be something else"
 msgstr "옵션 2는 다른 것을 할 수 있습니다"
 
 msgid "Ordered"
-msgstr "정렬됨"
+msgstr "Ordered"
 
 msgid "Other Input Types"
 msgstr "Other Input Types"
 
 msgid "Other lists"
-msgstr "다른 목록"
+msgstr "Other lists"
 
 msgid "Overview"
 msgstr "개요"
@@ -1686,6 +1917,9 @@ msgid "Panels"
 msgstr "Panels"
 
 msgid "Parent Port"
+msgstr "Parent Port"
+
+msgid "Parent port"
 msgstr "Parent Port"
 
 msgid "Password"
@@ -1752,10 +1986,13 @@ msgid "Primary"
 msgstr "Primary"
 
 msgid "Primary Anchor"
-msgstr "주 앵커"
+msgstr "Primary Anchor"
 
 msgid "Primary Button"
-msgstr "주 버튼"
+msgstr "Primary Button"
+
+msgid "Primary Project"
+msgstr "주요  프로젝트"
 
 msgid "Primary Project ID"
 msgstr "주 프로젝트 ID"
@@ -1799,6 +2036,9 @@ msgstr "보호됨"
 
 msgid "Protocol"
 msgstr "프로토콜"
+
+msgid "Provide basic properties of the trunk to be created. All optional."
+msgstr "생성될 trunk 기본 속성을 제공합니다. 모두 선택가능합니다."
 
 msgid "Provider Network"
 msgstr "프로바이더 네트워크"
@@ -1957,8 +2197,18 @@ msgstr ""
 msgid "Segmentation ID"
 msgstr "구분 ID"
 
+msgid "Segmentation Id"
+msgstr "구분 Id"
+
 msgid "Segmentation Type"
 msgstr "구분 유형"
+
+msgid ""
+"Select <em>exactly one port</em> as the parent port of the trunk to\n"
+"    be created. Mandatory."
+msgstr ""
+"트렁크로 생성되어야 하는 부모 포트를 <em>정확히 하나</em>\n"
+"  선택합니다. 필수."
 
 msgid "Select Boot Source"
 msgstr "부팅 소스 선택"
@@ -1967,7 +2217,7 @@ msgid "Select Example"
 msgstr "예제 선택"
 
 msgid "Select Title"
-msgstr "제목 선택"
+msgstr "Select Title"
 
 msgid "Select a container to browse."
 msgstr "보여줄 컨테이너를 선택합니다."
@@ -1981,11 +2231,29 @@ msgstr "아래에서 사용 가능한 서버 그룹을 선택합니다."
 msgid "Select a source from those listed below."
 msgstr "아래 목록에서 소스를 선택합니다."
 
+msgid ""
+"Select an <em>arbitrary amount of ports (0, 1, 2, ...)</em> and their\n"
+"    segmentation details as the subports of the trunk to be created.\n"
+"    Optional."
+msgstr ""
+"<em>임의의 포트 개수 (0, 1, 2, ...)</em> 및 세그멘테이션 세부\n"
+"    사항을 생성되어야 하는 트렁크에 대한 서브포트로 선택합니다.\n"
+"    선택."
+
 msgid "Select an item from Available items below"
 msgstr "아래에서 사용 가능한 항목에서 선택"
 
 msgid "Select at least one network"
 msgstr "적어도 하나 이상 네트워크를 선택합니다."
+
+msgid "Select from the list of available ports below."
+msgstr "아래 사용 가능한 포트에서 선택하세요."
+
+msgid "Select items from Available items below"
+msgstr "아래에서 사용 가능한 항목에서 선택"
+
+msgid "Select many"
+msgstr "여러 개 선택"
 
 msgid "Select networks from those listed below."
 msgstr "아래의 목록에서 네트워크를 선택합니다."
@@ -2082,7 +2350,7 @@ msgid "Size (GiB)"
 msgstr "크기 (GiB)"
 
 msgid "Small Modal"
-msgstr "작은 Modal"
+msgstr "Small Modal"
 
 msgid "Small button"
 msgstr "Small button"
@@ -2094,10 +2362,13 @@ msgid "Snapshot"
 msgstr "스냅샷"
 
 msgid "Someone famous in"
-msgstr "어떤 것으로 유명한"
+msgstr "Someone famous in"
 
 msgid "Something else here"
 msgstr "Something else here"
+
+msgid "Something wrong to change password."
+msgstr "비밀번호를 변경하는 과정에서 무엇인가 잘못되었습니다."
 
 msgid "Source"
 msgstr "소스"
@@ -2106,7 +2377,7 @@ msgid "Source Code"
 msgstr "Source Code"
 
 msgid "Source Title"
-msgstr "소스 제목"
+msgstr "Source Title"
 
 msgid "Source Type"
 msgstr "소스 유형"
@@ -2118,7 +2389,7 @@ msgid "Stacked"
 msgstr "Stacked"
 
 msgid "Standard Modal"
-msgstr "일반 Modal"
+msgstr "Standard Modal"
 
 msgid "Standard Table"
 msgstr "Standard Table"
@@ -2144,6 +2415,9 @@ msgstr "서브넷 특징"
 
 msgid "Subport Count"
 msgstr "서브넷 개수"
+
+msgid "Subports"
+msgstr "서브포트"
 
 msgid "Success"
 msgstr "Success"
@@ -2206,6 +2480,9 @@ msgstr "Textarea"
 msgid "The access permission for the image."
 msgstr "이미지 액세스 권한"
 
+msgid "The admin password is incorrect."
+msgstr "관리자 암호가 잘못되었습니다."
+
 msgid "The architecture of the image."
 msgstr "이미지 아키텍처"
 
@@ -2240,12 +2517,11 @@ msgstr ""
 "우, <b>Available</b> 테이블에 노란색 경고 아이콘이 생성됩니다."
 
 msgid "The following snippet of text is <em>rendered as italicized text</em>."
-msgstr "The following snippet of text is <em>rendered as italicized text</em>."
+msgstr "이 글자 조각은 <em>기울인 글자로 렌더링 됩니다</em>."
 
 msgid ""
 "The following snippet of text is <strong>rendered as bold text</strong>."
-msgstr ""
-"The following snippet of text is <strong>rendered as bold text</strong>."
+msgstr "이 글자 조각은 <strong>굵은 글자로 렌더링 됩니다</strong>."
 
 #, python-format
 msgid ""
@@ -2288,6 +2564,34 @@ msgstr "볼륨 이름입니다."
 
 msgid "The name of the image."
 msgstr "이미지 이름"
+
+msgid ""
+"The parent port is the port you have to add to the instance\n"
+"  at launch. Do not try to add the trunk or any of the subports to the\n"
+"  instance directly."
+msgstr ""
+"상위 포트는 인스턴스 실행시 추가되어야하는 포트입니다.\n"
+"  Trunk나 하위 포트를 인스턴스에 직접 추가하지 마십시오."
+
+msgid ""
+"The segmentation type and ID are decoupled (and\n"
+"  therefore independent) from Neutron's network virtualization\n"
+"  implementation. Different segmentation types will be remapped as frames\n"
+"  leave/enter the instance."
+msgstr ""
+"세그멘테이션 유형과 ID는 뉴트론의 네트워크\n"
+"  가상화 구현에서 분리 (따라서 독립적임) 됩니다.\n"
+"  다른 세그멘테이션 유형은 인스턴스를 오가는\n"
+"  프레임으로서 다시 매핑됩니다."
+
+msgid ""
+"The segmentation type, ID tuples of subports must be unique\n"
+"  (in the scope of a trunk), otherwise networks of subports could not\n"
+"  be distinguished inside the instance."
+msgstr ""
+"세그멘테이션 유형, 하위 포트의 ID 튜플은 (트렁크 범주 내에서)\n"
+"  유일해야 하고, 그렇지 않으면 인스턴스 내에서 하위포트의 네트워크는 \n"
+"  구별될 수 없습니다."
 
 #, python-format
 msgid ""
@@ -2332,22 +2636,29 @@ msgid "The volume size must be at least %(minVolumeSize)s GB"
 msgstr "볼륨 크기는 최소 %(minVolumeSize)s GB여야 합니다."
 
 msgid "Themable Checkbox"
-msgstr "테마 가능한 체크박스"
+msgstr "Themable Checkbox"
 
 msgid "Themable Option 1"
-msgstr "테마 가능한 옵션1 "
+msgstr "Themable Option 1"
 
 msgid "Themable Option 2"
-msgstr "테마 가능한 옵션2"
+msgstr "Themable Option 2"
 
 msgid "Themable Radios"
-msgstr "테마 가능한 라디오"
+msgstr "Themable Radios"
 
 msgid "Themable Selects"
-msgstr "테마 가능한 선택"
+msgstr "Themable Selects"
 
 msgid "There are no Availability Zones."
 msgstr "가용 구역이 없습니다."
+
+msgid ""
+"There are no allowed boot\n"
+"      sources. If you think this is wrong please contact your administrator."
+msgstr ""
+"허용된 부트 소스가 없습니다.\n"
+"      만약 문제가 있다고 생각된다면 관리자에게 문의해주시기 바랍니다."
 
 msgid ""
 "There are two ways to generate a key pair. From a Linux system,\n"
@@ -2362,6 +2673,13 @@ msgid ""
 msgstr ""
 "이 JavaScript 객체는 새 폼을 포함하여 <code>horizon.framework.widgets.form."
 "ModalFormService</code>와 함께 사용할 수 있습니다."
+
+msgid ""
+"This can be simplified by reusing the parent's MAC address\n"
+"  for all subports of the trunk earlier at port creation. Eg.:"
+msgstr ""
+"이는 부모의 MAC 주소를 포트 생성시 트렁크에 대한 모든\n"
+"  서브포트로 재사용하는 식으로 간략화할 수 있습니다. 예:"
 
 msgid ""
 "This command generates a pair of keys: a private key (cloud.key)\n"
@@ -2463,6 +2781,14 @@ msgstr "총합 볼륨"
 msgid "Trunk"
 msgstr "Trunk"
 
+#, python-format
+msgid "Trunk %s was successfully created."
+msgstr "트렁크 %s 를 성공적으로 생성하였습니다."
+
+#, python-format
+msgid "Trunk %s was successfully edited."
+msgstr "트렁크 %s 를 성공적으로 수정했습니다."
+
 msgid "Trunks"
 msgstr "Trunks"
 
@@ -2493,6 +2819,9 @@ msgstr "Floating IP 주소를 연결 할 수 없습니다."
 msgid "Unable to change the container access."
 msgstr "컨테이너 접속을 변경할 수 없습니다."
 
+msgid "Unable to check the Nova service feature."
+msgstr "Nova 서비스 기능을 확인할 수 없습니다."
+
 msgid "Unable to copy the object."
 msgstr "오브젝트를 복사 할 수 없습니다."
 
@@ -2507,6 +2836,9 @@ msgstr "Flavor 생성을 할 수 없습니다."
 
 msgid "Unable to create the folder."
 msgstr "폴더를 생성 할 수 없습니다."
+
+msgid "Unable to create the group."
+msgstr "그룹을 생성할 수 없습니다."
 
 msgid "Unable to create the image."
 msgstr "이미지를 생성하지 못했습니다."
@@ -2532,6 +2864,9 @@ msgstr "서버를 생성하지 못했습니다."
 msgid "Unable to create the subnet."
 msgstr "서브넷을 생성하지 못했습니다."
 
+msgid "Unable to create the trunk."
+msgstr "트렁크를 생성할 수 없습니다."
+
 msgid "Unable to create the user."
 msgstr "사용자를 생성하지 못했습니다."
 
@@ -2549,6 +2884,11 @@ msgid_plural "Unable to delete Images: %s."
 msgstr[0] "이미지를 삭제할 수 없습니다: %s."
 
 #, python-format
+msgid "Unable to delete Key Pair: %s."
+msgid_plural "Unable to delete Key Pairs: %s."
+msgstr[0] "키 페어를 삭제할 수 없습니다: %s."
+
+#, python-format
 msgid "Unable to delete Role: %s."
 msgid_plural "Unable to delete Roles: %s."
 msgstr[0] "역할을 삭제할 수 없습니다: %s"
@@ -2557,6 +2897,11 @@ msgstr[0] "역할을 삭제할 수 없습니다: %s"
 msgid "Unable to delete Trunk: %s."
 msgid_plural "Unable to delete Trunks: %s."
 msgstr[0] "Trunk 삭제하지 못했습니다: %s"
+
+#, python-format
+msgid "Unable to delete User: %s."
+msgid_plural "Unable to delete Users: %s."
+msgstr[0] "사용자를 삭제할 수 없습니다: %s."
 
 msgid "Unable to delete the container."
 msgstr "컨테이너를 삭제할 수 없습니다."
@@ -2574,9 +2919,19 @@ msgstr "ID가 %(id)s인 flavor를 삭제할 수 없습니다"
 msgid "Unable to delete the folder because it is not empty."
 msgstr "비어있지 않은 폴더는 삭제 할 수 없습니다."
 
+msgid "Unable to delete the group."
+msgstr "그룹을 삭제할 수 없습니다."
+
+msgid "Unable to delete the groups."
+msgstr "그룹을 삭제할 수 없습니다."
+
 #, python-format
 msgid "Unable to delete the image with id: %(id)s"
 msgstr "ID가 %(id)s인 이미지를 삭제할 수 없습니다"
+
+#, python-format
+msgid "Unable to delete the keypair with name: %(name)s"
+msgstr "키 페어 이름: %(name)s 를 삭제할 수 없습니다"
 
 msgid "Unable to delete the object."
 msgstr "오브젝트를 삭제 할 수 없습니다."
@@ -2624,6 +2979,9 @@ msgstr "도메인을 수정하지 못했습니다."
 
 msgid "Unable to edit the flavor extra specs."
 msgstr "Flavor 추가 사양을 수정할 수 없습니다."
+
+msgid "Unable to edit the group."
+msgstr "그룹을 편집할 수 없습니다."
 
 msgid "Unable to edit the image custom properties."
 msgstr "이미지 사용자 정의 속성을 수정하지 못했습니다."
@@ -2745,6 +3103,9 @@ msgstr "Cinder 서비스를 찾지 못했습니다."
 msgid "Unable to retrieve the current user session."
 msgstr "현재 사용자 세션을 찾지 못했습니다."
 
+msgid "Unable to retrieve the default domain."
+msgstr "디폴트 도메인을 가져올 수 없습니다."
+
 msgid "Unable to retrieve the default quotas."
 msgstr "기본 쿼터(quota)를 찾지 못했습니다."
 
@@ -2772,8 +3133,8 @@ msgstr "Flavor를 찾지 못했습니다."
 msgid "Unable to retrieve the flavors."
 msgstr "Flavor들을 찾지 못했습니다."
 
-msgid "Unable to retrieve the heat services."
-msgstr "Heat 서비스를 찾지 못했습니다."
+msgid "Unable to retrieve the group."
+msgstr "그룹을 가져올 수 없습니다."
 
 msgid "Unable to retrieve the image custom properties."
 msgstr "이미지 사용자 정의 속성을 찾지 못했습니다."
@@ -2783,6 +3144,9 @@ msgstr "이미지를 찾지 못했습니다."
 
 msgid "Unable to retrieve the images."
 msgstr "이미지를 찾지 못했습니다."
+
+msgid "Unable to retrieve the keypair."
+msgstr "키 페어를 가져올 수 없습니다."
 
 msgid "Unable to retrieve the keypairs."
 msgstr "키 페어들을 찾지 못했습니다."
@@ -2848,6 +3212,9 @@ msgstr "사용자를 찾지 못했습니다."
 msgid "Unable to retrieve the users."
 msgstr "사용자들을 찾지 못했습니다."
 
+msgid "Unable to retrieve the volume availability zones."
+msgstr "볼륨 가용 구역을 찾을 수 없습니다."
+
 msgid "Unable to retrieve the volume metadata."
 msgstr "볼륨 메타데이터를 찾지 못했습니다."
 
@@ -2904,20 +3271,20 @@ msgstr "Flavor 업데이트를 할 수 없습니다."
 msgid "Unable to update the image."
 msgstr "이미지를 업데이트하지 못했습니다."
 
+msgid "Unable to update the trunk."
+msgstr "트렁크를 업데이트할 수 없습니다."
+
 msgid "Unable to upload the object."
 msgstr "오브젝트를 업로드 할 수 없습니다."
-
-msgid "Unable to validate the template."
-msgstr "템플릿 유효성을 확인할 수 없습니다."
 
 msgid "Unknown"
 msgstr "알 수 없음"
 
 msgid "Unordered"
-msgstr "정렬되지 않음"
+msgstr "Unordered"
 
 msgid "Unstyled"
-msgstr "스타일되어있지 않음"
+msgstr "Unstyled"
 
 msgid "Up"
 msgstr "Up"
@@ -3002,8 +3369,30 @@ msgstr ""
 msgid "User"
 msgstr "사용자"
 
+#, python-format
+msgid "User %s was successfully created."
+msgstr "사용자 %s를 성공적으로 생성하였습니다."
+
+#, python-format
+msgid "User %s was successfully disabled."
+msgstr "사용자 %s를 성공적으로 비활성화하였습니다."
+
+#, python-format
+msgid "User %s was successfully enabled."
+msgstr "사용자 %s를 성공적으로 활성화하였습니다."
+
+#, python-format
+msgid "User %s was successfully updated."
+msgstr "사용자 %s를 성공적으로 업데이트 하였습니다."
+
 msgid "User ID"
 msgstr "사용자 ID"
+
+msgid "User Name"
+msgstr "사용자 이름"
+
+msgid "User password has been updated successfully."
+msgstr "사용자 암호를 성공적으로 업데이트 했습니다."
 
 msgid "Users"
 msgstr "사용자"
@@ -3116,10 +3505,10 @@ msgid "Warning"
 msgstr "Warning"
 
 msgid "Warning Anchor"
-msgstr "경고 앵커"
+msgstr "Warning Anchor"
 
 msgid "Warning Button"
-msgstr "경고 버튼"
+msgstr "Warning Button"
 
 msgid "Warning!"
 msgstr "Warning!"
@@ -3181,10 +3570,6 @@ msgstr "예"
 msgid "You are not allowed to delete images: %s"
 msgstr "이미지를 삭제할 수 없습니다: %s"
 
-#, python-format
-msgid "You are not allowed to delete trunks: %s"
-msgstr "Trunk를 삭제할 수 없습니다: %s"
-
 msgid "You can add arbitrary metadata to your image."
 msgstr "임의의 메타데이터를 사용자 이미지에 추가할 수 있습니다."
 
@@ -3232,23 +3617,28 @@ msgid_plural "You have selected \"%s\". Deleted images are not recoverable."
 msgstr[0] "\"%s\"를 선택했습니다. 삭제된 이미지는 복구 할 수 없습니다."
 
 #, python-format
+msgid "You have selected \"%s\". Deleted key pair is not recoverable."
+msgid_plural "You have selected \"%s\". Deleted key pairs are not recoverable."
+msgstr[0] "\"%s\"를 선택했습니다. 삭제된 키 페어는 복구할 수 없습니다."
+
+#, python-format
 msgid "You have selected \"%s\". Deleted role is not recoverable."
 msgid_plural "You have selected \"%s\". Deleted roles are not recoverable."
 msgstr[0] "\"%s\"를 선택했습니다. 삭제된 역할은 복구할 수 없습니다."
 
+#, python-format
+msgid "You have selected \"%s\". Deleted user is not recoverable."
+msgid_plural "You have selected \"%s\". Deleted users are not recoverable."
+msgstr[0] "\"%s\"를 선택했습니다. 삭제된 사용자는 복구할 수 없습니다."
+
 msgid "Your Form as JavaScript"
 msgstr "자바 스크립트로 양식 작성"
-
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "error"
 
 msgid "image"
 msgstr "image"
 
-msgid "message"
-msgid_plural "messages"
-msgstr[0] "message"
+msgid "inherit"
+msgstr "상속"
 
 #, python-format
 msgid "resource load failed: %s"
@@ -3257,20 +3647,11 @@ msgstr "리소스 로드 실패: %s"
 msgid "snapshot"
 msgstr "snapshot"
 
-msgid "submit"
-msgid_plural "submits"
-msgstr[0] "submit"
-
-msgid "success"
-msgid_plural "successs"
-msgstr[0] "success"
-
-msgid "title"
-msgid_plural "titles"
-msgstr[0] "title"
-
 msgid "volume"
 msgstr "volume"
+
+msgid "{$ address $} on subnet {$ subnet $}"
+msgstr "서브넷 {$ subnet $} 에서 {$ address $}"
 
 msgid ""
 "{$ ctrl.model.counted.files $} files in\n"

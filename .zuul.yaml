@@ -1,0 +1,64 @@
+- job:
+    name: horizon-openstack-tox-base
+    parent: openstack-tox
+    irrelevant-files:
+      - ^.*\.rst$
+      - ^doc/.*$
+      - ^releasenotes/.*$
+      - ^horizon/locale/.*$
+      - ^openstack_dashboard/locale/.*$
+      - ^openstack_auth/locale/.*$
+
+- job:
+    name: horizon-openstack-tox-py35dj20
+    parent: horizon-openstack-tox-base
+    vars:
+      tox_envlist: py35dj20
+
+- job:
+    name: horizon-selenium-headless
+    parent: horizon-openstack-tox-base
+    vars:
+      tox_envlist: selenium-headless
+
+- job:
+    name: horizon-dsvm-tempest-plugin
+    parent: devstack-tempest
+    required-projects:
+      - name: openstack/horizon
+      - name: openstack/tempest
+      - name: openstack/tempest-horizon
+    irrelevant-files:
+      - ^.*\.rst$
+      - ^doc/.*$
+      - ^releasenotes/.*$
+      - ^horizon/locale/.*$
+      - ^openstack_dashboard/locale/.*$
+      - ^openstack_auth/locale/.*$
+      # Test codes are not related to tempest tests
+      # as tempest is defined in a separete repository
+      - ^horizon/test/.*$
+      - ^openstack_auth/tests/.*$
+      - ^openstack_dashboard/test/.*$
+      - ^openstack_dashboard/dashboards/.*/tests.py$
+    vars:
+      devstack_localrc:
+        TEMPEST_PLUGINS: "'{{ ansible_user_dir }}/src/git.openstack.org/openstack/tempest-horizon'"
+      devstack_services:
+        horizon: true
+        tempest: true
+      tempest_concurrency: 2
+      tempest_test_regex: horizon
+      tox_envlist: all
+
+- project:
+    check:
+      jobs:
+        - horizon-openstack-tox-py35dj20
+        - horizon-selenium-headless
+        - horizon-dsvm-tempest-plugin
+    gate:
+      jobs:
+        - horizon-openstack-tox-py35dj20
+        - horizon-selenium-headless
+        - horizon-dsvm-tempest-plugin

@@ -6,17 +6,17 @@
 # Tom Fifield <tom@openstack.org>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: horizon 12.0.0.0rc2.dev124\n"
+"Project-Id-Version: horizon VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-09-21 04:56+0000\n"
+"POT-Creation-Date: 2018-03-01 14:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2017-09-16 08:03+0000\n"
 "Last-Translator: Gene Kuo <gene@openstack.org>\n"
 "Language-Team: Chinese (Taiwan)\n"
-"Language: zh-TW\n"
-"X-Generator: Zanata 3.9.6\n"
+"Language: zh_TW\n"
+"X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 msgid "#"
@@ -88,45 +88,6 @@ msgid ""
 msgstr ""
 "<b>磁區</b>：這個選項利用已存在的磁區。它不會建立新磁區。您可以選擇在刪除實例"
 "時一併刪除磁區。<em>附註：當選取磁區時，您只能啟動一個實例。</em>"
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Heads up!</strong>\n"
-"           This\n"
-"          <a href=\"#\" class=\"alert-link\">alert needs your attention</"
-"a>,\n"
-"           but it's not super important."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Heads up!</strong>\n"
-"           This\n"
-"          <a href=\"#\" class=\"alert-link\">alert needs your attention</"
-"a>,\n"
-"           but it's not super important."
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Oh snap!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Change a few things up</a>\n"
-"          and try submitting again."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Oh snap!</strong>\n"
-"          <a href=\"#\" class=\"alert-link\">Change a few things up</a>\n"
-"          and try submitting again."
-
-msgid ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Well done!</strong>\n"
-"          You successfully read\n"
-"          <a href=\"#\" class=\"alert-link\">this important alert message</"
-"a>."
-msgstr ""
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>\n"
-"          <strong>Well done!</strong>\n"
-"          You successfully read\n"
-"          <a href=\"#\" class=\"alert-link\">this important alert message</"
-"a>."
 
 msgid "<small>This line of text is meant to be treated as fine print.</small>"
 msgstr "<small>這一行文字將進行精細列印。</small>"
@@ -1216,13 +1177,6 @@ msgstr "密鑰對"
 
 msgid "Key Pair Name"
 msgstr "密鑰對名稱"
-
-msgid ""
-"Key Pair Name\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
-msgstr ""
-"金鑰組名稱\n"
-"        <span class=\"hz-icon-required fa fa-asterisk\"></span>"
 
 msgid "Key Pairs"
 msgstr "密鑰組"
@@ -2717,9 +2671,6 @@ msgstr "無法獲得虛擬硬體樣板。"
 msgid "Unable to retrieve the flavors."
 msgstr "無法獲得虛擬硬體樣板。"
 
-msgid "Unable to retrieve the heat services."
-msgstr "無法獲得 Heat 服務。"
-
 msgid "Unable to retrieve the image custom properties."
 msgstr "無法獲得映像檔自訂屬性。"
 
@@ -2852,9 +2803,6 @@ msgstr "無法更新映像檔。"
 msgid "Unable to upload the object."
 msgstr "無法上傳物件。"
 
-msgid "Unable to validate the template."
-msgstr "無法驗證範本。"
-
 msgid "Unknown"
 msgstr "不明"
 
@@ -2947,6 +2895,9 @@ msgstr "用戶"
 
 msgid "User ID"
 msgstr "用戶識別號"
+
+msgid "User Name"
+msgstr "用戶名稱"
 
 msgid "Users"
 msgstr "用戶"
@@ -3119,10 +3070,6 @@ msgstr "是"
 msgid "You are not allowed to delete images: %s"
 msgstr "不容許您刪除映像檔：%s"
 
-#, python-format
-msgid "You are not allowed to delete trunks: %s"
-msgstr "不容許您刪除中繼：%s"
-
 msgid "You can add arbitrary metadata to your image."
 msgstr "您可用為您的映像檔添加任意metadata。"
 
@@ -3177,16 +3124,8 @@ msgstr[0] "您已選取 \"%s\"。已刪除的角色將不可回復。"
 msgid "Your Form as JavaScript"
 msgstr "Javascript格式"
 
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "錯誤"
-
 msgid "image"
 msgstr "映像檔"
-
-msgid "message"
-msgid_plural "messages"
-msgstr[0] "訊息"
 
 #, python-format
 msgid "resource load failed: %s"
@@ -3194,18 +3133,6 @@ msgstr "無法載入資源：%s"
 
 msgid "snapshot"
 msgstr "即時存檔"
-
-msgid "submit"
-msgid_plural "submits"
-msgstr[0] "提交"
-
-msgid "success"
-msgid_plural "successs"
-msgstr[0] "成功"
-
-msgid "title"
-msgid_plural "titles"
-msgstr[0] "標題"
 
 msgid "volume"
 msgstr "雲硬碟"

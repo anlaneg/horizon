@@ -29,11 +29,13 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from neutronclient.common import exceptions as neutron_exc
 from neutronclient.v2_0 import client as neutron_client
+from novaclient import exceptions as nova_exc
 import six
 
 from horizon import exceptions
 from horizon import messages
 from horizon.utils.memoized import memoized
+from horizon.utils.memoized import memoized_with_request
 from openstack_dashboard.api import base
 from openstack_dashboard.api import nova
 from openstack_dashboard.contrib.developer.profiler import api as profiler
@@ -331,8 +333,12 @@ class SecurityGroupManager(object):
 
         :returns: List of SecurityGroup objects
         """
+        # This is to ensure tenant_id key is not populated
+        # if tenant_id=None is specified.
         tenant_id = params.pop('tenant_id', self.request.user.tenant_id)
-        return self._list(tenant_id=tenant_id, **params)
+        if tenant_id:
+            params['tenant_id'] = tenant_id
+        return self._list(**params)
 
     def _sg_name_dict(self, sg_id, rules):
         """Create a mapping dict from secgroup id to its name."""
@@ -414,8 +420,12 @@ class SecurityGroupManager(object):
                  'remote_group_id': group_id}}
         try:
             rule = self.client.create_security_group_rule(body)
+        except neutron_exc.OverQuotaClient:
+            raise exceptions.Conflict(
+                _('Security group rule quota exceeded.'))
         except neutron_exc.Conflict:
-            raise exceptions.Conflict(_('Security group rule already exists.'))
+            raise exceptions.Conflict(
+                _('Security group rule already exists.'))
         rule = rule.get('security_group_rule')
         sg_dict = self._sg_name_dict(parent_group_id, [rule])
         return SecurityGroupRule(rule, sg_dict)
@@ -475,7 +485,8 @@ class FloatingIpTarget(base.APIDictWrapper):
     """
 
     def __init__(self, port, ip_address, label):
-        target = {'name': '%s: %s' % (label, ip_address),
+        name = '%s: %s' % (label, ip_address) if label else ip_address
+        target = {'name': name,
                   'id': '%s_%s' % (port.id, ip_address),
                   'port_id': port.id,
                   'instance_id': port.device_id}
@@ -585,6 +596,8 @@ class FloatingIpManager(object):
             create_dict['subnet_id'] = params['subnet_id']
         if 'floating_ip_address' in params:
             create_dict['floating_ip_address'] = params['floating_ip_address']
+        if 'description' in params:
+            create_dict['description'] = params['description']
         fip = self.client.create_floatingip(
             {'floatingip': create_dict}).get('floatingip')
         self._set_instance_info(fip)
@@ -602,8 +615,8 @@ class FloatingIpManager(object):
         ``port_id`` represents a VNIC of an instance.
         ``port_id`` argument is different from a normal neutron port ID.
         A value passed as ``port_id`` must be one of target_id returned by
-        ``list_targets``, ``get_target_id_by_instance`` or
-        ``list_target_id_by_instance`` method.
+        ``list_targets``, ``get_target_by_instance`` or
+        ``list_targets_by_instance`` method.
         """
         # NOTE: In Neutron Horizon floating IP support, port_id is
         # "<port_id>_<ip_address>" format to identify multiple ports.
@@ -620,7 +633,7 @@ class FloatingIpManager(object):
         self.client.update_floatingip(floating_ip_id,
                                       {'floatingip': update_dict})
 
-    def _get_reachable_subnets(self, ports):
+    def _get_reachable_subnets(self, ports, fetch_router_ports=False):
         if not is_enabled_by_config('enable_fip_topology_check', True):
             # All subnets are reachable from external network
             return set(
@@ -632,10 +645,15 @@ class FloatingIpManager(object):
                       if (r.external_gateway_info and
                           r.external_gateway_info.get('network_id')
                           in ext_net_ids)]
-        reachable_subnets = set([p.fixed_ips[0]['subnet_id'] for p in ports
-                                if ((p.device_owner in
-                                     ROUTER_INTERFACE_OWNERS)
-                                    and (p.device_id in gw_routers))])
+        if fetch_router_ports:
+            router_ports = port_list(self.request,
+                                     device_owner=ROUTER_INTERFACE_OWNERS)
+        else:
+            router_ports = [p for p in ports
+                            if p.device_owner in ROUTER_INTERFACE_OWNERS]
+        reachable_subnets = set([p.fixed_ips[0]['subnet_id']
+                                 for p in router_ports
+                                 if p.device_id in gw_routers])
         # we have to include any shared subnets as well because we may not
         # have permission to see the router interface to infer connectivity
         shared = set([s.id for n in network_list(self.request, shared=True)
@@ -683,33 +701,8 @@ class FloatingIpManager(object):
         return port_list(self.request, **search_opts)
 
     @profiler.trace
-    def get_target_id_by_instance(self, instance_id, target_list=None):
-        """Returns a target ID of floating IP association.
-
-        :param instance_id: ID of target VM instance
-        :param target_list: (optional) a list returned by list_targets().
-            If specified, looking up is done against the specified list
-            to save extra API calls to a back-end. Otherwise a target
-            information is retrieved from a back-end inside the method.
-        """
-        if target_list is not None:
-            targets = [target for target in target_list
-                       if target['instance_id'] == instance_id]
-            if not targets:
-                return None
-            return targets[0]['id']
-        else:
-            # In Neutron one port can have multiple ip addresses, so this
-            # method picks up the first one and generate target id.
-            ports = self._target_ports_by_instance(instance_id)
-            if not ports:
-                return None
-            return '{0}_{1}'.format(ports[0].id,
-                                    ports[0].fixed_ips[0]['ip_address'])
-
-    @profiler.trace
-    def list_target_id_by_instance(self, instance_id, target_list=None):
-        """Returns a list of instance's target IDs of floating IP association.
+    def list_targets_by_instance(self, instance_id, target_list=None):
+        """Returns a list of FloatingIpTarget objects of FIP association.
 
         :param instance_id: ID of target VM instance
         :param target_list: (optional) a list returned by list_targets().
@@ -718,12 +711,33 @@ class FloatingIpManager(object):
             is retrieved from a back-end inside the method.
         """
         if target_list is not None:
-            return [target['id'] for target in target_list
+            # We assume that target_list was returned by list_targets()
+            # so we can assume checks for subnet reachability and IP version
+            # have been done already. We skip all checks here.
+            return [target for target in target_list
                     if target['instance_id'] == instance_id]
         else:
             ports = self._target_ports_by_instance(instance_id)
-            return ['{0}_{1}'.format(p.id, p.fixed_ips[0]['ip_address'])
-                    for p in ports]
+            reachable_subnets = self._get_reachable_subnets(
+                ports, fetch_router_ports=True)
+            name = self._get_server_name(instance_id)
+            targets = []
+            for p in ports:
+                for ip in p.fixed_ips:
+                    if ip['subnet_id'] not in reachable_subnets:
+                        continue
+                    # Floating IPs can only target IPv4 addresses.
+                    if netaddr.IPAddress(ip['ip_address']).version != 4:
+                        continue
+                    targets.append(FloatingIpTarget(p, ip['ip_address'], name))
+            return targets
+
+    def _get_server_name(self, server_id):
+        try:
+            server = nova.server_get(self.request, server_id)
+            return server.name
+        except nova_exc.NotFound:
+            return ''
 
     def is_simple_associate_supported(self):
         """Returns True if the default floating IP pool is enabled."""
@@ -747,13 +761,22 @@ def get_ipver_str(ip_version):
     return IP_VERSION_DICT.get(ip_version, '')
 
 
-@memoized
-def neutronclient(request):
+def get_auth_params_from_request(request):
+    return (
+        request.user.token.id,
+        base.url_for(request, 'network'),
+        base.url_for(request, 'identity')
+    )
+
+
+@memoized_with_request(get_auth_params_from_request)
+def neutronclient(request_auth_params):
+    token_id, neutron_url, auth_url = request_auth_params
     insecure = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)
     cacert = getattr(settings, 'OPENSTACK_SSL_CACERT', None)
-    c = neutron_client.Client(token=request.user.token.id,
-                              auth_url=base.url_for(request, 'identity'),
-                              endpoint_url=base.url_for(request, 'network'),
+    c = neutron_client.Client(token=token_id,
+                              auth_url=auth_url,
+                              endpoint_url=neutron_url,
                               insecure=insecure, ca_cert=cacert)
     return c
 
@@ -814,10 +837,27 @@ def list_resources_with_long_filters(list_method,
 
 
 @profiler.trace
+def trunk_show(request, trunk_id):
+    LOG.debug("trunk_show(): trunk_id=%s", trunk_id)
+    trunk = neutronclient(request).show_trunk(trunk_id).get('trunk')
+    return Trunk(trunk)
+
+
+@profiler.trace
 def trunk_list(request, **params):
     LOG.debug("trunk_list(): params=%s", params)
     trunks = neutronclient(request).list_trunks(**params).get('trunks')
     return [Trunk(t) for t in trunks]
+
+
+@profiler.trace
+def trunk_create(request, **params):
+    LOG.debug("trunk_create(): params=%s", params)
+    if 'project_id' not in params:
+        params['project_id'] = request.user.project_id
+    body = {'trunk': params}
+    trunk = neutronclient(request).create_trunk(body=body).get('trunk')
+    return Trunk(trunk)
 
 
 @profiler.trace
@@ -826,10 +866,107 @@ def trunk_delete(request, trunk_id):
     neutronclient(request).delete_trunk(trunk_id)
 
 
+def _prepare_body_update_trunk(prop_diff):
+    """Prepare body for PUT /v2.0/trunks/TRUNK_ID."""
+    return {'trunk': prop_diff}
+
+
+def _prepare_body_remove_subports(subports):
+    """Prepare body for PUT /v2.0/trunks/TRUNK_ID/remove_subports."""
+    return {'sub_ports': [{'port_id': sp['port_id']} for sp in subports]}
+
+
+def _prepare_body_add_subports(subports):
+    """Prepare body for PUT /v2.0/trunks/TRUNK_ID/add_subports."""
+    return {'sub_ports': subports}
+
+
 @profiler.trace
-def trunk_show(request, trunk_id):
-    LOG.debug("trunk_show(): trunk_id=%s", trunk_id)
-    trunk = neutronclient(request).show_trunk(trunk_id).get('trunk')
+def trunk_update(request, trunk_id, old_trunk, new_trunk):
+    """Handle update to a trunk in (at most) three neutron calls.
+
+    The JavaScript side should know only about the old and new state of a
+    trunk. However it should not know anything about how the old and new are
+    meant to be diffed and sent to neutron. We handle that here.
+
+    This code was adapted from Heat, see: https://review.openstack.org/442496
+
+    Call #1) Update all changed properties but 'sub_ports'.
+        PUT /v2.0/trunks/TRUNK_ID
+        openstack network trunk set
+
+    Call #2) Delete subports not needed anymore.
+        PUT /v2.0/trunks/TRUNK_ID/remove_subports
+        openstack network trunk unset --subport
+
+    Call #3) Create new subports.
+        PUT /v2.0/trunks/TRUNK_ID/add_subports
+        openstack network trunk set --subport
+
+    A single neutron port cannot be two subports at the same time (ie.
+    have two segmentation (type, ID)s on the same trunk or to belong to
+    two trunks). Therefore we have to delete old subports before creating
+    new ones to avoid conflicts.
+    """
+    LOG.debug("trunk_update(): trunk_id=%s", trunk_id)
+
+    # NOTE(bence romsics): We want to do set operations on the subports,
+    # however we receive subports represented as dicts. In Python
+    # mutable objects like dicts are not hashable so they cannot be
+    # inserted into sets. So we convert subport dicts to (immutable)
+    # frozensets in order to do the set operations.
+    def dict2frozenset(d):
+        """Convert a dict to a frozenset.
+
+        Create an immutable equivalent of a dict, so it's hashable
+        therefore can be used as an element of a set or a key of another
+        dictionary.
+        """
+        return frozenset(d.items())
+
+    # cf. neutron_lib/api/definitions/trunk.py
+    updatable_props = ('admin_state_up', 'description', 'name')
+    prop_diff = {
+        k: new_trunk[k]
+        for k in updatable_props
+        if old_trunk[k] != new_trunk[k]}
+
+    subports_old = {dict2frozenset(d): d
+                    for d in old_trunk.get('sub_ports', [])}
+    subports_new = {dict2frozenset(d): d
+                    for d in new_trunk.get('sub_ports', [])}
+
+    old_set = set(subports_old.keys())
+    new_set = set(subports_new.keys())
+
+    delete = old_set - new_set
+    create = new_set - old_set
+
+    dicts_delete = [subports_old[fs] for fs in delete]
+    dicts_create = [subports_new[fs] for fs in create]
+
+    trunk = old_trunk
+    if prop_diff:
+        LOG.debug('trunk_update(): update properties of trunk %s: %s',
+                  trunk_id, prop_diff)
+        body = _prepare_body_update_trunk(prop_diff)
+        trunk = neutronclient(request).update_trunk(
+            trunk_id, body=body).get('trunk')
+
+    if dicts_delete:
+        LOG.debug('trunk_update(): delete subports of trunk %s: %s',
+                  trunk_id, dicts_delete)
+        body = _prepare_body_remove_subports(dicts_delete)
+        trunk = neutronclient(request).trunk_remove_subports(
+            trunk_id, body=body)
+
+    if dicts_create:
+        LOG.debug('trunk_update(): create subports of trunk %s: %s',
+                  trunk_id, dicts_create)
+        body = _prepare_body_add_subports(dicts_create)
+        trunk = neutronclient(request).trunk_add_subports(
+            trunk_id, body=body)
+
     return Trunk(trunk)
 
 
@@ -1325,6 +1462,20 @@ def tenant_quota_update(request, tenant_id, **kwargs):
 
 
 @profiler.trace
+def tenant_quota_detail_get(request, tenant_id=None):
+    tenant_id = tenant_id or request.user.tenant_id
+    response = neutronclient(request).get('/quotas/%s/details' % tenant_id)
+    return response['quota']
+
+
+@profiler.trace
+def default_quota_get(request, tenant_id=None):
+    tenant_id = tenant_id or request.user.tenant_id
+    response = neutronclient(request).show_quota_default(tenant_id)
+    return base.QuotaSet(response['quota'])
+
+
+@profiler.trace
 def agent_list(request, **params):
     agents = neutronclient(request).list_agents(**params)
     return [Agent(a) for a in agents['agents']]
@@ -1402,13 +1553,8 @@ def floating_ip_target_list(request):
     return FloatingIpManager(request).list_targets()
 
 
-def floating_ip_target_get_by_instance(request, instance_id, cache=None):
-    return FloatingIpManager(request).get_target_id_by_instance(
-        instance_id, cache)
-
-
 def floating_ip_target_list_by_instance(request, instance_id, cache=None):
-    return FloatingIpManager(request).list_target_id_by_instance(
+    return FloatingIpManager(request).list_targets_by_instance(
         instance_id, cache)
 
 
@@ -1568,10 +1714,14 @@ def _server_get_addresses(request, server, ports, floating_ips, network_names):
 
 
 @profiler.trace
-@memoized
-def list_extensions(request):
+@memoized_with_request(neutronclient)
+def list_extensions(neutron_api):
+    """List neutron extensions.
+
+    :param request: django request object
+    """
     try:
-        extensions_list = neutronclient(request).list_extensions()
+        extensions_list = neutron_api.list_extensions()
     except exceptions.ServiceCatalogException:
         return {}
     if 'extensions' in extensions_list:
@@ -1581,10 +1731,13 @@ def list_extensions(request):
 
 
 @profiler.trace
-@memoized
 def is_extension_supported(request, extension_alias):
-    extensions = list_extensions(request)
+    """Check if a specified extension is supported.
 
+    :param request: django request object
+    :param extension_alias: neutron extension alias
+    """
+    extensions = list_extensions(request)
     for extension in extensions:
         if extension['alias'] == extension_alias:
             return True

@@ -18,8 +18,8 @@ Views for managing Neutron Routers.
 """
 import logging
 
-from django.core.urlresolvers import reverse
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -42,8 +42,8 @@ class CreateForm(forms.SelfHandlingForm):
     enable_snat = forms.BooleanField(label=_("Enable SNAT"),
                                      initial=True,
                                      required=False)
-    mode = forms.ChoiceField(label=_("Router Type"))
-    ha = forms.ChoiceField(label=_("High Availability Mode"))
+    mode = forms.ThemableChoiceField(label=_("Router Type"))
+    ha = forms.ThemableChoiceField(label=_("High Availability Mode"))
     az_hints = forms.MultipleChoiceField(
         label=_("Availability Zone Hints"),
         required=False,
@@ -117,13 +117,12 @@ class CreateForm(forms.SelfHandlingForm):
 
     def handle(self, request, data):
         try:
-            params = {'name': data['name']}
-            if 'admin_state_up' in data and data['admin_state_up']:
-                params['admin_state_up'] = data['admin_state_up']
+            params = {'name': data['name'],
+                      'admin_state_up': data['admin_state_up']}
             if 'external_network' in data and data['external_network']:
                 params['external_gateway_info'] = {'network_id':
                                                    data['external_network']}
-                if self.ext_gw_mode_supported and self.enable_snat_allowed:
+                if self.enable_snat_allowed:
                     params['external_gateway_info']['enable_snat'] = \
                         data['enable_snat']
             if 'az_hints' in data and data['az_hints']:

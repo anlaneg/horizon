@@ -50,11 +50,6 @@ The dashboard is generally installed on the controller node.
      (:ref:`dashboard-admin-tab`) and :guilabel:`Identity` tab
      (:ref:`dashboard-identity-tab`) are displayed.
 
-.. note::
-
-   Some tabs, such as :guilabel:`Orchestration` and :guilabel:`Firewalls`,
-   only appear on the dashboard if they are properly configured.
-
 .. _dashboard-project-tab:
 
 OpenStack dashboard — Project tab
@@ -84,39 +79,26 @@ Compute tab
 * :guilabel:`Instances`: View, launch, create a snapshot from, stop, pause,
   or reboot instances, or connect to them through VNC.
 
-* :guilabel:`Volumes`: Use the following tabs to complete these tasks:
-
-  * :guilabel:`Volumes`: View, create, edit, and delete volumes.
-
-  * :guilabel:`Volume Snapshots`: View, create, edit, and delete volume
-    snapshots.
-
 * :guilabel:`Images`: View images and instance snapshots created by project
   users, plus any images that are publicly available. Create, edit, and
   delete images, and launch instances from images and snapshots.
 
-* :guilabel:`Access & Security`: Use the following tabs to complete these
-  tasks:
+* :guilabel:`Key Pairs`: View, create, edit, import, and delete key pairs.
 
-  * :guilabel:`Security Groups`: View, create, edit, and delete security
-    groups and security group rules.
+Volume tab
+-----------
 
-  * :guilabel:`Key Pairs`: View, create, edit, import, and delete key pairs.
+* :guilabel:`Volumes`: View, create, edit, and delete volumes.
 
-  * :guilabel:`Floating IPs`: Allocate an IP address to or release it from a
-    project.
+* :guilabel:`Backups`: View, create, edit, and delete backups.
 
-  * :guilabel:`API Access`: View API endpoints.
+* :guilabel:`Snapshots`: View, create, edit, and delete volume snapshots.
 
-* :guilabel:`Shares`: Use the following tabs to complete these tasks:
+* :guilabel:`Consistency Groups`: View, create, edit, and delete
+  consistency groups.
 
-  * :guilabel:`Shares`: View, create, manage, and delete shares.
-
-  * :guilabel:`Snapshots`: View, manage, and delete volume snapshots.
-
-  * :guilabel:`Share Networks`: View, manage, and delete share networks.
-
-  * :guilabel:`Security Services`: View, manage, and delete security services.
+* :guilabel:`Consistency Group Snapshots`: View, create, edit, and
+  delete consistency group snapshots.
 
 Network tab
 -----------
@@ -127,30 +109,11 @@ Network tab
 
 * :guilabel:`Routers`: Create and manage routers.
 
-* :guilabel:`Load Balancers`: Create and manage load balancers.
+* :guilabel:`Security Groups`: View, create, edit, and delete security
+  groups and security group rules..
 
-  * :guilabel:`Pools`: Add and manage pools.
-
-  * :guilabel:`Members`: Add and manage members.
-
-  * :guilabel:`Monitors`: Add and manage monitors.
-
-* :guilabel:`Firewalls`: Create and manage firewalls.
-
-  * :guilabel:`Firewalls`: Create and manage firewalls.
-
-  * :guilabel:`Firewall Policies`: Add and manage firewall policies.
-
-  * :guilabel:`Firewall Rules`: Add and manage firewall rules.
-
-Orchestration tab
------------------
-
-* :guilabel:`Stacks`: Use the REST API to orchestrate multiple composite
-  cloud applications.
-
-* :guilabel:`Resource Types`: Show a list of all the supported resource
-  types for HOT templates.
+* :guilabel:`Floating IPs`: Allocate an IP address to or release it
+  from a project.
 
 Object Store tab
 ----------------
@@ -174,17 +137,13 @@ manage instances, volumes, flavors, images, networks, and so on.
 From the :guilabel:`Admin` tab, you can access the following category
 to complete these tasks:
 
-System tab
-----------
+Overview tab
+------------
 
 * :guilabel:`Overview`: View basic reports.
 
-* :guilabel:`Resource Usage`: Use the following tabs to view the following
-  usages:
-
-  * :guilabel:`Usage Report`: View the usage report.
-
-  * :guilabel:`Stats`: View the statistics of all resources.
+Compute tab
+-----------
 
 * :guilabel:`Hypervisors`: View the hypervisor summary.
 
@@ -196,24 +155,33 @@ System tab
   all, projects. Also, view the log for an instance or access an instance
   through VNC.
 
-* :guilabel:`Volumes`: Use the following tabs to complete these tasks:
-
-  * :guilabel:`Volumes`: View, create, manage, and delete volumes.
-
-  * :guilabel:`Volume Types`: View, create, manage, and delete volume types.
-
-  * :guilabel:`Volume Snapshots`: View, manage, and delete volume snapshots.
-
 * :guilabel:`Flavors`: View, create, edit, view extra specifications for,
   and delete flavors. A flavor is the size of an instance.
 
 * :guilabel:`Images`: View, create, edit properties for, and delete custom
   images.
 
+Volume tab
+----------
+
+* :guilabel:`Volumes`: View, create, manage, and delete volumes.
+
+* :guilabel:`Snapshots`: View, manage, and delete volume snapshots.
+
+* :guilabel:`Volume Types`: View, create, manage, and delete volume types.
+
+Network tab
+-----------
+
 * :guilabel:`Networks`: View, create, edit properties for, and delete
   networks.
 
 * :guilabel:`Routers`: View, create, edit properties for, and delete routers.
+
+* :guilabel:`Floating IPs`: Allocate an IP address for a project or release it.
+
+System tab
+----------
 
 * :guilabel:`Defaults`: View default quota values. Quotas are hard-coded in
   OpenStack Compute and define the maximum allowable size and number of
@@ -233,23 +201,6 @@ System tab
     services.
 
   * :guilabel:`Network Agents`: View the network agents.
-
-  * :guilabel:`Orchestration Services`: View a list of all Orchestration
-    services.
-
-* :guilabel:`Shares`: Use the following tabs to complete these tasks:
-
-  * :guilabel:`Shares`: View, create, manage, and delete shares.
-
-  * :guilabel:`Snapshots`: View, manage, and delete volume snapshots.
-
-  * :guilabel:`Share Networks`: View, manage, and delete share networks.
-
-  * :guilabel:`Security Services`: View, manage, and delete security services.
-
-  * :guilabel:`Share Types`: View, create, manage, and delete share types.
-
-  * :guilabel:`Share Servers`: View, manage, and delete share servers.
 
 .. _dashboard-identity-tab:
 

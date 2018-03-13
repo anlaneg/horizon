@@ -52,9 +52,11 @@ class OperationLogMiddleware(object):
         # In order to allow to access from mock in test cases.
         return self._logger
 
-    def __init__(self):
+    def __init__(self, get_response):
         if not getattr(settings, "OPERATION_LOG_ENABLED", False):
             raise MiddlewareNotUsed
+
+        self.get_response = get_response
 
         # set configurations
         _log_option = getattr(settings, "OPERATION_LOG_OPTIONS", {})
@@ -67,13 +69,20 @@ class OperationLogMiddleware(object):
             " [%(request_scheme)s] [%(referer_url)s] [%(request_url)s]"
             " [%(message)s] [%(method)s] [%(http_status)s] [%(param)s]")
         _default_ignored_urls = ['/js/', '/static/', '^/api/']
+        _default_mask_fields = ['password', 'current_password',
+                                'new_password', 'confirm_password']
         self.target_methods = [x for x in _methods if x in _available_methods]
-        self.mask_fields = _log_option.get("mask_fields", ['password'])
+        self.mask_fields = _log_option.get("mask_fields", _default_mask_fields)
         self.format = _log_option.get("format", self._default_format)
         self._logger = logging.getLogger('horizon.operation_log')
 
         ignored_urls = _log_option.get("ignore_urls", _default_ignored_urls)
         self._ignored_urls = [re.compile(url) for url in ignored_urls]
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        response = self.process_response(request, response)
+        return response
 
     def process_response(self, request, response):
         """Log user operation."""
@@ -114,7 +123,7 @@ class OperationLogMiddleware(object):
         user = getattr(request, 'user', None)
         if not user:
             return
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return
         method = request.method.upper()
         if not (method in self.target_methods):
